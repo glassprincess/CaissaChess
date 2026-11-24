@@ -1,0 +1,19 @@
+Caissa · © 2026 GlassPrincess · GPLv3
+Полная лицензия: Caissa-LICENSE.txt. Без гарантий.
+Исходный код: https://github.com/glassprincess/CaissaChess
+
+Stockfish 19 — авторы Stockfish. GPLv3.
+Исходники: https://github.com/official-stockfish/Stockfish/tree/sf_19
+Полная лицензия: Copying.txt. Авторы: AUTHORS.
+
+Фигуры и значок коня: производные cburnett, Colin M. L. Burnett. CC BY-SA 3.0.
+https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces
+https://creativecommons.org/licenses/by-sa/3.0/
+
+Дебютная база lichess-org/chess-openings — CC0.
+https://github.com/lichess-org/chess-openings
+Продолжения: Lichess Masters / lila-openingexplorer.
+
+Значки ходов и исходов предоставлены GlassPrincess.
+
+Звуки: Chess.com.

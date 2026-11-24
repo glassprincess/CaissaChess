@@ -1,0 +1,17 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2018.11.28"]
+[White "Hikaru"]
+[Black "Dr_Mortimer"]
+[Result "1-0"]
+[WhiteElo "3117"]
+[BlackElo "2822"]
+[TimeControl "180"]
+[Termination "Hikaru won by resignation"]
+
+1. d4 Nf6 2. Nf3 e6 3. c4 Bb4+ 4. Nc3 b6 5. Qc2 Bb7 6. g3 O-O 7. Bg2 d6 8. O-O
+Bxc3 9. Qxc3 Nbd7 10. b3 a5 11. a3 Be4 12. Bb2 Re8 13. Bh3 h6 14. Nd2 Bb7 15.
+Rac1 Qb8 16. Rfe1 c5 17. d5 e5 18. f4 Bc8 19. Bg2 a4 20. b4 Qc7 21. e3 cxb4 22.
+axb4 Bb7 23. Ba3 Rac8 24. Qa1 b5 25. cxb5 Qb8 26. Rc6 $3 exf4 27. gxf4 $3 Re7 28.
+Qd4 $3 Rce8 29. Nc4 $3 Ne4 30. b6 $3 Ndf6 31. b5 $3 Rd7 32. Bh3 $3 Rdd8 33. Bg2 Re7
+34. Na5 Ba8 35. Rec1 Ree8 36. Bb2 Kh8 37. Rc7 1-0

@@ -1,0 +1,4027 @@
+{
+  "v": 1,
+  "guides": [
+    {
+      "id": "italian",
+      "name": "Italian Game",
+      "eco": "C50–C59",
+      "match": [
+        "Italian Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O",
+      "idea": "White develop the bishop to c4, targeting f7, and prepare a pawn center with c3 and d4. Black respond symmetrically and try to keep White's queen and knight away from the kingside.",
+      "white": [
+        "Develop before launching an attack: Nf3, Bc4, c3 and d4.",
+        "Watch f7, a frequent target for tactical strikes.",
+        "Do not rush d4 before castling."
+      ],
+      "black": [
+        "Place the bishop on c5 and knight on f6 to put pressure on e4.",
+        "Play ...d6 and ...O-O, then prepare ...a6 and ...b5.",
+        "Watch for Nxe5 and a fork on f7."
+      ],
+      "mistakes": [
+        "Calculate early attacks on f7: one bishop usually does not create a decisive threat.",
+        "Before d4, check ...exd4 and the pressure on e4."
+      ],
+      "variations": [
+        {
+          "name": "Giuoco Piano",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Evans Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Two Knights Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5",
+          "tags": []
+        },
+        {
+          "name": "Giuoco Pianissimo",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3 Nf6 5. Nc3 d6 6. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Hungarian Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Be7 4. d4 d6 5. Nc3 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Italian Game: Giuoco Pianissimo, Lucchini Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3 f5",
+          "eco": "C50",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Evans Gambit, Fontaine Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 b5",
+          "eco": "C51",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Evans Gambit, Hein Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 d5",
+          "eco": "C51",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "ruy-lopez",
+      "name": "Ruy Lopez",
+      "eco": "C60–C99",
+      "match": [
+        "Ruy Lopez"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O",
+      "idea": "White put pressure on the c6-knight, which defends e5. This indirectly challenges the center: Black must consider Bxc6 followed by Nxe5. A long positional struggle often follows.",
+      "white": [
+        "Retreat the bishop to b3 and prepare c3 and d4.",
+        "Use Re1 to contest the e-file.",
+        "Prepare Nbd2–f1–g3 for a kingside attack."
+      ],
+      "black": [
+        "Use ...a6 and ...b5 to drive the bishop back.",
+        "Play ...d6 and ...Be7, then castle.",
+        "Keep the e5-pawn defended."
+      ],
+      "mistakes": [
+        "In the Exchange Variation, Bxc6 does not always win e5: ...Qd4 may answer Nxe5.",
+        "...Nxe4 is a standard idea in the Open Variation; check d4 and king safety before calling the capture a mistake."
+      ],
+      "variations": [
+        {
+          "name": "Morphy Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6",
+          "tags": []
+        },
+        {
+          "name": "Berlin Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Nd6 6. Bxc6 dxc6",
+          "tags": []
+        },
+        {
+          "name": "Marshall Attack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. c3 d5",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Exchange Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6 5. O-O f6",
+          "tags": []
+        },
+        {
+          "name": "Open Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Nxe4 6. d4 b5 7. Bb3 d5",
+          "tags": []
+        },
+        {
+          "name": "Ruy Lopez: Fianchetto Defense, Kevitz Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 g6 4. c3 f5",
+          "eco": "C60",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ruy Lopez: Classical Variation, Cordel Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Bc5 4. c3 f5",
+          "eco": "C64",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ruy Lopez: Classical Variation, Konikowski Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Bc5 4. c3 d5",
+          "eco": "C64",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "sicilian",
+      "name": "Sicilian Defense",
+      "eco": "B20–B99",
+      "match": [
+        "Sicilian Defense"
+      ],
+      "mainline": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6",
+      "idea": "Black challenge the center with the c-pawn. In open variations, ...cxd4 creates a half-open c-file, while White gain space and active development. Closed systems and the Alapin lead to different pawn structures.",
+      "white": [
+        "In open variations, develop after d4 and Nxd4.",
+        "Choose where to castle according to the variation: a pawn storm is not always safe.",
+        "Watch the c-file and the breaks ...d5 and ...b5."
+      ],
+      "black": [
+        "Exchange on d4 and develop toward the center.",
+        "Choose ...a6 and ...e5 or ...e6 to suit the variation.",
+        "Do not open the d-file without preparation."
+      ],
+      "mistakes": [
+        "...e5 is normal in several variations, but leaves d5 available to White.",
+        "Before a flank attack, check the central counterstrike ...d5."
+      ],
+      "variations": [
+        {
+          "name": "Najdorf",
+          "line": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6",
+          "tags": []
+        },
+        {
+          "name": "Dragon",
+          "line": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6",
+          "tags": []
+        },
+        {
+          "name": "Sveshnikov",
+          "line": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5",
+          "tags": []
+        },
+        {
+          "name": "Accelerated Dragon",
+          "line": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 g6",
+          "tags": []
+        },
+        {
+          "name": "Alapin Variation",
+          "line": "1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Closed Sicilian",
+          "line": "1. e4 c5 2. Nc3 Nc6 3. g3 g6 4. Bg2 Bg7 5. d3 d6",
+          "tags": []
+        },
+        {
+          "name": "Sicilian Defense: McDonnell Attack",
+          "line": "1. e4 c5 2. f4 Nc6 3. Nf3 g6 4. Bb5 Bg7",
+          "eco": "B21",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Sicilian Defense: O'Kelly Variation, Venice System, Gambit Line",
+          "line": "1. e4 c5 2. Nf3 a6 3. c3 d5 4. exd5 Nf6",
+          "eco": "B28",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Sicilian Defense: Smith-Morra Gambit Accepted, Fianchetto Defense",
+          "line": "1. e4 c5 2. d4 cxd4 3. c3 dxc3 4. Nxc3 g6",
+          "eco": "B21",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "french",
+      "name": "French Defense",
+      "eco": "C00–C19",
+      "match": [
+        "French Defense"
+      ],
+      "mainline": "1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5",
+      "idea": "Black build an e6–d5 pawn chain and attack White's center with ...c5, often followed by ...f6. White gain kingside space in closed positions; Black need a separate plan for developing the c8-bishop.",
+      "white": [
+        "Use e5 and f4 to gain kingside space and attack.",
+        "Develop the c1-bishop with Bd2 or b3 and Bb2.",
+        "Avoid exchanging the central pawns too early."
+      ],
+      "black": [
+        "Undermine the center with ...c5.",
+        "Consider ...b6 and ...Bb7 to develop the c8-bishop.",
+        "Seek queenside counterplay."
+      ],
+      "mistakes": [
+        "...dxe4 leads to the sound Rubinstein Variation; White should develop after Nxe4.",
+        "After e5 and ...Nfd7, Black need timely ...c5 and ...f6 breaks."
+      ],
+      "variations": [
+        {
+          "name": "Winawer",
+          "line": "1. e4 e6 2. d4 d5 3. Nc3 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch",
+          "line": "1. e4 e6 2. d4 d5 3. Nd2 c5 4. exd5 Qxd5",
+          "tags": []
+        },
+        {
+          "name": "Advance Variation",
+          "line": "1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Qb6",
+          "tags": []
+        },
+        {
+          "name": "Exchange Variation",
+          "line": "1. e4 e6 2. d4 d5 3. exd5 exd5 4. Nf3 Nf6 5. Bd3 Bd6",
+          "tags": []
+        },
+        {
+          "name": "French Defense: Hoffmann Gambit",
+          "line": "1. e4 e6 2. d4 d5 3. Qe2 e5 4. f4 exf4",
+          "eco": "C00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "French Defense: St. George Defense, St. George Gambit",
+          "line": "1. e4 e6 2. d4 a6 3. c4 b5 4. cxb5 axb5",
+          "eco": "C00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "French Defense: Tarrasch Variation, Open System, Shaposhnikov Gambit",
+          "line": "1. e4 e6 2. d4 d5 3. Nd2 c5 4. exd5 Nf6",
+          "eco": "C07",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "caro-kann",
+      "name": "Caro-Kann Defense",
+      "eco": "B10–B19",
+      "match": [
+        "Caro-Kann Defense"
+      ],
+      "mainline": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5",
+      "idea": "Black prepare ...d5 without blocking the c8-bishop as in the French. Black concede central space in return for a solid position and an active bishop.",
+      "white": [
+        "Occupy the center and develop.",
+        "Use c3 and Bd3 to challenge the bishop on f5.",
+        "Look for kingside attacking chances."
+      ],
+      "black": [
+        "Exchange on e4 and develop the bishop to f5.",
+        "Play ...e6 and ...Nd7, followed by ...Ngf6.",
+        "Do not open the position unnecessarily."
+      ],
+      "mistakes": [
+        "After 3...dxe4 4.Nxe4, avoid leaving the c8-bishop shut in; consider ...Bf5.",
+        "5...Qd5?! exposes the queen to attacks that gain time."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Advance",
+          "line": "1. e4 c6 2. d4 d5 3. e5 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. e4 c6 2. d4 d5 3. exd5 cxd5",
+          "tags": []
+        },
+        {
+          "name": "Panov-Botvinnik Attack",
+          "line": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. c4 Nf6 5. Nc3 e6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Two Knights Attack",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bxf3 5. Qxf3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Advance Variation, Van der Wiel Attack, Dreyev Defense",
+          "line": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 Qb6",
+          "eco": "B12",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Two Knights Attack, Mindeno Variation, Retreat Line",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bh5",
+          "eco": "B11",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Two Knights Attack, Mindeno Variation, Exchange Line",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bxf3",
+          "eco": "B11",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "alekhine",
+      "name": "Alekhine Defense",
+      "eco": "B02–B05",
+      "match": [
+        "Alekhine Defense"
+      ],
+      "mainline": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. Nf3 g6 5. Bc4 Nb6",
+      "idea": "Black immediately attack e4 with a knight, inviting White's pawns forward. The e5-pawn can become a target, giving Black piece play against an extended center.",
+      "white": [
+        "Chase the knight and occupy the center with pawns.",
+        "Use c4 and d4 to gain space.",
+        "Keep the e5-pawn defended."
+      ],
+      "black": [
+        "Retreat the knight to d5 or b6.",
+        "Use ...d6 and ...g6 to challenge e5.",
+        "Watch Nf3–g5 and its threats."
+      ],
+      "mistakes": [
+        "2...Ne4?! lets d4 attack the knight and gain time.",
+        "3...Nxc3?! gives White a strong center."
+      ],
+      "variations": [
+        {
+          "name": "Modern",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. Nf3 g6 5. Bc4 Nb6",
+          "tags": []
+        },
+        {
+          "name": "Four Pawns Attack",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Exchange",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. exd6",
+          "tags": []
+        },
+        {
+          "name": "Two Pawns Attack",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. c4 Nb6 4. c5 Nd5 5. Bc4 e6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Chase Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. c4 Nb6 4. c5 Nd5",
+          "tags": []
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Cambridge Gambit",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 g5",
+          "eco": "B03",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Fianchetto Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 g6",
+          "eco": "B03",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Trifunovic Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 Bf5",
+          "eco": "B03",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "scandinavian",
+      "name": "Scandinavian Defense",
+      "eco": "B01",
+      "match": [
+        "Scandinavian Defense"
+      ],
+      "mainline": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 c6",
+      "idea": "Black immediately exchange the d-pawn for White's e-pawn and bring out the queen. On a5, the queen leaves room for development, giving Black a straightforward setup.",
+      "white": [
+        "Develop with attacks on the queen.",
+        "Play d4 and Bc4 to build pressure.",
+        "Avoid exchanging queens too early."
+      ],
+      "black": [
+        "Retreat the queen to a5 or d6.",
+        "Use ...Nf6 and ...c6 to prepare ...e5.",
+        "Do not send the queen too far from support."
+      ],
+      "mistakes": [
+        "2...Qxd5 3.Nc3 is normal despite the tempo gained on the queen; 2...Nf6?! requires care.",
+        "3...Qd8?! loses time."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 c6",
+          "tags": []
+        },
+        {
+          "name": "Modern",
+          "line": "1. e4 d5 2. exd5 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Qd6",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd6",
+          "tags": []
+        },
+        {
+          "name": "Icelandic-Palme Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. c4 e6 4. dxe6 Bxe6",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Portuguese Variation",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 Bg4 4. f3 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Scandinavian Defense: Modern Variation, Wing Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 g6 4. c4 b5",
+          "eco": "B01",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scandinavian Defense: Kádas Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 c6 4. dxc6 e5",
+          "eco": "B01",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scandinavian Defense: Anderssen Counterattack",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 e5",
+          "eco": "B01",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "pirc",
+      "name": "Pirc Defense",
+      "eco": "B07–B09",
+      "match": [
+        "Pirc Defense"
+      ],
+      "mainline": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O",
+      "idea": "Black concede central space and fianchetto the bishop, then challenge the pawn center with ...c5 or ...e5. The setup relies on flexible piece pressure.",
+      "white": [
+        "Occupy the center and develop.",
+        "Use Be3 and Qd2 to prepare queenside castling.",
+        "Consider h4–h5 for a kingside attack."
+      ],
+      "black": [
+        "Fianchetto the bishop to g7.",
+        "Challenge the center with ...c5 or ...e5.",
+        "Meet a pawn storm with active counterplay."
+      ],
+      "mistakes": [
+        "After 3...Bg7, 4.e5! gains space.",
+        "An unprepared 5...c5?! may open the center in White's favor."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Austrian Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. f4 Bg7 5. Nf3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Philidor Transposition",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 e5",
+          "tags": []
+        },
+        {
+          "name": "150 Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O 6. f3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. g3 Bg7 5. Bg2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Pirc Defense: 150 Attack, Sveshnikov-Jansa Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 c6 5. h3",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Pirc Defense: 150 Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 c6 5. Qd2",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Pirc Defense: Bayonet Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be2 Bg7 5. h4",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "modern",
+      "name": "Modern Defense",
+      "eco": "B06",
+      "match": [
+        "Modern Defense"
+      ],
+      "mainline": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Be3 a6",
+      "idea": "Black fianchetto immediately and delay ...Nf6. White are allowed to occupy the center, which Black later attack with pawns and pieces.",
+      "white": [
+        "Occupy the center and develop.",
+        "Consider c4 and d5 if Black are slow.",
+        "Watch for weaknesses around g7."
+      ],
+      "black": [
+        "Fianchetto the bishop and play ...d6.",
+        "Challenge the center with ...c5 or ...e5.",
+        "Watch Bc4 and pressure on f7."
+      ],
+      "mistakes": [
+        "After 2...Bg7, 3.e5! gains space.",
+        "3...c5?! may be premature."
+      ],
+      "variations": [
+        {
+          "name": "Standard",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Be3 a6",
+          "tags": []
+        },
+        {
+          "name": "Pirc Transposition",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Nf3 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Austrian",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. f4",
+          "tags": []
+        },
+        {
+          "name": "Averbakh System",
+          "line": "1. e4 g6 2. d4 Bg7 3. c4 d6 4. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Gurgenidze Defense",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 c6 4. f4 d5",
+          "tags": []
+        },
+        {
+          "name": "Modern Defense: Norwegian Defense, Norwegian Gambit",
+          "line": "1. e4 g6 2. d4 Nf6 3. e5 Nh5 4. Be2 d6",
+          "eco": "B06",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Modern Defense: Bishop Attack, Monkey's Bum",
+          "line": "1. e4 g6 2. Bc4 Bg7 3. Qf3 e6 4. d4 Bxd4",
+          "eco": "B06",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Modern Defense: Masur Gambit",
+          "line": "1. e4 g6 2. d4 Nh6 3. Nc3 f5 4. Bxh6 Bxh6 5. exf5 O-O",
+          "eco": "B06",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "dutch",
+      "name": "Dutch Defense",
+      "eco": "A80–A99",
+      "match": [
+        "Dutch Defense"
+      ],
+      "mainline": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 d5",
+      "idea": "Black fight for e4 with ...f5. This ambitious defense creates kingside attacking chances but weakens Black's own king.",
+      "white": [
+        "Use g3 and Bg2 to contest e4.",
+        "Occupy the center and prepare e4.",
+        "Look for chances along the weakened h5–e8 diagonal."
+      ],
+      "black": [
+        "Build with ...f5, ...Nf6, ...e6 and ...d5.",
+        "Seek a kingside attack.",
+        "Avoid opening the position before castling."
+      ],
+      "mistakes": [
+        "After 1...f5, 2.e4! immediately challenges the center.",
+        "2...d5?! without ...Nf6 allows e4."
+      ],
+      "variations": [
+        {
+          "name": "Stonewall",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 d5",
+          "tags": []
+        },
+        {
+          "name": "Leningrad",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 g6",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 Be7",
+          "tags": []
+        },
+        {
+          "name": "Staunton Gambit",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Hopton Attack",
+          "line": "1. d4 f5 2. Bg5 Nf6 3. Bxf6 exf6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Staunton Gambit, Chigorin Variation",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5 c6",
+          "eco": "A83",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Staunton Gambit, Nimzowitsch Variation",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5 b6",
+          "eco": "A83",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Classical Variation, Blackburne Attack",
+          "line": "1. d4 f5 2. c4 Nf6 3. g3 e6 4. Bg2 Be7 5. Nh3",
+          "eco": "A91",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qgd",
+      "name": "Queen's Gambit",
+      "eco": "D06–D69",
+      "match": [
+        "Queen's Gambit Declined",
+        "Queen's Gambit",
+        "Queen's Gambit Accepted"
+      ],
+      "mainline": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6",
+      "idea": "White offer the c-pawn to divert Black's d5-pawn and strengthen central control. In the Accepted variation, ...dxc4 is met by e3 and Bxc4 or by e4. In the Declined variation, Black support d5 with ...e6.",
+      "white": [
+        "In the Accepted variation, recover the pawn with e3 and Bxc4 while developing.",
+        "With 3.e4, build a center but watch ...e5 and ...c5.",
+        "In the Declined variation, develop Nf3, Nc3 and Bg5; prepare e4 or an exchange on d5."
+      ],
+      "black": [
+        "After ...dxc4, develop and challenge the center with ...c5 or ...e5.",
+        "Do not hold c4 at any cost: ...b5 requires checking a4.",
+        "In the Declined variation, finish development and find the right moment for ...c5."
+      ],
+      "mistakes": [
+        "After 1.d4 d5 2.c4 dxc4 3.e3 b5?! 4.a4, Black's pawn chain needs concrete defensive moves.",
+        "Do not leave the king in the center while trying to recover every pawn immediately."
+      ],
+      "variations": [
+        {
+          "name": "Orthodox",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5",
+          "tags": []
+        },
+        {
+          "name": "Queen's Gambit Accepted: Classical",
+          "line": "1. d4 d5 2. c4 dxc4 3. Nf3 Nf6 4. e3 e6 5. Bxc4 c5 6. O-O a6",
+          "notes": [
+            "White occupy d4, control e5 and open the diagonal for the c1-bishop.",
+            "Black reply symmetrically: d5 restrains e4 and opens a diagonal for the c8-bishop.",
+            "White offer the c4-pawn to divert Black's d5-pawn from the center, making e4 easier after an exchange.",
+            "Black accept the Queen's Gambit: the d5-pawn captures on c4 and leaves the center. Holding the extra pawn at any cost is unnecessary.",
+            "Nf3 develops the kingside and controls e5; White do not rush to recover the c4-pawn.",
+            "The knight on f6 controls e4 and d5, making it harder for White to establish a d4–e4 center.",
+            "White open a diagonal for the f1-bishop and prepare Bxc4, recovering the pawn while developing.",
+            "Black open a diagonal for the f8-bishop and support d5 with the e6-pawn.",
+            "The f1-bishop recaptures on c4 and reaches an active diagonal; material equality is restored.",
+            "Black undermine d4 with ...c5, seeking central counterplay rather than trying to hold the c4-pawn.",
+            "White castle: the king leaves the e-file and the rook on f1 can support central play.",
+            "...a6 prepares ...b5, attacking the c4-bishop and gaining queenside space."
+          ],
+          "title": "Queen's Gambit Accepted: Classical",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Central Variation",
+          "line": "1. d4 d5 2. c4 dxc4 3. e4 e5 4. Nf3 exd4 5. Bxc4 Nc6",
+          "notes": [
+            "White occupy d4, control e5 and open the diagonal for the c1-bishop.",
+            "Black reply symmetrically: d5 restrains e4 and opens a diagonal for the c8-bishop.",
+            "White offer the c4-pawn to divert Black's d5-pawn from the center, making e4 easier after an exchange.",
+            "Black accept the Queen's Gambit: the d5-pawn captures on c4 and leaves the center. Holding the extra pawn at any cost is unnecessary.",
+            "White use the departure of Black's d5-pawn to build a d4–e4 center. The c4-pawn can be recovered by the bishop after development.",
+            "Black immediately challenge d4 with ...e5, preventing White from consolidating the broad center undisturbed.",
+            "Nf3 develops, attacks e5 and brings kingside castling closer.",
+            "The e5-pawn captures on d4, breaking up White's center. Black's pawns on c4 and d4 now need support.",
+            "The f1-bishop captures the c4-pawn. White recover one pawn while developing, but a black pawn remains on d4.",
+            "Nc6 develops the queenside and defends d4. White must choose how to increase pressure on this central pawn."
+          ],
+          "title": "Queen's Gambit Accepted: Central Variation",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Old Variation",
+          "line": "1. d4 d5 2. c4 dxc4 3. e3 e5 4. Bxc4 exd4 5. exd4 Nf6",
+          "notes": [
+            "White occupy d4, control e5 and open the diagonal for the c1-bishop.",
+            "Black reply symmetrically: d5 restrains e4 and opens a diagonal for the c8-bishop.",
+            "White offer the c4-pawn to divert Black's d5-pawn from the center, making e4 easier after an exchange.",
+            "Black accept the Queen's Gambit: the d5-pawn captures on c4 and leaves the center. Holding the extra pawn at any cost is unnecessary.",
+            "White immediately open the f1-bishop's path to c4 to recover the gambit pawn.",
+            "Black occupy e5 and attack d4. Central action matters while White spend a move recovering the pawn.",
+            "The f1-bishop captures on c4 and joins the a2–g8 diagonal; the gambit pawn has been recovered.",
+            "Black exchange the e5-pawn for the d4-pawn, opening central lines.",
+            "The e3-pawn recaptures on d4. White now have an isolated d4-pawn, with no neighboring white pawns on the c- or e-files.",
+            "Nf6 develops and controls d5 and e4. Black can build a blockade in front of the isolated d4-pawn."
+          ],
+          "title": "Queen's Gambit Accepted: Old Variation",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Albin Countergambit",
+          "line": "1. d4 d5 2. c4 e5 3. dxe5 d4 4. Nf3 Nc6 5. a3",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Central Variation, Rubinstein Defense, Yefimov Gambit",
+          "line": "1. d4 d5 2. c4 dxc4 3. e4 c5 4. d5 b5",
+          "eco": "D20",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Declined: Baltic Defense, Pseudo-Slav",
+          "line": "1. d4 d5 2. Nf3 Bf5 3. c4 e6 4. Nc3 c6",
+          "eco": "D02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Declined: Albin Countergambit, Tartakower Defense",
+          "line": "1. d4 d5 2. c4 e5 3. dxe5 d4 4. Nf3 c5",
+          "eco": "D08",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "keywords": [
+        "Queen's Gambit Accepted",
+        "Queen's Gambit Declined",
+        "QGA",
+        "QGD"
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "slav",
+      "name": "Slav Defense",
+      "eco": "D10–D19",
+      "match": [
+        "Slav Defense",
+        "Semi-Slav Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5",
+      "idea": "Black defend the d-pawn with ...c6 while keeping the option of developing the c8-bishop to f5. The result is a solid structure with active piece play.",
+      "white": [
+        "Recover the c-pawn and develop.",
+        "Use a4 to discourage ...b5.",
+        "Seek queenside play."
+      ],
+      "black": [
+        "Play ...c6 and consider ...dxc4.",
+        "Develop the bishop to f5 before ...e6.",
+        "Avoid trapping the c8-bishop behind its own pawns."
+      ],
+      "mistakes": [
+        "After 3...dxc4, 4.e4! gives White a broad center.",
+        "After 4...Bf5, 5.Qb3 puts pressure on b7."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. d4 d5 2. c4 c6 3. cxd5 cxd5",
+          "tags": []
+        },
+        {
+          "name": "Chebanenko Variation",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 a6",
+          "tags": []
+        },
+        {
+          "name": "Meran Variation",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5",
+          "tags": []
+        },
+        {
+          "name": "Slav Defense: Two Knights Attack",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4",
+          "eco": "D15",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation, Portisch Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5 5. g4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Gunderam Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4 dxe4 5. f3",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "catalan",
+      "name": "Catalan Opening",
+      "eco": "E00–E09",
+      "match": [
+        "Catalan Opening"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O",
+      "idea": "White combine the Queen's Gambit with a kingside fianchetto. The g2-bishop creates lasting pressure on the center and along its long diagonal, leading to a positional struggle.",
+      "white": [
+        "Fianchetto the bishop and occupy the center.",
+        "Use Qc2 and Rd1 to increase pressure.",
+        "Prepare e4 at the right moment."
+      ],
+      "black": [
+        "Consider ...dxc4 and ...b5 to hold the extra pawn.",
+        "Develop the bishop to b7 or a6.",
+        "Do not open the center without preparation."
+      ],
+      "mistakes": [
+        "After 3...dxc4, 4.Qa4+ can recover the pawn.",
+        "4...c5?! may open the center in White's favor."
+      ],
+      "variations": [
+        {
+          "name": "Closed",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Open",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Closed with ...Nbd7",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O Nbd7",
+          "tags": []
+        },
+        {
+          "name": "Open Defense: Classical Line",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3 Be7 6. O-O O-O 7. Qc2 a6",
+          "tags": []
+        },
+        {
+          "name": "Open Defense: Early Qa4+",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Qa4+ Bd7 6. Qxc4",
+          "tags": []
+        },
+        {
+          "name": "Catalan Opening: Closed, Spassky Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 Be7 4. Bg2 d5 5. Nf3 O-O 6. O-O Nbd7 7. Qc2 c6 8. b3 b6 9. Rd1 Bb7 10. Nc3 b5",
+          "eco": "E08",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Catalan Opening: Open Defense",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4",
+          "eco": "E02",
+          "tags": []
+        },
+        {
+          "name": "Catalan Opening: Closed",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3",
+          "eco": "E06",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzo",
+      "name": "Nimzo-Indian Defense",
+      "eco": "E20–E59",
+      "match": [
+        "Nimzo-Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5",
+      "idea": "Black pin the c3-knight and fight for e4. This reliable answer to 1.d4 gives Black active piece play.",
+      "white": [
+        "Use e3 and Bd3 to prepare central play.",
+        "Make use of the bishop pair after an exchange.",
+        "Seek kingside chances."
+      ],
+      "black": [
+        "Pin the c3-knight and play ...d5.",
+        "Do not exchange the bishop without a reason.",
+        "Look for queenside counterplay."
+      ],
+      "mistakes": [
+        "After 3...Bb4, 4.a3! gains time against the bishop.",
+        "After 4...b6?!, the b4-bishop may be left out of play."
+      ],
+      "variations": [
+        {
+          "name": "Rubinstein",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qc2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Sämisch",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3",
+          "tags": []
+        },
+        {
+          "name": "Leningrad Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bg5 h6 5. Bh4 c5",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. g3 d5 5. Bg2",
+          "tags": []
+        },
+        {
+          "name": "Nimzo-Indian Defense: Three Knights Variation, Shocron Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nc3 c5 5. d5 b5",
+          "eco": "E21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Indian Defense: Spielmann Variation, Romanovsky Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qb3 c5 5. dxc5 Nc6",
+          "eco": "E23",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Indian Defense: Leningrad Variation, Averbakh Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bg5 h6 5. Bh4 c5 6. d5 b5",
+          "eco": "E30",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "grunfeld",
+      "name": "Grünfeld Defense",
+      "eco": "D70–D99",
+      "match": [
+        "Grünfeld Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7",
+      "idea": "Black concede the center to attack it with pieces and the g7-bishop. This dynamic defense accepts a pawn minority in return for activity.",
+      "white": [
+        "Occupy the center and play e4.",
+        "Use the queenside pawn majority.",
+        "Restrict Black's ...c5 and ...e5 breaks."
+      ],
+      "black": [
+        "Attack the center with ...c5 and ...e5.",
+        "Fianchetto the bishop to g7.",
+        "Do not exchange queens without a reason."
+      ],
+      "mistakes": [
+        "After 3...dxc4?!, e4 gives White the center.",
+        "After 5...Nxc3 6.bxc3, White have a strong pawn center."
+      ],
+      "variations": [
+        {
+          "name": "Exchange",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7",
+          "tags": []
+        },
+        {
+          "name": "Russian",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Qb3",
+          "tags": []
+        },
+        {
+          "name": "Neo-Grünfeld",
+          "line": "1. d4 Nf6 2. c4 g6 3. g3 d5",
+          "tags": []
+        },
+        {
+          "name": "Exchange Variation: Classical",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Bc4 c5",
+          "tags": []
+        },
+        {
+          "name": "Three Knights Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bf4 O-O",
+          "tags": []
+        },
+        {
+          "name": "Grünfeld Defense: Counterthrust Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. g3 Bg7 4. Bg2 d5",
+          "eco": "E60",
+          "tags": [
+            "counter"
+          ]
+        },
+        {
+          "name": "Grünfeld Defense: Three Knights Variation, Hungarian Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bf4",
+          "eco": "D92",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Grünfeld Defense: Exchange Variation, Nadanian Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. Na4",
+          "eco": "D85",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "kid",
+      "name": "King's Indian Defense",
+      "eco": "E60–E99",
+      "match": [
+        "King's Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5",
+      "idea": "Black let White occupy the center, then challenge it with ...e5. On the kingside, Black prepare ...f5 and a pawn storm.",
+      "white": [
+        "Occupy the center and consider d5.",
+        "Attack on the queenside with c5.",
+        "Watch for ...f5 and a kingside attack."
+      ],
+      "black": [
+        "Prepare ...e5 and ...f5.",
+        "Look for an attack on White's king.",
+        "Avoid opening the queenside unnecessarily."
+      ],
+      "mistakes": [
+        "4...e5?! may be premature because of d5.",
+        "5...Nc6?! can interfere with the plan of ...f5."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5",
+          "tags": []
+        },
+        {
+          "name": "Sämisch",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f3 O-O",
+          "tags": []
+        },
+        {
+          "name": "Four Pawns",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. g3 O-O 5. Bg2 d6",
+          "tags": []
+        },
+        {
+          "name": "Averbakh Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. Bg5",
+          "tags": []
+        },
+        {
+          "name": "King's Indian Defense: Four Pawns Attack, Modern Defense",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4 Na6",
+          "eco": "E76",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Defense: Four Pawns Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. f4",
+          "eco": "E77",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Defense: Steiner Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f3 O-O 6. Bg5",
+          "eco": "E81",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qid",
+      "name": "Queen's Indian Defense",
+      "eco": "E12–E19",
+      "match": [
+        "Queen's Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O",
+      "idea": "Black fianchetto the bishop to b7 and control e4. This quiet defense often transposes into Queen's Gambit structures.",
+      "white": [
+        "Occupy the center and develop.",
+        "Use Nc3 and Qc2.",
+        "Seek queenside play."
+      ],
+      "black": [
+        "Fianchetto the bishop to b7.",
+        "Maintain control of e4.",
+        "Prepare ...c5 or ...d5."
+      ],
+      "mistakes": [
+        "After 3...Bb4+?!, Bd2 gains time on the bishop.",
+        "After 4...Bb7 5.Bg2, the b7-bishop may be blocked by a pawn."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Petrosian",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. a3 Bb7",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+",
+          "tags": []
+        },
+        {
+          "name": "Kasparov Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. Nc3 Bb7 5. a3 d5 6. cxd5 Nxd5",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation: Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6 5. b3 Bb4+ 6. Bd2",
+          "tags": []
+        },
+        {
+          "name": "Queen's Indian Defense: Fianchetto Variation, Nimzowitsch Variation, Nimzowitsch Attack",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6 5. Qa4",
+          "eco": "E15",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Indian Defense: Kasparov-Petrosian Variation, Petrosian Attack",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. a3 Bb7 5. Nc3 d5 6. cxd5 Nxd5 7. e3",
+          "eco": "E12",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Indian Defense: Kasparov-Petrosian Variation, Polovodin Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. Nc3 Bb7 5. a3 d5 6. cxd5 Nxd5 7. e4",
+          "eco": "E12",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "benoni",
+      "name": "Benoni Defense",
+      "eco": "A56–A79",
+      "match": [
+        "Benoni Defense",
+        "Benko Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6",
+      "idea": "Black create queenside pawn tension and play against d5. The position often becomes sharp and asymmetrical.",
+      "white": [
+        "Occupy the center and play e4.",
+        "Use the d5-pawn as a wedge.",
+        "Seek kingside attacking chances."
+      ],
+      "black": [
+        "Use ...exd5 and ...d6.",
+        "Attack d5 with pieces.",
+        "Look for queenside counterplay."
+      ],
+      "mistakes": [
+        "After 3...e6 4.Nc3 exd5 5.cxd5, White have a strong center.",
+        "4...b5?! may be premature."
+      ],
+      "variations": [
+        {
+          "name": "Modern Benoni",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6",
+          "tags": []
+        },
+        {
+          "name": "Benko Gambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Czech Benoni",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e5",
+          "tags": []
+        },
+        {
+          "name": "Modern Benoni: Taimanov Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. f4 Bg7 8. Bb5+",
+          "tags": []
+        },
+        {
+          "name": "Benko Gambit: Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 Bxa6 6. Nc3 d6 7. g3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted: Dlugy Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. f3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted: Modern Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. e3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "budapest",
+      "name": "Budapest Gambit",
+      "eco": "A51–A52",
+      "match": [
+        "Budapest Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+",
+      "idea": "Black sacrifice the e5-pawn for active play and aim to recover it later. Tactical traps can catch an unprepared opponent.",
+      "white": [
+        "Return the extra pawn if necessary and develop.",
+        "Do not try to hold the pawn at any cost.",
+        "Use Nf3 and e3."
+      ],
+      "black": [
+        "Attack e5 with the knight on g4.",
+        "Recover the pawn at a convenient moment.",
+        "Look for tactical opportunities."
+      ],
+      "mistakes": [
+        "After 3...Ng4 4.Bf4, White keep the extra pawn for now.",
+        "After 4...Bb4+ 5.Nbd2, Black may lose time."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+",
+          "tags": []
+        },
+        {
+          "name": "Fajarowicz",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ne4",
+          "tags": []
+        },
+        {
+          "name": "Accepted",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Adler Variation",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Nf3 Bc5 5. e3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Rubinstein Variation",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+ 6. Nbd2",
+          "tags": []
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "english",
+      "name": "English Opening",
+      "eco": "A10–A39",
+      "match": [
+        "English Opening"
+      ],
+      "mainline": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 d5 5. cxd5 Nxd5",
+      "idea": "White begin with the flank move c4 and build queenside pressure. The game often reaches familiar structures with colors reversed.",
+      "white": [
+        "Occupy the center and fianchetto the bishop.",
+        "Choose the right moment for d4.",
+        "Seek queenside play."
+      ],
+      "black": [
+        "Occupy the center with ...e5 or ...d5.",
+        "Make it difficult for White to achieve d4 comfortably.",
+        "Find central counterplay."
+      ],
+      "mistakes": [
+        "After 1...e5 2.Nc3, White have a comfortable setup.",
+        "2...d5?! may be premature."
+      ],
+      "variations": [
+        {
+          "name": "Reversed Sicilian",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 d5 5. cxd5 Nxd5",
+          "tags": []
+        },
+        {
+          "name": "Symmetrical",
+          "line": "1. c4 c5 2. Nc3 Nc6 3. g3 g6",
+          "tags": []
+        },
+        {
+          "name": "Four Knights",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Botvinnik System",
+          "line": "1. c4 e5 2. Nc3 Nc6 3. g3 g6 4. Bg2 Bg7 5. e4 d6 6. Nge2",
+          "tags": []
+        },
+        {
+          "name": "Anglo-Indian Defense",
+          "line": "1. c4 Nf6 2. Nc3 e6 3. Nf3 b6 4. g3 Bb7",
+          "tags": []
+        },
+        {
+          "name": "English Opening: Romanishin Gambit",
+          "line": "1. c4 Nf6 2. Nf3 e6 3. g3 a6 4. Bg2 b5",
+          "eco": "A13",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "English Opening: Anglo-Indian Defense, Flohr-Mikenas-Carls Variation, Nei Gambit",
+          "line": "1. c4 e6 2. Nc3 Nf6 3. e4 c5 4. e5 Ng8",
+          "eco": "A19",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "English Opening: King's English Variation, Adhiban Gambit",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 e4 4. Ng5 c6",
+          "eco": "A22",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "reti",
+      "name": "Réti Opening",
+      "eco": "A04–A09",
+      "match": [
+        "Réti Opening"
+      ],
+      "mainline": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O",
+      "idea": "White begin with Nf3 and c4, challenging the center from the flank. This flexible opening can transpose into the Catalan or English.",
+      "white": [
+        "Fianchetto the bishop and occupy the center.",
+        "Prepare c4 and d4.",
+        "Do not rush e4."
+      ],
+      "black": [
+        "Occupy the center with ...d5.",
+        "Develop and castle.",
+        "Make White work to achieve e4."
+      ],
+      "mistakes": [
+        "After 1...d5 2.c4, White immediately challenge the center.",
+        "After 2...dxc4 3.Qa4+, White can recover the pawn."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O",
+          "tags": []
+        },
+        {
+          "name": "King's Indian Attack",
+          "line": "1. Nf3 d5 2. g3 Nf6 3. Bg2 g6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Catalan Transposition",
+          "line": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Advance Variation",
+          "line": "1. Nf3 d5 2. c4 d4 3. b4 f6 4. e3",
+          "tags": []
+        },
+        {
+          "name": "Accepted",
+          "line": "1. Nf3 d5 2. c4 dxc4 3. e3 Nf6 4. Bxc4 e6",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, with g3",
+          "line": "1. c4 c6 2. Nf3 d5 3. g3 Nf6 4. b3 g6",
+          "eco": "A11",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, Bled Variation",
+          "line": "1. Nf3 d5 2. b3 Nf6 3. Bb2 g6 4. c4 c6",
+          "eco": "A12",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, London Defensive System",
+          "line": "1. c4 Nf6 2. g3 c6 3. Nf3 d5 4. b3 Bf5",
+          "eco": "A12",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qpg",
+      "name": "Queen's Pawn Game",
+      "eco": "D00–D05",
+      "match": [
+        "Queen's Pawn Game"
+      ],
+      "mainline": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3 c5 5. c3",
+      "idea": "White play d4 without an early c4. The aim is quiet development followed by e4 or c4.",
+      "white": [
+        "Develop and prepare e4.",
+        "Use Bd3 and Nbd2.",
+        "Do not rush c4."
+      ],
+      "black": [
+        "Occupy the center and develop.",
+        "Use ...c5 to attack d4.",
+        "Keep a path open for the c8-bishop."
+      ],
+      "mistakes": [
+        "2...c5?! may be premature; White can use e3 and Bd3.",
+        "3...Bf5?! may expose the bishop to attacks that gain time."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3 c5 5. c3",
+          "tags": []
+        },
+        {
+          "name": "London System",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bf4",
+          "tags": []
+        },
+        {
+          "name": "Colle System",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3",
+          "tags": []
+        },
+        {
+          "name": "Torre Attack",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 d5 4. e3 Be7",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Veresov Opening",
+          "line": "1. d4 d5 2. Nc3 Nf6 3. Bg5 Nbd7 4. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Queen's Pawn Game: Levitsky Attack, Euwe Variation, Modern Line",
+          "line": "1. d4 d5 2. Nf3 c6 3. Bg5 h6 4. Bh4 Qb6",
+          "eco": "D02",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Pawn Game: Barry Attack",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Nc3 d5 4. Bf4 Bg7",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Pawn Game: Torre Attack",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bg5 e6 4. e3 c5 5. Nbd2",
+          "eco": "D03",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bishops-opening",
+      "name": "Bishop's Opening",
+      "eco": "C23–C24",
+      "match": [
+        "Bishop's Opening"
+      ],
+      "mainline": "1. e4 e5 2. Bc4 Nf6 3. d3 c6 4. Nf3 d5",
+      "idea": "White develop the bishop to c4 before the knight, aiming at f7. The game can transpose into the Italian or Vienna.",
+      "white": [
+        "Develop the knight and prepare d4.",
+        "Watch f7.",
+        "Avoid bringing the queen out too early."
+      ],
+      "black": [
+        "Challenge the center with ...Nf6 and ...d5.",
+        "Develop the pieces.",
+        "Watch for Bxf7+."
+      ],
+      "mistakes": [
+        "After 2...Nf6 3.d3, White have a comfortable setup.",
+        "2...Bc5 3.Nf3 leads to symmetry without a clear gain for Black."
+      ],
+      "variations": [
+        {
+          "name": "Berlin",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d3 c6 4. Nf3 d5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. Nf3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Vienna Hybrid",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Urusov Gambit",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d4 exd4 4. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ponziani Gambit",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d4 Nxe4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Lewis Countergambit",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. c3 d5 4. Bxd5 Nf6",
+          "eco": "C23",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Boden-Kieseritzky Gambit, Lichtenhein Defense",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Bc4 Nxe4 4. Nc3 d5",
+          "eco": "C27",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Lewis Countergambit, Walker Variation",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. c3 d5 4. Bxd5 Nf6 5. d4",
+          "eco": "C23",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "vienna",
+      "name": "Vienna Game",
+      "eco": "C25–C29",
+      "match": [
+        "Vienna Game",
+        "Vienna Gambit"
+      ],
+      "mainline": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+      "idea": "White develop the knight to c3 and may use f4 to challenge the center. This ambitious setup aims for a quick kingside attack.",
+      "white": [
+        "Prepare f4 and develop.",
+        "Seek kingside attacking chances.",
+        "Keep e4 protected."
+      ],
+      "black": [
+        "Challenge the center with ...d5.",
+        "Do not open the position without preparation.",
+        "Seek queenside counterplay."
+      ],
+      "mistakes": [
+        "After 2...Nf6 3.f4!, White aim for an attack.",
+        "3...exf4?! allows e5."
+      ],
+      "variations": [
+        {
+          "name": "Vienna Gambit",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Falkbeer",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. exd5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. Bc4 Bc5",
+          "tags": []
+        },
+        {
+          "name": "Mieses Variation",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. g3 d5 4. exd5 Nxd5 5. Bg2",
+          "tags": []
+        },
+        {
+          "name": "Vienna Gambit: Main Line",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Game: Mieses Variation, Erben Gambit",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. g3 d5 4. exd5 c6",
+          "eco": "C26",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Gambit, with Max Lange Defense: Quelle Gambit",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. f4 Bc5 4. fxe5 d6",
+          "eco": "C25",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Gambit, with Max Lange Defense: Cunningham Defense",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. f4 exf4 4. Nf3 Be7",
+          "eco": "C25",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "scotch",
+      "name": "Scotch Game",
+      "eco": "C44–C45",
+      "match": [
+        "Scotch Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Bc5 5. Nb3 Bb6",
+      "idea": "White open the center immediately with d4. Rapid development leads to open play against Black's symmetrical setup.",
+      "white": [
+        "Occupy the center and develop.",
+        "Consider Nxc6 and Be3.",
+        "Look for kingside chances."
+      ],
+      "black": [
+        "Develop the bishop to c5 or b4.",
+        "Use ...Nf6 and ...d6.",
+        "Watch for Ndb5."
+      ],
+      "mistakes": [
+        "After 3...exd4 4.Nxd4, White occupy the center.",
+        "4...Nxd4?! allows Qxd4."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Bc5 5. Nb3 Bb6",
+          "tags": []
+        },
+        {
+          "name": "Mieses",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Scotch Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Schmidt Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Göring Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 dxc3 5. Nxc3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Scotch Gambit, Göring Gambit Declined",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 d5",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Haxo Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bc5",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Scotch Gambit, Dubois Réti Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 exd4",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "petrov",
+      "name": "Petrov Defense",
+      "eco": "C42–C43",
+      "match": [
+        "Petrov's Defense",
+        "Russian Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3",
+      "idea": "Black answer White's attack on e5 by attacking e4. Quiet positions with balanced chances often follow, making this a solid answer to 1.e4.",
+      "white": [
+        "Occupy the center and develop.",
+        "Use d4 and Bd3.",
+        "Do not try to hold the e5-pawn at any cost."
+      ],
+      "black": [
+        "Recover the pawn and develop.",
+        "Use ...d5 and ...Nc6.",
+        "Watch Nc3 and the pressure it creates."
+      ],
+      "mistakes": [
+        "After 2...Nxe4?!, White can play Nxe5 with balanced play.",
+        "3...Nxe4?! can be met by Qe2."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3",
+          "tags": []
+        },
+        {
+          "name": "Steinitz",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3 Be7",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Cochrane Gambit",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nxf7 Kxf7 5. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Three Knights Game",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nc3 Bb4 4. Nxe5",
+          "tags": []
+        },
+        {
+          "name": "Petrov's Defense: Modern Attack, Murrey Variation",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. d4 Nxe4 4. Bd3 Nc6",
+          "eco": "C43",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Petrov's Defense: Damiano Variation, Kholmov Gambit",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nxe4 4. Qe2 Qe7",
+          "eco": "C42",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Petrov's Defense: Stafford Gambit Accepted",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6",
+          "eco": "C42",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "two-knights",
+      "name": "Two Knights Defense",
+      "eco": "C55–C59",
+      "match": [
+        "Italian Game: Two Knights Defense",
+        "Two Knights Defense"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5 6. Bb5+ c6",
+      "idea": "Black counterattack e4 rather than defending f7 directly. Both sides need to know the tactical continuations in this sharp defense.",
+      "white": [
+        "Use Ng5 to target f7.",
+        "Play d4 and develop.",
+        "Calculate tactics on f7."
+      ],
+      "black": [
+        "Counterattack the center with ...d5.",
+        "Consider retreating the knight to a5.",
+        "Watch for Nxf7."
+      ],
+      "mistakes": [
+        "After 4...d5 5.exd5, White gain a pawn.",
+        "5...Nxd5?! allows d4."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5 6. Bb5+ c6",
+          "tags": []
+        },
+        {
+          "name": "Fried Liver",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Nxf7",
+          "tags": []
+        },
+        {
+          "name": "Traxler",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5",
+          "tags": []
+        },
+        {
+          "name": "Modern Bishop's Opening",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Be7 5. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Lolli Attack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. d4",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5",
+          "eco": "C57",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Ponziani-Steinitz Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Nxe4",
+          "eco": "C57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Traxler Counterattack, Knight Sacrifice Line",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7",
+          "eco": "C57",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "four-knights",
+      "name": "Four Knights Game",
+      "eco": "C47–C49",
+      "match": [
+        "Four Knights Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4 5. O-O O-O 6. d3 d6",
+      "idea": "Both sides develop their knights and a bishop before opening the center. The opening often leads to a quiet positional struggle with balanced chances.",
+      "white": [
+        "Develop and castle.",
+        "Use d3 and Be3.",
+        "Prepare d4 at the right moment."
+      ],
+      "black": [
+        "Develop symmetrically.",
+        "Use ...d6 and ...Be6.",
+        "Do not open the center without preparation."
+      ],
+      "mistakes": [
+        "After 3...Nf6 4.Bb5, White pin the knight.",
+        "4...Nd4?! may lead to an exchange that loses time."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4 5. O-O O-O 6. d3 d6",
+          "tags": []
+        },
+        {
+          "name": "Scotch Four Knights",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 exd4 5. Nxd4",
+          "tags": []
+        },
+        {
+          "name": "Spanish Four Knights",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Italian Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bc4 Nxe4 5. Nxe4 d5",
+          "tags": []
+        },
+        {
+          "name": "Halloween Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Nxe5 Nxe5 5. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Belgrade Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 exd4 5. Nd5",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Krause Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 Bb4 5. Nxe5",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Oxford Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 Bb4 5. d5 Nd4",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "london",
+      "name": "London System",
+      "eco": "D02",
+      "match": [
+        "London System"
+      ],
+      "mainline": "1. d4 d5 2. Nf3 Nf6 3. Bf4 e6 4. e3 c5 5. c3",
+      "idea": "White develop the bishop to f4 before e3 and build a solid setup. This is a system rather than a single forced variation: similar plans work against many replies.",
+      "white": [
+        "Build with Bf4, e3, Bd3 and Nbd2.",
+        "Prepare e4 or a kingside attack.",
+        "Do not rush c4."
+      ],
+      "black": [
+        "Challenge the center with ...c5.",
+        "Develop the bishop to f5 or g4.",
+        "Attack d4."
+      ],
+      "mistakes": [
+        "After 2...Bf5?!, White can use Bf4 for a comfortable setup.",
+        "After 3...c5 4.e3, White retain their center."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bf4 e6 4. e3 c5 5. c3",
+          "tags": []
+        },
+        {
+          "name": "vs King's Indian",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6",
+          "tags": []
+        },
+        {
+          "name": "Jobava London",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bf4",
+          "tags": []
+        },
+        {
+          "name": "Main Line: Early ...c5",
+          "line": "1. d4 d5 2. Bf4 Nf6 3. e3 c5 4. c3 Nc6 5. Nf3 Qb6",
+          "tags": []
+        },
+        {
+          "name": "Queen's Indian Setup",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bf4 b6 4. e3 Bb7 5. Bd3",
+          "tags": []
+        },
+        {
+          "name": "London System, with Bd3",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Bd3",
+          "eco": "A48",
+          "tags": []
+        },
+        {
+          "name": "London System, with Be2",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Be2",
+          "eco": "A48",
+          "tags": []
+        },
+        {
+          "name": "London System: Poisoned Pawn Variation",
+          "line": "1. d4 Nf6 2. Nf3 d5 3. Bf4 c5 4. e3 Qb6 5. Nc3",
+          "eco": "D02",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "trompowsky",
+      "name": "Trompowsky Attack",
+      "eco": "A45",
+      "match": [
+        "Trompowsky Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nc3",
+      "idea": "White immediately develop the bishop to g5 to attack the f6-knight. This avoids much Queen's Gambit theory and creates an unusual position.",
+      "white": [
+        "Consider Bxf6 followed by e4.",
+        "Occupy the center.",
+        "Use weaknesses in Black's pawn structure."
+      ],
+      "black": [
+        "Use ...e6 and ...h6 to challenge the bishop.",
+        "Develop and occupy the center.",
+        "Make it difficult for White to achieve e4 comfortably."
+      ],
+      "mistakes": [
+        "After 2...e6 3.e4, White occupy the center.",
+        "After 3...h6 4.Bxf6, Black's pawn structure may be damaged."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Borg",
+          "line": "1. d4 Nf6 2. Bg5 Ne4",
+          "tags": []
+        },
+        {
+          "name": "Edge",
+          "line": "1. d4 Nf6 2. Bg5 c5",
+          "tags": []
+        },
+        {
+          "name": "Classical Defense",
+          "line": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6",
+          "tags": []
+        },
+        {
+          "name": "Raptor Variation",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. h4 c5 4. d5",
+          "tags": []
+        },
+        {
+          "name": "Trompowsky Attack: Raptor Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. h4 Nxg5 4. hxg5 e5",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Trompowsky Attack: Edge Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. Bh4 d5 4. f3 Nf6 5. Nc3 Bf5 6. e4",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Trompowsky Attack: Edge Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. Bh4 c6 4. Nd2 Qa5 5. c3 Nxd2 6. Qxd2 d5 7. e4",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "kings-gambit",
+      "name": "King's Gambit",
+      "eco": "C31, C33, C30",
+      "match": [
+        "King's Gambit"
+      ],
+      "mainline": "1. e4 e5 2. f4 exf4 3. Nf3 g5 4. h4 g4 5. Ne5",
+      "idea": "The move f4 opens the f-file at the cost of a pawn and a weaker king.",
+      "white": [
+        "Prepare Nf3 and Bc4, checking for threats along h4–e1."
+      ],
+      "black": [
+        "Develop and consider ...d5; holding the extra pawn is not always best."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Hinrichsen Gambit",
+          "line": "1. e4 e5 2. f4 d5 3. d4",
+          "eco": "C31",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Blackburne Attack",
+          "line": "1. e4 e5 2. f4 d5 3. Nf3",
+          "eco": "C31",
+          "tags": [
+            "attack",
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Milner-Barry Variation",
+          "line": "1. e4 e5 2. f4 d5 3. Nc3",
+          "eco": "C31",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Gaga Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. g3",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Orsini Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. b3",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Stamma Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. h4",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Villemson Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. d4",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Classical Variation, Walthoffen Attack",
+          "line": "1. e4 e5 2. f4 Bc5 3. Qh5",
+          "eco": "C30",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "danish",
+      "name": "Danish Gambit",
+      "eco": "C21",
+      "match": [
+        "Danish Gambit"
+      ],
+      "mainline": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 d5",
+      "idea": "With d4 and c3, White offer pawns for open bishop diagonals.",
+      "white": [
+        "Develop the bishops with tempo and use the open lines before Black finish development."
+      ],
+      "black": [
+        "Check ...d5: returning material often helps complete development."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Danish Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. c3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Declined: Sörensen Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 d5",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Svenonius Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 Ne7",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Schlechter Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 d5",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Chigorin Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Qe7",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Classical Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Nf6",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Copenhagen Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Bb4+",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "center-game",
+      "name": "Center Game",
+      "eco": "C21, C22",
+      "match": [
+        "Center Game"
+      ],
+      "mainline": "1. e4 e5 2. d4 exd4 3. Qxd4 Nc6 4. Qe3 Nf6 5. Nc3",
+      "idea": "An early d4 challenges the center immediately; after Qxd4, ...Nc6 can gain time on the queen.",
+      "white": [
+        "Choose the queen's square with Black's knight development in mind."
+      ],
+      "black": [
+        "Develop with attacks on the queen and prepare ...d5."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Center Game: Halasz-McDonnell Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. f4",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Ross Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. Bd3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game: von der Lasa Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. Bc4",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game",
+          "line": "1. e4 e5 2. d4 exd4 3. Qxd4",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3 c5",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Normal Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Qxd4 Nc6",
+          "eco": "C22",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3 c5 4. Bc4",
+          "eco": "C21",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "philidor",
+      "name": "Philidor Defense",
+      "eco": "C41",
+      "match": [
+        "Philidor Defense"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Nc3 Nbd7 5. Bc4 Be7",
+      "idea": "The d6-pawn supports e5 but restricts the c8-bishop until the center changes.",
+      "white": [
+        "Occupy the center with d4 and develop before attacking."
+      ],
+      "black": [
+        "Prepare ...Nf6 and bishop development; the timing of ...exd4 changes the structure."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Philidor Countergambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 f5",
+          "eco": "C41",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense: Hanham Variation",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Nd7",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Lopez Countergambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4 f5",
+          "eco": "C41",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense: Nimzowitsch Variation",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Nf6",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Philidor Gambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Bd7",
+          "eco": "C41",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4 Be7",
+          "eco": "C41",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "ponziani",
+      "name": "Ponziani Opening",
+      "eco": "C44",
+      "match": [
+        "Ponziani Opening"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. d4 Nxe4 5. d5",
+      "idea": "The move c3 prepares d4 but temporarily denies c3 to the knight.",
+      "white": [
+        "Check the central reply ...d5 before expanding the pawn center."
+      ],
+      "black": [
+        "Use White's temporary delay in development to play ...d5 or ...Nf6."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Ponziani Opening",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Ponziani Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 f5",
+          "eco": "C44",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Jaenisch Counterattack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6",
+          "eco": "C44",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Romanishin Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Be7",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Réti Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nge7",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Jaenisch Counterattack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. d3",
+          "eco": "C44",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Spanish Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 d5 4. Bb5",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Neumann Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. Bc4",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "latvian",
+      "name": "Latvian Gambit",
+      "eco": "C40",
+      "match": [
+        "Latvian Gambit"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. d4 d6 5. Nc4",
+      "idea": "The reply ...f5 attacks e4 while weakening the diagonal toward Black's king.",
+      "white": [
+        "Calculate Nxe5 and queen checks: king safety matters more than collecting every pawn."
+      ],
+      "black": [
+        "Check White's forcing checks before making another pawn move."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Latvian Gambit: Diepstraten Countergambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. c4",
+          "eco": "C40",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Lobster Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. g4",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mason Countergambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. d4",
+          "eco": "C40",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Senechaud Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. b4",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mayet Attack",
+          "line": "1. e4 e5 2. Nf3 f5 3. Bc4",
+          "eco": "C40",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mlotkowski Variation",
+          "line": "1. e4 e5 2. Nf3 f5 3. Nc3",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit Accepted",
+          "line": "1. e4 e5 2. Nf3 f5 3. exf5",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mayet Attack, Strautins Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. Bc4 b5",
+          "eco": "C40",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "blackmar-diemer",
+      "name": "Blackmar–Diemer Gambit",
+      "eco": "D00",
+      "match": [
+        "Blackmar-Diemer Gambit"
+      ],
+      "mainline": "1. d4 d5 2. e4 dxe4 3. Nc3 Nf6 4. f3 exf3 5. Nxf3",
+      "idea": "White offer a pawn with e4 and f3 for development and an open f-file.",
+      "white": [
+        "Develop the knight by recapturing on f3 and prepare to castle before attacking."
+      ],
+      "black": [
+        "Consider ...e6 and ...c6 or active bishop development; avoid falling behind in development."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Blackmar-Diemer Gambit: Blackmar Gambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. f3",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Diemer-Rosenberg Attack",
+          "line": "1. d4 d5 2. e4 dxe4 3. Be3",
+          "eco": "D00",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Fritz Attack",
+          "line": "1. d4 d5 2. e4 dxe4 3. Bc4",
+          "eco": "D00",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Lemberger Countergambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 e5",
+          "eco": "D00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Netherlands Variation",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 f5",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Reversed Albin Countergambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 c5",
+          "eco": "D00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 Nf6",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Zeller Defense",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 Bf5",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "benko",
+      "name": "Benko Gambit",
+      "eco": "A57",
+      "match": [
+        "Benko Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 Bxa6",
+      "idea": "Black sacrifice the b-pawn for the a- and b-files and lasting queenside pressure.",
+      "white": [
+        "After accepting the gambit, plan development and the defense of a2 and b2."
+      ],
+      "black": [
+        "Develop the bishop to g7 and rooks onto open files rather than losing time recovering the pawn."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Benko Gambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Hjørring Countergambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. e4",
+          "eco": "A57",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Pseudo-Sämisch",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. f3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Sosonko Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. a4",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit: Mutkin Countergambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. g4",
+          "eco": "A57",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Bishop Attack",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Bg5",
+          "eco": "A57",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Main Line",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nf3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Quiet Line",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nd2",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "owen",
+      "name": "Owen Defense",
+      "eco": "B00",
+      "match": [
+        "Owen Defense"
+      ],
+      "mainline": "1. e4 b6 2. d4 Bb7 3. Bd3 e6 4. Nf3 c5 5. c3",
+      "idea": "The fianchetto ...b6 and ...Bb7 targets e4 while White gain central space.",
+      "white": [
+        "Support d4–e4 and watch the pressure from b7."
+      ],
+      "black": [
+        "After developing the bishop, undermine the center with ...e6 and ...c5."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Owen Defense: Naselwaus Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Bg5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Smith Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Nf3",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Unicorn Variation",
+          "line": "1. e4 f6 2. d4 b6 3. c4 Bb7",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Owen Defense: Wind Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. f3 e5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Hekili-Loa Gambit",
+          "line": "1. e4 b6 2. d4 c5 3. dxc5 Nc6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Matovinsky Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Bd3 f5 4. exf5 Bxg2 5. Qh5+ g6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzowitsch-defense",
+      "name": "Nimzowitsch Defense",
+      "eco": "B00",
+      "match": [
+        "Nimzowitsch Defense"
+      ],
+      "mainline": "1. e4 Nc6 2. d4 d5 3. Nc3 dxe4 4. d5 Ne5 5. Nxe4",
+      "idea": "An early ...Nc6 puts pressure on d4 and allows White a broad pawn center.",
+      "white": [
+        "Choose between d4 and Nf3 while considering ...d5."
+      ],
+      "black": [
+        "Time ...d5 or ...e5 so that the c6-knight supports the central struggle."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Nimzowitsch Defense: Kennedy Variation, Linksspringer Variation",
+          "line": "1. e4 Nc6 2. d4 e5 3. d5",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Advance Variation",
+          "line": "1. e4 Nc6 2. d4 d5 3. e5",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Hornung Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Be3",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Colorado Countergambit Accepted",
+          "line": "1. e4 Nc6 2. Nf3 f5 3. exf5",
+          "eco": "B00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Brandics Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 a6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Erben Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 g6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Heinola-Deppe Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 e5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bird",
+      "name": "Bird Opening",
+      "eco": "A02, A03, B21",
+      "match": [
+        "Bird Opening"
+      ],
+      "mainline": "1. f4 d5 2. Nf3 Nf6 3. e3 g6 4. b3 Bg7 5. Bb2",
+      "idea": "The move f4 controls e5 but weakens the king and allows From's Gambit with ...e5.",
+      "white": [
+        "Develop Nf3 and prepare to castle; check threats along h4–e1."
+      ],
+      "black": [
+        "Choose a stable ...d5 center or calculate the ...e5 countergambit concretely."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Bird Opening: Batavo-Polish Attack",
+          "line": "1. f4 Nf6 2. Nf3 g6 3. b4",
+          "eco": "A02",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Bird Opening: Lasker Variation",
+          "line": "1. f4 d5 2. Nf3 Nf6 3. e3 c5",
+          "eco": "A03",
+          "tags": []
+        },
+        {
+          "name": "Bird Opening: Dutch Variation, Batavo Gambit",
+          "line": "1. e4 c5 2. f4 d5 3. Nf3 dxe4",
+          "eco": "B21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: From's Gambit, Langheld Gambit",
+          "line": "1. f4 e5 2. fxe5 d6 3. exd6 Nf6",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Siegener Gambit",
+          "line": "1. f4 e5 2. d4 exd4 3. Nf3 c5 4. c3",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Swiss Gambit",
+          "line": "1. f4 f5 2. e4 fxe4 3. Nc3 Nf6 4. g4",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Williams Gambit",
+          "line": "1. f4 d5 2. e4 dxe4 3. Nc3 Nf6 4. Qe2",
+          "eco": "A03",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Williams-Zilbermints Gambit",
+          "line": "1. f4 d5 2. e4 dxe4 3. Nc3 Nf6 4. Nge2",
+          "eco": "A03",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzo-larsen",
+      "name": "Nimzo–Larsen Attack",
+      "eco": "A06, A01",
+      "match": [
+        "Nimzo-Larsen Attack"
+      ],
+      "mainline": "1. b3 e5 2. Bb2 Nc6 3. e3 Nf6 4. Bb5 Bd6 5. Nf3",
+      "idea": "After b3, the bishop on b2 exerts long-range pressure on the center and kingside.",
+      "white": [
+        "Combine Bb2 with e3 and Nf3 while keeping the bishop's diagonal open."
+      ],
+      "black": [
+        "Occupy the center and watch g7 after White develop Bb2."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Nimzo-Larsen Attack: Norfolk Gambit",
+          "line": "1. Nf3 d5 2. b3 c5 3. e4",
+          "eco": "A06",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Ringelbach Gambit",
+          "line": "1. b3 f5 2. Bb2 e6 3. e4",
+          "eco": "A01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Modern Variation",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. e3",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Pachman Gambit",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. f4",
+          "eco": "A01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Spike Variation",
+          "line": "1. b3 Nf6 2. Bb2 g6 3. g4",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Modern Variation",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. c4 Nf6",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Norfolk Gambit",
+          "line": "1. Nf3 d5 2. b3 Nf6 3. Bb2 c5 4. e4",
+          "eco": "A06",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "kings-indian-attack",
+      "name": "King's Indian Attack",
+      "eco": "A08, A05, A07",
+      "match": [
+        "King's Indian Attack"
+      ],
+      "mainline": "1. Nf3 d5 2. g3 Nf6 3. Bg2 e6 4. O-O Be7 5. d3 O-O 6. Nbd2 c5 7. e4",
+      "idea": "The setup Nf3, g3, Bg2 and d3 prepares e4 and sometimes an attack with e5.",
+      "white": [
+        "Coordinate e4–e5 with development and the stability of the center."
+      ],
+      "black": [
+        "Gain central space and seek queenside counterplay."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "King's Indian Attack: Sicilian Variation",
+          "line": "1. Nf3 d5 2. g3 c5 3. Bg2",
+          "eco": "A08",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Smyslov Variation",
+          "line": "1. Nf3 Nf6 2. g3 g6 3. b4",
+          "eco": "A05",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with e6",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 e6",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: French Variation",
+          "line": "1. Nf3 d5 2. g3 c5 3. Bg2 Nc6",
+          "eco": "A08",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Keres Variation",
+          "line": "1. Nf3 d5 2. g3 Bg4 3. Bg2 Nd7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with Bf5",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 c6 4. O-O Bf5",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with e6",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 e6 4. O-O Be7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Keres Variation",
+          "line": "1. Nf3 d5 2. g3 c6 3. Bg2 Bg4 4. O-O Nd7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "torre",
+      "name": "Torre Attack",
+      "eco": "A46, A48",
+      "match": [
+        "Torre Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e3 d5 5. Nbd2",
+      "idea": "The bishop develops to g5 before e3, pinning a knight or provoking weaknesses.",
+      "white": [
+        "Use e3 and Nbd2 while preparing the central advance e4."
+      ],
+      "black": [
+        "Challenge d4 with ...c5 and time the development of the c8-bishop."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Torre Attack: Classical Defense",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5",
+          "eco": "A46",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Fianchetto Defense",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bg5",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Classical Defense, Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 h6",
+          "eco": "A46",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Wagner Gambit",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e4",
+          "eco": "A46",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Torre Attack: Fianchetto Defense, Euwe Variation",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bg5 Bg7 4. Nbd2 c5",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Classical Defense, Petrosian Gambit",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e3 b6 5. d5",
+          "eco": "A46",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "veresov",
+      "name": "Richter–Veresov Attack",
+      "eco": "D01",
+      "match": [
+        "Richter-Veresov Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3 e6 5. e4",
+      "idea": "The c3-knight and g5-bishop support the fight for e4 without an early c4.",
+      "white": [
+        "Prepare e4 and assess how Bxf6 would change Black's pawn structure."
+      ],
+      "black": [
+        "Develop with control of e4; consider ...Bf5 and ...c5."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Richter-Veresov Attack",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Boyce Defense",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Ne4",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Richter Variation",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5 4. f3",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Two Knights System",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Veresov Variation",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5 4. Bxf6",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Two Knights System, Grünfeld Defense",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3 g6",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Malich Gambit",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 c5 4. Bxf6 gxf6 5. e4 dxe4 6. d5",
+          "eco": "D01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "polish",
+      "name": "Polish Opening",
+      "eco": "A00, A05",
+      "match": [
+        "Polish Opening"
+      ],
+      "mainline": "1. b4 e5 2. Bb2 Bxb4 3. Bxe5 Nf6 4. Nf3 O-O 5. e3",
+      "idea": "The move b4 prepares Bb2 and gains queenside space, but the advanced pawn needs attention.",
+      "white": [
+        "Check ...Bxb4 and develop Bb2 with central support."
+      ],
+      "black": [
+        "Occupy the center and gain time by attacking the advanced b4-pawn."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Polish Opening: Bugayev Advance Variation",
+          "line": "1. b4 e5 2. Bb2 f6 3. b5",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Myers Variation",
+          "line": "1. b4 d5 2. Bb2 c6 3. a4",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Outflank Variation, Schuehler Gambit",
+          "line": "1. b4 c6 2. Bb2 a5 3. b5",
+          "eco": "A00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Polish Opening: Tartakower Gambit",
+          "line": "1. b4 e5 2. Bb2 f6 3. e4",
+          "eco": "A00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Polish Opening: King's Indian Variation, Schiffler Attack",
+          "line": "1. b4 Nf6 2. Bb2 g6 3. e4",
+          "eco": "A00",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Polish Opening, with d5",
+          "line": "1. b4 d5 2. Bb2 Nf6 3. Nf3",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Zukertort System",
+          "line": "1. Nf3 Nf6 2. b4 g6 3. Bb2",
+          "eco": "A05",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Queen's Indian Variation",
+          "line": "1. b4 e6 2. Bb2 Nf6 3. b5 b6",
+          "eco": "A00",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "semi-slav",
+      "name": "Semi-Slav Defense",
+      "eco": "D31, D43, D45",
+      "match": [
+        "Semi-Slav Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5",
+      "idea": "The c6- and e6-pawns reinforce d5 but restrict the c8-bishop until the center opens.",
+      "white": [
+        "Choose between e3 and Bg5; calculate ...dxc4 and ...b5 in sharp lines."
+      ],
+      "black": [
+        "Prepare ...c5 or ...e5 to free the pieces and strike at the center."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Semi-Slav Defense: Accelerated Move Order",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Marshall Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6",
+          "eco": "D43",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Noteboom Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. Nf3 dxc4",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation, Portisch Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5 5. g4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Gunderam Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4 dxe4 5. f3",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Main Line",
+          "line": "1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. e3 e6 5. Nf3",
+          "eco": "D45",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "tarrasch",
+      "name": "Tarrasch Defense",
+      "eco": "D32, D33",
+      "match": [
+        "Tarrasch Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3",
+      "idea": "An early ...c5 challenges the center and often leaves Black with an isolated d5-pawn.",
+      "white": [
+        "If an isolated pawn appears, blockade d5 and exchange the opponent's active pieces."
+      ],
+      "black": [
+        "Use free development and seek ...d4 before the d5-pawn is blockaded."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Tarrasch Defense",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Schara Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 cxd4",
+          "eco": "D32",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Tarrasch Defense: Marshall Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. e4",
+          "eco": "D32",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Tarrasch Defense: Two Knights Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Symmetrical Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. e3 Nf6 5. Nf3 Nc6",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Rubinstein System",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3",
+          "eco": "D33",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Swedish Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3 c4",
+          "eco": "D33",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Prague Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3 Nf6",
+          "eco": "D33",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bogo-indian",
+      "name": "Bogo-Indian Defense",
+      "eco": "E11",
+      "match": [
+        "Bogo-Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7 5. g3",
+      "idea": "The check ...Bb4+ makes White choose how to arrange the minor pieces.",
+      "white": [
+        "Choose Bd2 or Nbd2 with a possible dark-squared bishop exchange in mind."
+      ],
+      "black": [
+        "Combine an exchange on d2 with control of e4 and a timely ...d5."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Bogo-Indian Defense",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Grünfeld Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nbd2",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: New England Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nfd2",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Vitolins Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 c5",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Wade-Smyslov Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 a5",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Haiti Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Nc6",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Retreat Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Be7",
+          "eco": "E11",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "old-indian",
+      "name": "Old Indian Defense",
+      "eco": "A53, A54",
+      "match": [
+        "Old Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 d6 3. Nc3 e5 4. Nf3 Nbd7 5. e4 Be7",
+      "idea": "The setup ...d6 and ...e5 forms a compact center, with the bishop developing to e7.",
+      "white": [
+        "Use the extra space, but prepare for ...exd4 and pressure on e4."
+      ],
+      "black": [
+        "Complete development and choose ...c6–d5 or ...f5 according to the pawn structure."
+      ],
+      "mistakes": [
+        "Before sacrificing, check forcing replies: checks, captures and threats. A gambit's name does not guarantee compensation."
+      ],
+      "variations": [
+        {
+          "name": "Old Indian Defense: Aged Gibbon Gambit",
+          "line": "1. d4 Nf6 2. c4 d6 3. g4",
+          "eco": "A53",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Old Indian Defense: Czech Variation, with Nc3",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 c6",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Czech Variation, with Nf3",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nf3 c6",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Ukrainian Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 e5",
+          "eco": "A54",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Tartakower-Indian",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nf3 Bg4",
+          "eco": "A54",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation, Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5 4. g3",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation, Grinberg Gambit",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5 4. e4",
+          "eco": "A53",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    }
+  ],
+  "source": {
+    "url": "https://github.com/lichess-org/chess-openings",
+    "license": "CC0-1.0",
+    "retrieved": "2026-11-23",
+    "rows": 3865
+  }
+}

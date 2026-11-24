@@ -1,0 +1,8 @@
+/* The form checkbox row also uses .check; a checked square must fill its cell. */
+.board .sq.check { display: block; margin: 0; }
+
+/* Alpha falloff supplies the softness without a WebView blur surface. */
+.king-aura::before {
+  background: radial-gradient(circle, rgba(238, 37, 37, .95) 5%, rgba(238, 37, 37, .7) 38%, rgba(238, 37, 37, .28) 60%, rgba(238, 37, 37, 0) 76%);
+  filter: none;
+}

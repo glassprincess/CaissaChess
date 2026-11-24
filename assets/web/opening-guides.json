@@ -1,0 +1,4028 @@
+{
+  "v": 1,
+  "guides": [
+    {
+      "id": "italian",
+      "name": "Итальянская партия",
+      "eco": "C50–C59",
+      "match": [
+        "Italian Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O",
+      "idea": "Белые быстро развивают слона на c4, где он смотрит на слабое поле f7, и готовят центр ходом c3–d4. Чёрные отвечают симметрично и стараются не пустить ферзя и коня на королевский фланг.",
+      "white": [
+        "Развивайте фигуры до активной игры: Nf3, Bc4, c3, d4.",
+        "Следите за полем f7 — там часто проходит тактический удар.",
+        "Не спешите с d4, пока король не рокирован."
+      ],
+      "black": [
+        "Ставьте слона на c5 и коня на f6, чтобы давить на e4.",
+        "Играйте d6 и O-O, затем готовьте ...a6 и ...b5.",
+        "Не допускайте Nxe5 с вилкой на f7."
+      ],
+      "mistakes": [
+        "Ранние атаки на f7 проверяйте конкретным расчётом: один слон обычно не создаёт решающей угрозы.",
+        "Не начинайте d4 без проверки ответа ...exd4 и давления на пешку e4."
+      ],
+      "variations": [
+        {
+          "name": "Giuoco Piano",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Evans Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Two Knights Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5",
+          "tags": []
+        },
+        {
+          "name": "Giuoco Pianissimo",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3 Nf6 5. Nc3 d6 6. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Hungarian Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Be7 4. d4 d6 5. Nc3 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Italian Game: Giuoco Pianissimo, Lucchini Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3 f5",
+          "eco": "C50",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Evans Gambit, Fontaine Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 b5",
+          "eco": "C51",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Evans Gambit, Hein Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 d5",
+          "eco": "C51",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "ruy-lopez",
+      "name": "Испанская партия",
+      "eco": "C60–C99",
+      "match": [
+        "Ruy Lopez"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O",
+      "idea": "Белые давят на коня c6, который защищает пешку e5. Это косвенная атака на центр: чёрным приходится считаться с угрозой Bxc6 и Nxe5. Партия часто переходит в долгую позиционную борьбу.",
+      "white": [
+        "Отводите слона на b3 и играйте c3, d4.",
+        "Занимайте линию e после Re1.",
+        "Готовьте Nbd2–f1–g3 для атаки на короля."
+      ],
+      "black": [
+        "Играйте ...a6 и ...b5, чтобы отогнать слона.",
+        "Ставьте ...d6 и ...Be7, затем рокируйте.",
+        "Следите за полем e5: его нужно защищать."
+      ],
+      "mistakes": [
+        "В варианте размена Bxc6 не всегда выигрывает пешку e5: после Nxe5 возможен ответ ...Qd4.",
+        "Ход ...Nxe4 встречается в открытом варианте; оцените ответ d4 и положение королей, прежде чем объявлять взятие ошибкой."
+      ],
+      "variations": [
+        {
+          "name": "Morphy Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6",
+          "tags": []
+        },
+        {
+          "name": "Berlin Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Nd6 6. Bxc6 dxc6",
+          "tags": []
+        },
+        {
+          "name": "Marshall Attack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. c3 d5",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Exchange Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6 5. O-O f6",
+          "tags": []
+        },
+        {
+          "name": "Open Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Nxe4 6. d4 b5 7. Bb3 d5",
+          "tags": []
+        },
+        {
+          "name": "Ruy Lopez: Fianchetto Defense, Kevitz Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 g6 4. c3 f5",
+          "eco": "C60",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ruy Lopez: Classical Variation, Cordel Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Bc5 4. c3 f5",
+          "eco": "C64",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ruy Lopez: Classical Variation, Konikowski Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bb5 Bc5 4. c3 d5",
+          "eco": "C64",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "sicilian",
+      "name": "Сицилианская защита",
+      "eco": "B20–B99",
+      "match": [
+        "Sicilian Defense"
+      ],
+      "mainline": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6",
+      "idea": "Чёрные атакуют центр пешкой c. В открытых вариантах после cxd4 они получают полуоткрытую линию c, а белые — активное развитие и пространство. Закрытые системы и вариант Алапина ведут к другим пешечным структурам.",
+      "white": [
+        "В открытых вариантах развивайте фигуры после d4 и Nxd4.",
+        "Выбирайте сторону рокировки по варианту: пешечный штурм безопасен не в каждой позиции.",
+        "Учитывайте давление по линии c и подрывы ...d5 или ...b5."
+      ],
+      "black": [
+        "Меняйтесь на d4 и развивайте фигуры к центру.",
+        "Играйте ...a6 и ...e5 или ...e6 в зависимости от варианта.",
+        "Не открывайте линию d без подготовки."
+      ],
+      "mistakes": [
+        "...e5 — нормальный ход в ряде вариантов, но он оставляет поле d5 под контролем белых.",
+        "Прежде чем начинать фланговую атаку, проверьте контрудар в центре ...d5."
+      ],
+      "variations": [
+        {
+          "name": "Najdorf",
+          "line": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6",
+          "tags": []
+        },
+        {
+          "name": "Dragon",
+          "line": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6",
+          "tags": []
+        },
+        {
+          "name": "Sveshnikov",
+          "line": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5",
+          "tags": []
+        },
+        {
+          "name": "Accelerated Dragon",
+          "line": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 g6",
+          "tags": []
+        },
+        {
+          "name": "Alapin Variation",
+          "line": "1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Closed Sicilian",
+          "line": "1. e4 c5 2. Nc3 Nc6 3. g3 g6 4. Bg2 Bg7 5. d3 d6",
+          "tags": []
+        },
+        {
+          "name": "Sicilian Defense: McDonnell Attack",
+          "line": "1. e4 c5 2. f4 Nc6 3. Nf3 g6 4. Bb5 Bg7",
+          "eco": "B21",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Sicilian Defense: O'Kelly Variation, Venice System, Gambit Line",
+          "line": "1. e4 c5 2. Nf3 a6 3. c3 d5 4. exd5 Nf6",
+          "eco": "B28",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Sicilian Defense: Smith-Morra Gambit Accepted, Fianchetto Defense",
+          "line": "1. e4 c5 2. d4 cxd4 3. c3 dxc3 4. Nxc3 g6",
+          "eco": "B21",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "french",
+      "name": "Французская защита",
+      "eco": "C00–C19",
+      "match": [
+        "French Defense"
+      ],
+      "mainline": "1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5",
+      "idea": "Чёрные строят пешечную цепь e6–d5 и атакуют центр ходом ...c5, а затем нередко ...f6. В закрытых вариантах белые получают пространство на королевском фланге; у чёрных развитие слона c8 требует отдельного плана.",
+      "white": [
+        "Играйте e5 и f4, атакуйте на королевском фланге.",
+        "Развивайте слона c1 через Bd2 или b3–Bb2.",
+        "Не меняйте пешки слишком рано."
+      ],
+      "black": [
+        "Подрывайте центр ходом ...c5.",
+        "Развивайте слона c8 через ...b6 и ...Bb7.",
+        "Ищите контригру на ферзевом фланге."
+      ],
+      "mistakes": [
+        "...dxe4 ведёт к полноценному варианту Рубинштейна; белым нужно развить фигуры после Nxe4.",
+        "После e5 и ...Nfd7 чёрным важно вовремя подрывать центр ходами ...c5 и ...f6."
+      ],
+      "variations": [
+        {
+          "name": "Winawer",
+          "line": "1. e4 e6 2. d4 d5 3. Nc3 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch",
+          "line": "1. e4 e6 2. d4 d5 3. Nd2 c5 4. exd5 Qxd5",
+          "tags": []
+        },
+        {
+          "name": "Advance Variation",
+          "line": "1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Qb6",
+          "tags": []
+        },
+        {
+          "name": "Exchange Variation",
+          "line": "1. e4 e6 2. d4 d5 3. exd5 exd5 4. Nf3 Nf6 5. Bd3 Bd6",
+          "tags": []
+        },
+        {
+          "name": "French Defense: Hoffmann Gambit",
+          "line": "1. e4 e6 2. d4 d5 3. Qe2 e5 4. f4 exf4",
+          "eco": "C00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "French Defense: St. George Defense, St. George Gambit",
+          "line": "1. e4 e6 2. d4 a6 3. c4 b5 4. cxb5 axb5",
+          "eco": "C00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "French Defense: Tarrasch Variation, Open System, Shaposhnikov Gambit",
+          "line": "1. e4 e6 2. d4 d5 3. Nd2 c5 4. exd5 Nf6",
+          "eco": "C07",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "caro-kann",
+      "name": "Защита Каро-Канн",
+      "eco": "B10–B19",
+      "match": [
+        "Caro-Kann Defense"
+      ],
+      "mainline": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5",
+      "idea": "Чёрные готовят ...d5, не запирая слона c8, как во французской. Это надёжная защита: чёрные уступают центр, но получают крепкую позицию и активного слона.",
+      "white": [
+        "Занимайте центр и развивайте фигуры.",
+        "Играйте c3 и Bd3, чтобы вытеснить слона f5.",
+        "Атакуйте на королевском фланге."
+      ],
+      "black": [
+        "Меняйтесь на e4 и развивайте слона на f5.",
+        "Играйте ...e6 и ...Nd7, затем ...Ngf6.",
+        "Не открывайте позицию без нужды."
+      ],
+      "mistakes": [
+        "3...dxe4 4.Nxe4 — слон c8 остаётся запертым, если не играть ...Bf5.",
+        "5...Qd5?! — ферзь под темпом."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Advance",
+          "line": "1. e4 c6 2. d4 d5 3. e5 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. e4 c6 2. d4 d5 3. exd5 cxd5",
+          "tags": []
+        },
+        {
+          "name": "Panov-Botvinnik Attack",
+          "line": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. c4 Nf6 5. Nc3 e6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Two Knights Attack",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bxf3 5. Qxf3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Advance Variation, Van der Wiel Attack, Dreyev Defense",
+          "line": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 Qb6",
+          "eco": "B12",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Two Knights Attack, Mindeno Variation, Retreat Line",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bh5",
+          "eco": "B11",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Caro-Kann Defense: Two Knights Attack, Mindeno Variation, Exchange Line",
+          "line": "1. e4 c6 2. Nc3 d5 3. Nf3 Bg4 4. h3 Bxf3",
+          "eco": "B11",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "alekhine",
+      "name": "Защита Алехина",
+      "eco": "B02–B05",
+      "match": [
+        "Alekhine Defense"
+      ],
+      "mainline": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. Nf3 g6 5. Bc4 Nb6",
+      "idea": "Чёрные сразу атакуют пешку e4 конём, заставляя её двигаться вперёд. Пешка e5 становится мишенью, а чёрные получают фигурную игру против растянутого центра.",
+      "white": [
+        "Гоните коня и занимайте центр пешками.",
+        "Играйте c4 и d4, чтобы получить пространство.",
+        "Следите за пешкой e5 — её нужно защищать."
+      ],
+      "black": [
+        "Отводите коня на d5 или b6.",
+        "Играйте ...d6 и ...g6, атакуя пешку e5.",
+        "Не допускайте Nf3–g5 с давлением."
+      ],
+      "mistakes": [
+        "2...Ne4?! — конь попадает под d4 и теряет темп.",
+        "3...Nxc3?! — белые получают сильный центр."
+      ],
+      "variations": [
+        {
+          "name": "Modern",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. Nf3 g6 5. Bc4 Nb6",
+          "tags": []
+        },
+        {
+          "name": "Four Pawns Attack",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Exchange",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. exd6",
+          "tags": []
+        },
+        {
+          "name": "Two Pawns Attack",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. c4 Nb6 4. c5 Nd5 5. Bc4 e6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Chase Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. c4 Nb6 4. c5 Nd5",
+          "tags": []
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Cambridge Gambit",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 g5",
+          "eco": "B03",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Fianchetto Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 g6",
+          "eco": "B03",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Alekhine Defense: Four Pawns Attack, Trifunovic Variation",
+          "line": "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. f4 Bf5",
+          "eco": "B03",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "scandinavian",
+      "name": "Скандинавская защита",
+      "eco": "B01",
+      "match": [
+        "Scandinavian Defense"
+      ],
+      "mainline": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 c6",
+      "idea": "Чёрные сразу меняют пешку d на e и выводят ферзя. Ферзь на a5 не мешает развитию, а чёрные получают простую игру без теории.",
+      "white": [
+        "Развивайте фигуры с темпом на ферзя.",
+        "Играйте d4 и Bc4, создавая давление.",
+        "Не меняйте ферзей слишком рано."
+      ],
+      "black": [
+        "Отводите ферзя на a5 или d6.",
+        "Играйте ...Nf6 и ...c6, готовя ...e5.",
+        "Не выводите ферзя слишком далеко."
+      ],
+      "mistakes": [
+        "2...Qxd5 3.Nc3 — ферзь под темпом, но это нормально; хуже 2...Nf6?!",
+        "3...Qd8?! — потеря темпа."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 c6",
+          "tags": []
+        },
+        {
+          "name": "Modern",
+          "line": "1. e4 d5 2. exd5 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Qd6",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd6",
+          "tags": []
+        },
+        {
+          "name": "Icelandic-Palme Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. c4 e6 4. dxe6 Bxe6",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Portuguese Variation",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 Bg4 4. f3 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Scandinavian Defense: Modern Variation, Wing Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 g6 4. c4 b5",
+          "eco": "B01",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scandinavian Defense: Kádas Gambit",
+          "line": "1. e4 d5 2. exd5 Nf6 3. d4 c6 4. dxc6 e5",
+          "eco": "B01",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scandinavian Defense: Anderssen Counterattack",
+          "line": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 e5",
+          "eco": "B01",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "pirc",
+      "name": "Защита Пирца",
+      "eco": "B07–B09",
+      "match": [
+        "Pirc Defense"
+      ],
+      "mainline": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O",
+      "idea": "Чёрные уступают центр и строят фианкетто. Затем они атакуют пешечный центр ходами ...c5 или ...e5. Это гибкая защита с идеей фигурного давления.",
+      "white": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте Be3 и Qd2, готовя длинную рокировку.",
+        "Атакуйте на королевском фланге ходом h4–h5."
+      ],
+      "black": [
+        "Фианкеттируйте слона на g7.",
+        "Подрывайте центр ходами ...c5 или ...e5.",
+        "Не допускайте пешечного штурма без контригры."
+      ],
+      "mistakes": [
+        "3...Bg7 4.e5! — белые получают пространство.",
+        "5...c5?! без подготовки — центр вскрывается в пользу белых."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Austrian Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. f4 Bg7 5. Nf3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Philidor Transposition",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 e5",
+          "tags": []
+        },
+        {
+          "name": "150 Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 O-O 6. f3",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. g3 Bg7 5. Bg2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Pirc Defense: 150 Attack, Sveshnikov-Jansa Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 c6 5. h3",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Pirc Defense: 150 Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 c6 5. Qd2",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Pirc Defense: Bayonet Attack",
+          "line": "1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be2 Bg7 5. h4",
+          "eco": "B07",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "modern",
+      "name": "Современная защита",
+      "eco": "B06",
+      "match": [
+        "Modern Defense"
+      ],
+      "mainline": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Be3 a6",
+      "idea": "Чёрные сразу фианкеттируют слона и откладывают ...Nf6. Они позволяют белым занять центр, чтобы потом атаковать его пешками и фигурами.",
+      "white": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте c4 и d5, если чёрные медлят.",
+        "Следите за полем g7 — там слабость."
+      ],
+      "black": [
+        "Фианкеттируйте слона и играйте ...d6.",
+        "Подрывайте центр ходами ...c5 или ...e5.",
+        "Не допускайте Bc4 с атакой на f7."
+      ],
+      "mistakes": [
+        "2...Bg7 3.e5! — белые получают пространство.",
+        "3...c5?! — преждевременно."
+      ],
+      "variations": [
+        {
+          "name": "Standard",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Be3 a6",
+          "tags": []
+        },
+        {
+          "name": "Pirc Transposition",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Nf3 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Austrian",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. f4",
+          "tags": []
+        },
+        {
+          "name": "Averbakh System",
+          "line": "1. e4 g6 2. d4 Bg7 3. c4 d6 4. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Gurgenidze Defense",
+          "line": "1. e4 g6 2. d4 Bg7 3. Nc3 c6 4. f4 d5",
+          "tags": []
+        },
+        {
+          "name": "Modern Defense: Norwegian Defense, Norwegian Gambit",
+          "line": "1. e4 g6 2. d4 Nf6 3. e5 Nh5 4. Be2 d6",
+          "eco": "B06",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Modern Defense: Bishop Attack, Monkey's Bum",
+          "line": "1. e4 g6 2. Bc4 Bg7 3. Qf3 e6 4. d4 Bxd4",
+          "eco": "B06",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Modern Defense: Masur Gambit",
+          "line": "1. e4 g6 2. d4 Nh6 3. Nc3 f5 4. Bxh6 Bxh6 5. exf5 O-O",
+          "eco": "B06",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "dutch",
+      "name": "Голландская защита",
+      "eco": "A80–A99",
+      "match": [
+        "Dutch Defense"
+      ],
+      "mainline": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 d5",
+      "idea": "Чёрные сразу борются за поле e4 ходом ...f5. Это агрессивная защита: чёрные получают атаку на королевском фланге, но ослабляют своего короля.",
+      "white": [
+        "Играйте g3 и Bg2, атакуйте поле e4.",
+        "Занимайте центр и готовьте e4.",
+        "Используйте слабость диагонали h5–e8."
+      ],
+      "black": [
+        "Играйте ...f5, ...Nf6, ...e6 и ...d5.",
+        "Атакуйте на королевском фланге.",
+        "Не открывайте позицию, пока король не рокирован."
+      ],
+      "mistakes": [
+        "1...f5 2.e4! — белые сразу получают центр.",
+        "2...d5?! без ...Nf6 — белые играют e4."
+      ],
+      "variations": [
+        {
+          "name": "Stonewall",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 d5",
+          "tags": []
+        },
+        {
+          "name": "Leningrad",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 g6",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. d4 f5 2. g3 Nf6 3. Bg2 e6 4. Nf3 Be7",
+          "tags": []
+        },
+        {
+          "name": "Staunton Gambit",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Hopton Attack",
+          "line": "1. d4 f5 2. Bg5 Nf6 3. Bxf6 exf6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Staunton Gambit, Chigorin Variation",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5 c6",
+          "eco": "A83",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Staunton Gambit, Nimzowitsch Variation",
+          "line": "1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5 b6",
+          "eco": "A83",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Dutch Defense: Classical Variation, Blackburne Attack",
+          "line": "1. d4 f5 2. c4 Nf6 3. g3 e6 4. Bg2 Be7 5. Nh3",
+          "eco": "A91",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qgd",
+      "name": "Ферзевый гамбит",
+      "eco": "D06–D69",
+      "match": [
+        "Queen's Gambit Declined",
+        "Queen's Gambit",
+        "Queen's Gambit Accepted"
+      ],
+      "mainline": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6",
+      "idea": "Ходом c4 белые предлагают пешку, чтобы отвлечь пешку d5 и усилить контроль центра. Принятый ферзевый гамбит начинается с ...dxc4: белые готовят e3 и Bxc4 или занимают центр ходом e4. В отказанном гамбите чёрные поддерживают d5 ходом ...e6.",
+      "white": [
+        "В принятом гамбите возвращайте пешку ходами e3 и Bxc4, развивая фигуры.",
+        "При 3.e4 белые строят центр; следите за подрывами ...e5 и ...c5.",
+        "В отказанном гамбите развивайте Nf3, Nc3 и Bg5; готовьте e4 или размен на d5."
+      ],
+      "black": [
+        "После ...dxc4 развивайте фигуры и подрывайте центр ходом ...c5 или ...e5.",
+        "Не удерживайте пешку c4 любой ценой: ...b5 требует проверки ответного a4.",
+        "В отказанном гамбите завершайте развитие и ищите момент для ...c5."
+      ],
+      "mistakes": [
+        "После 1.d4 d5 2.c4 dxc4 3.e3 b5?! 4.a4 пешечную цепь чёрных приходится защищать конкретными ходами.",
+        "Не оставляйте короля в центре, пытаясь немедленно отыграть каждую пешку."
+      ],
+      "variations": [
+        {
+          "name": "Orthodox",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5",
+          "tags": []
+        },
+        {
+          "name": "Queen's Gambit Accepted: Classical",
+          "line": "1. d4 d5 2. c4 dxc4 3. Nf3 Nf6 4. e3 e6 5. Bxc4 c5 6. O-O a6",
+          "notes": [
+            "Белые занимают d4, контролируют e5 и открывают диагональ слону c1.",
+            "Чёрные отвечают симметрично: d5 сдерживает продвижение e4 и открывает слона c8.",
+            "Белые предлагают пешку c4, чтобы отвлечь пешку d5 от центра. После размена легче провести e4.",
+            "Чёрные принимают ферзевый гамбит: пешка d5 берёт на c4 и покидает центр. Удерживать лишнюю пешку любой ценой не обязательно.",
+            "Конь f3 развивает королевский фланг и контролирует e5; белые пока не спешат возвращать пешку c4.",
+            "Конь f6 контролирует e4 и d5, мешая белым свободно построить центр d4–e4.",
+            "Белые открывают диагональ слону f1 и готовят Bxc4, чтобы вернуть пешку с развитием.",
+            "Чёрные открывают слона f8 и поддерживают поле d5 пешкой e6.",
+            "Слон f1 возвращает пешку c4 и сразу выходит на активную диагональ; материальное равенство восстановлено.",
+            "Чёрные подрывают пешку d4 ходом ...c5. Это контригра в центре вместо попытки удержать пешку c4.",
+            "Белые рокируют: король уходит с линии e, ладья f1 сможет поддержать игру в центре.",
+            "Ход ...a6 готовит расширение ...b5 с нападением на слона c4; чёрные выигрывают пространство на ферзевом фланге."
+          ],
+          "title": "Принятый ферзевый гамбит: Classical",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Central Variation",
+          "line": "1. d4 d5 2. c4 dxc4 3. e4 e5 4. Nf3 exd4 5. Bxc4 Nc6",
+          "notes": [
+            "Белые занимают d4, контролируют e5 и открывают диагональ слону c1.",
+            "Чёрные отвечают симметрично: d5 сдерживает продвижение e4 и открывает слона c8.",
+            "Белые предлагают пешку c4, чтобы отвлечь пешку d5 от центра. После размена легче провести e4.",
+            "Чёрные принимают ферзевый гамбит: пешка d5 берёт на c4 и покидает центр. Удерживать лишнюю пешку любой ценой не обязательно.",
+            "Белые используют уход пешки d5: занимают e4 и создают центр d4–e4. Пешку c4 можно вернуть слоном после развития.",
+            "Чёрные немедленно атакуют пешку d4 ходом ...e5, не позволяя белым спокойно укрепить широкий центр.",
+            "Конь f3 развивается, нападает на e5 и приближает короткую рокировку.",
+            "Пешка e5 берёт на d4: чёрные разбивают центр белых и сохраняют пешки на c4 и d4, которые требуют защиты.",
+            "Слон f1 забирает пешку c4. Белые отыгрывают одну пешку и развиваются, но чёрная пешка ещё стоит на d4.",
+            "Конь c6 развивает ферзевый фланг и защищает пешку d4. Белым предстоит выбрать, как усилить давление на этот центр."
+          ],
+          "title": "Принятый ферзевый гамбит: Central Variation",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Old Variation",
+          "line": "1. d4 d5 2. c4 dxc4 3. e3 e5 4. Bxc4 exd4 5. exd4 Nf6",
+          "notes": [
+            "Белые занимают d4, контролируют e5 и открывают диагональ слону c1.",
+            "Чёрные отвечают симметрично: d5 сдерживает продвижение e4 и открывает слона c8.",
+            "Белые предлагают пешку c4, чтобы отвлечь пешку d5 от центра. После размена легче провести e4.",
+            "Чёрные принимают ферзевый гамбит: пешка d5 берёт на c4 и покидает центр. Удерживать лишнюю пешку любой ценой не обязательно.",
+            "Белые сразу открывают слону f1 путь к c4, чтобы вернуть гамбитную пешку.",
+            "Чёрные занимают e5 и атакуют пешку d4. Важен ответ в центре, пока белые тратят ход на возвращение пешки.",
+            "Слон f1 забирает пешку c4 и выходит на диагональ a2–g8; гамбитная пешка отыграна.",
+            "Чёрные меняют пешку e5 на пешку d4, открывая центральные линии.",
+            "Пешка e3 возвращает материал на d4. У белых остаётся изолированная пешка d4: соседних белых пешек на линиях c и e уже нет.",
+            "Конь f6 развивается и контролирует d5 и e4. Чёрные могут строить блокаду перед изолированной пешкой d4."
+          ],
+          "title": "Принятый ферзевый гамбит: Old Variation",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Albin Countergambit",
+          "line": "1. d4 d5 2. c4 e5 3. dxe5 d4 4. Nf3 Nc6 5. a3",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Accepted: Central Variation, Rubinstein Defense, Yefimov Gambit",
+          "line": "1. d4 d5 2. c4 dxc4 3. e4 c5 4. d5 b5",
+          "eco": "D20",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Declined: Baltic Defense, Pseudo-Slav",
+          "line": "1. d4 d5 2. Nf3 Bf5 3. c4 e6 4. Nc3 c6",
+          "eco": "D02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Queen's Gambit Declined: Albin Countergambit, Tartakower Defense",
+          "line": "1. d4 d5 2. c4 e5 3. dxe5 d4 4. Nf3 c5",
+          "eco": "D08",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "keywords": [
+        "Принятый ферзевый гамбит",
+        "Отказанный ферзевый гамбит",
+        "Ферзевый гамбит принятый",
+        "QGA",
+        "QGD"
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "slav",
+      "name": "Славянская защита",
+      "eco": "D10–D19",
+      "match": [
+        "Slav Defense",
+        "Semi-Slav Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5",
+      "idea": "Чёрные защищают пешку d ходом ...c6 и сохраняют возможность вывести слона c8 на f5. Это крепкая защита с активной фигурной игрой.",
+      "white": [
+        "Возвращайте пешку c и развивайтесь.",
+        "Играйте a4, чтобы не дать ...b5.",
+        "Атакуйте на ферзевом фланге."
+      ],
+      "black": [
+        "Играйте ...c6 и ...dxc4.",
+        "Выводите слона на f5 до ...e6.",
+        "Не запирайте слона c8."
+      ],
+      "mistakes": [
+        "3...dxc4 4.e4! — белые получают центр.",
+        "4...Bf5 5.Qb3 — давление на b7."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6",
+          "tags": []
+        },
+        {
+          "name": "Exchange",
+          "line": "1. d4 d5 2. c4 c6 3. cxd5 cxd5",
+          "tags": []
+        },
+        {
+          "name": "Chebanenko Variation",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 a6",
+          "tags": []
+        },
+        {
+          "name": "Meran Variation",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5",
+          "tags": []
+        },
+        {
+          "name": "Slav Defense: Two Knights Attack",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4",
+          "eco": "D15",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation, Portisch Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5 5. g4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Gunderam Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4 dxe4 5. f3",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "catalan",
+      "name": "Каталонская партия",
+      "eco": "E00–E09",
+      "match": [
+        "Catalan Opening"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O",
+      "idea": "Белые сочетают ферзевый гамбит с фианкетто. Слон g2 давит на центр и королевский фланг. Это позиционный дебют с долгим давлением.",
+      "white": [
+        "Фианкеттируйте слона и занимайте центр.",
+        "Играйте Qc2 и Rd1, усиливая давление.",
+        "Готовьте e4 в нужный момент."
+      ],
+      "black": [
+        "Играйте ...dxc4 и ...b5, удерживая пешку.",
+        "Развивайте слона на b7 или a6.",
+        "Не открывайте центр без подготовки."
+      ],
+      "mistakes": [
+        "3...dxc4 4.Qa4+ — белые отыгрывают пешку.",
+        "4...c5?! — центр вскрывается в пользу белых."
+      ],
+      "variations": [
+        {
+          "name": "Closed",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Open",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Closed with ...Nbd7",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3 O-O 6. O-O Nbd7",
+          "tags": []
+        },
+        {
+          "name": "Open Defense: Classical Line",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3 Be7 6. O-O O-O 7. Qc2 a6",
+          "tags": []
+        },
+        {
+          "name": "Open Defense: Early Qa4+",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Qa4+ Bd7 6. Qxc4",
+          "tags": []
+        },
+        {
+          "name": "Catalan Opening: Closed, Spassky Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 Be7 4. Bg2 d5 5. Nf3 O-O 6. O-O Nbd7 7. Qc2 c6 8. b3 b6 9. Rd1 Bb7 10. Nc3 b5",
+          "eco": "E08",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Catalan Opening: Open Defense",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4",
+          "eco": "E02",
+          "tags": []
+        },
+        {
+          "name": "Catalan Opening: Closed",
+          "line": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. Nf3",
+          "eco": "E06",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzo",
+      "name": "Защита Нимцовича",
+      "eco": "E20–E59",
+      "match": [
+        "Nimzo-Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5",
+      "idea": "Чёрные связывают коня c3 слоном и борются за поле e4. Это один из самых надёжных ответов на 1.d4: чёрные получают активную фигурную игру.",
+      "white": [
+        "Играйте e3 и Bd3, готовя центр.",
+        "Используйте пару слонов после размена.",
+        "Атакуйте на королевском фланге."
+      ],
+      "black": [
+        "Связывайте коня c3 и играйте ...d5.",
+        "Не меняйте слона без выгоды.",
+        "Ищите контригру на ферзевом фланге."
+      ],
+      "mistakes": [
+        "3...Bb4 4.a3! — белые выигрывают темп.",
+        "4...b6?! — слон b4 может оказаться вне игры."
+      ],
+      "variations": [
+        {
+          "name": "Rubinstein",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qc2 O-O",
+          "tags": []
+        },
+        {
+          "name": "Sämisch",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3",
+          "tags": []
+        },
+        {
+          "name": "Leningrad Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bg5 h6 5. Bh4 c5",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. g3 d5 5. Bg2",
+          "tags": []
+        },
+        {
+          "name": "Nimzo-Indian Defense: Three Knights Variation, Shocron Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nc3 c5 5. d5 b5",
+          "eco": "E21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Indian Defense: Spielmann Variation, Romanovsky Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qb3 c5 5. dxc5 Nc6",
+          "eco": "E23",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Indian Defense: Leningrad Variation, Averbakh Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bg5 h6 5. Bh4 c5 6. d5 b5",
+          "eco": "E30",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "grunfeld",
+      "name": "Защита Грюнфельда",
+      "eco": "D70–D99",
+      "match": [
+        "Grünfeld Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7",
+      "idea": "Чёрные отдают центр, чтобы атаковать его фигурами и слоном g7. Это динамичная защита: чёрные согласны на пешечное меньшинство ради активности.",
+      "white": [
+        "Занимайте центр и играйте e4.",
+        "Используйте пешечный перевес на ферзевом фланге.",
+        "Не позволяйте чёрным провести ...c5 и ...e5."
+      ],
+      "black": [
+        "Атакуйте центр ходами ...c5 и ...e5.",
+        "Фианкеттируйте слона g7.",
+        "Не меняйте ферзей без нужды."
+      ],
+      "mistakes": [
+        "3...dxc4?! — белые играют e4 и получают центр.",
+        "5...Nxc3 6.bxc3 — у белых сильный центр."
+      ],
+      "variations": [
+        {
+          "name": "Exchange",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7",
+          "tags": []
+        },
+        {
+          "name": "Russian",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Qb3",
+          "tags": []
+        },
+        {
+          "name": "Neo-Grünfeld",
+          "line": "1. d4 Nf6 2. c4 g6 3. g3 d5",
+          "tags": []
+        },
+        {
+          "name": "Exchange Variation: Classical",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Bc4 c5",
+          "tags": []
+        },
+        {
+          "name": "Three Knights Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bf4 O-O",
+          "tags": []
+        },
+        {
+          "name": "Grünfeld Defense: Counterthrust Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. g3 Bg7 4. Bg2 d5",
+          "eco": "E60",
+          "tags": [
+            "counter"
+          ]
+        },
+        {
+          "name": "Grünfeld Defense: Three Knights Variation, Hungarian Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bf4",
+          "eco": "D92",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Grünfeld Defense: Exchange Variation, Nadanian Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. Na4",
+          "eco": "D85",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "kid",
+      "name": "Староиндийская защита",
+      "eco": "E60–E99",
+      "match": [
+        "King's Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5",
+      "idea": "Чёрные позволяют белым занять центр, а затем атакуют его ходом ...e5. На королевском фланге чёрные готовят ...f5 и пешечный штурм.",
+      "white": [
+        "Занимайте центр и играйте d5.",
+        "Атакуйте на ферзевом фланге ходом c5.",
+        "Не допускайте ...f5 с атакой."
+      ],
+      "black": [
+        "Играйте ...e5 и ...f5.",
+        "Атакуйте короля белых.",
+        "Не открывайте ферзевый фланг без нужды."
+      ],
+      "mistakes": [
+        "4...e5?! — преждевременно, белые играют d5.",
+        "5...Nc6?! — конь мешает ...f5."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5",
+          "tags": []
+        },
+        {
+          "name": "Sämisch",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f3 O-O",
+          "tags": []
+        },
+        {
+          "name": "Four Pawns",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. g3 O-O 5. Bg2 d6",
+          "tags": []
+        },
+        {
+          "name": "Averbakh Variation",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. Bg5",
+          "tags": []
+        },
+        {
+          "name": "King's Indian Defense: Four Pawns Attack, Modern Defense",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4 Na6",
+          "eco": "E76",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Defense: Four Pawns Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. f4",
+          "eco": "E77",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Defense: Steiner Attack",
+          "line": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f3 O-O 6. Bg5",
+          "eco": "E81",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qid",
+      "name": "Новоиндийская защита",
+      "eco": "E12–E19",
+      "match": [
+        "Queen's Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O",
+      "idea": "Чёрные фианкеттируют слона на b7 и контролируют поле e4. Это спокойная защита, которая часто переходит в позиции ферзевого гамбита.",
+      "white": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте Nc3 и Qc2.",
+        "Атакуйте на ферзевом фланге."
+      ],
+      "black": [
+        "Фианкеттируйте слона b7.",
+        "Контролируйте поле e4.",
+        "Готовьте ...c5 или ...d5."
+      ],
+      "mistakes": [
+        "3...Bb4+?! — белые отвечают Bd2 и выигрывают темп.",
+        "4...Bb7 5.Bg2 — слон b7 упирается в пешку."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O",
+          "tags": []
+        },
+        {
+          "name": "Petrosian",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. a3 Bb7",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+",
+          "tags": []
+        },
+        {
+          "name": "Kasparov Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. Nc3 Bb7 5. a3 d5 6. cxd5 Nxd5",
+          "tags": []
+        },
+        {
+          "name": "Fianchetto Variation: Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6 5. b3 Bb4+ 6. Bd2",
+          "tags": []
+        },
+        {
+          "name": "Queen's Indian Defense: Fianchetto Variation, Nimzowitsch Variation, Nimzowitsch Attack",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6 5. Qa4",
+          "eco": "E15",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Indian Defense: Kasparov-Petrosian Variation, Petrosian Attack",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. a3 Bb7 5. Nc3 d5 6. cxd5 Nxd5 7. e3",
+          "eco": "E12",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Indian Defense: Kasparov-Petrosian Variation, Polovodin Gambit",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. Nc3 Bb7 5. a3 d5 6. cxd5 Nxd5 7. e4",
+          "eco": "E12",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "benoni",
+      "name": "Защита Бенони",
+      "eco": "A56–A79",
+      "match": [
+        "Benoni Defense",
+        "Benko Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6",
+      "idea": "Чёрные создают пешечное напряжение на ферзевом фланге и играют против пешки d5. Позиция часто становится острой и асимметричной.",
+      "white": [
+        "Занимайте центр и играйте e4.",
+        "Используйте пешку d5 как клин.",
+        "Атакуйте на королевском фланге."
+      ],
+      "black": [
+        "Играйте ...exd5 и ...d6.",
+        "Атакуйте пешку d5 фигурами.",
+        "Ищите контригру на ферзевом фланге."
+      ],
+      "mistakes": [
+        "3...e6 4.Nc3 exd5 5.cxd5 — у белых сильный центр.",
+        "4...b5?! — преждевременно."
+      ],
+      "variations": [
+        {
+          "name": "Modern Benoni",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6",
+          "tags": []
+        },
+        {
+          "name": "Benko Gambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Czech Benoni",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e5",
+          "tags": []
+        },
+        {
+          "name": "Modern Benoni: Taimanov Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. f4 Bg7 8. Bb5+",
+          "tags": []
+        },
+        {
+          "name": "Benko Gambit: Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 Bxa6 6. Nc3 d6 7. g3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted: Dlugy Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. f3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Accepted: Modern Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. e3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "budapest",
+      "name": "Будапештский гамбит",
+      "eco": "A51–A52",
+      "match": [
+        "Budapest Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+",
+      "idea": "Чёрные жертвуют пешку e5, чтобы получить активную игру и вернуть её позже. Это ловушка для белых, которые не знают теории.",
+      "white": [
+        "Возвращайте пешку и развивайтесь.",
+        "Не пытайтесь удержать пешку любой ценой.",
+        "Играйте Nf3 и e3."
+      ],
+      "black": [
+        "Атакуйте пешку e5 конём g4.",
+        "Возвращайте пешку в удобный момент.",
+        "Ищите тактические удары."
+      ],
+      "mistakes": [
+        "3...Ng4 4.Bf4 — белые сохраняют пешку.",
+        "4...Bb4+ 5.Nbd2 — чёрные теряют темп."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+",
+          "tags": []
+        },
+        {
+          "name": "Fajarowicz",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ne4",
+          "tags": []
+        },
+        {
+          "name": "Accepted",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Adler Variation",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Nf3 Bc5 5. e3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Rubinstein Variation",
+          "line": "1. d4 Nf6 2. c4 e5 3. dxe5 Ng4 4. Bf4 Nc6 5. Nf3 Bb4+ 6. Nbd2",
+          "tags": []
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "english",
+      "name": "Английское начало",
+      "eco": "A10–A39",
+      "match": [
+        "English Opening"
+      ],
+      "mainline": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 d5 5. cxd5 Nxd5",
+      "idea": "Белые начинают с флангового хода c4 и строят давление на ферзевом фланге. Партия часто переходит в позиции с обратными цветами.",
+      "white": [
+        "Занимайте центр и фианкеттируйте слона.",
+        "Играйте d4 в нужный момент.",
+        "Атакуйте на ферзевом фланге."
+      ],
+      "black": [
+        "Занимайте центр ходом ...e5 или ...d5.",
+        "Не позволяйте белым провести d4 с удобством.",
+        "Ищите контригру в центре."
+      ],
+      "mistakes": [
+        "1...e5 2.Nc3 — белые получают удобную игру.",
+        "2...d5?! — преждевременно."
+      ],
+      "variations": [
+        {
+          "name": "Reversed Sicilian",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 d5 5. cxd5 Nxd5",
+          "tags": []
+        },
+        {
+          "name": "Symmetrical",
+          "line": "1. c4 c5 2. Nc3 Nc6 3. g3 g6",
+          "tags": []
+        },
+        {
+          "name": "Four Knights",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Botvinnik System",
+          "line": "1. c4 e5 2. Nc3 Nc6 3. g3 g6 4. Bg2 Bg7 5. e4 d6 6. Nge2",
+          "tags": []
+        },
+        {
+          "name": "Anglo-Indian Defense",
+          "line": "1. c4 Nf6 2. Nc3 e6 3. Nf3 b6 4. g3 Bb7",
+          "tags": []
+        },
+        {
+          "name": "English Opening: Romanishin Gambit",
+          "line": "1. c4 Nf6 2. Nf3 e6 3. g3 a6 4. Bg2 b5",
+          "eco": "A13",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "English Opening: Anglo-Indian Defense, Flohr-Mikenas-Carls Variation, Nei Gambit",
+          "line": "1. c4 e6 2. Nc3 Nf6 3. e4 c5 4. e5 Ng8",
+          "eco": "A19",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "English Opening: King's English Variation, Adhiban Gambit",
+          "line": "1. c4 e5 2. Nc3 Nf6 3. Nf3 e4 4. Ng5 c6",
+          "eco": "A22",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "reti",
+      "name": "Дебют Рети",
+      "eco": "A04–A09",
+      "match": [
+        "Réti Opening"
+      ],
+      "mainline": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O",
+      "idea": "Белые начинают с Nf3 и c4, атакуя центр с фланга. Это гибкий дебют, который может перейти в каталонскую партию или английское начало.",
+      "white": [
+        "Фианкеттируйте слона и занимайте центр.",
+        "Играйте c4 и d4.",
+        "Не спешите с e4."
+      ],
+      "black": [
+        "Занимайте центр ходом ...d5.",
+        "Развивайтесь и рокируйте.",
+        "Не позволяйте белым провести e4 бесплатно."
+      ],
+      "mistakes": [
+        "1...d5 2.c4 — белые сразу атакуют центр.",
+        "2...dxc4 3.Qa4+ — белые отыгрывают пешку."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O",
+          "tags": []
+        },
+        {
+          "name": "King's Indian Attack",
+          "line": "1. Nf3 d5 2. g3 Nf6 3. Bg2 g6",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Catalan Transposition",
+          "line": "1. Nf3 d5 2. c4 e6 3. g3 Nf6 4. Bg2 Be7 5. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Advance Variation",
+          "line": "1. Nf3 d5 2. c4 d4 3. b4 f6 4. e3",
+          "tags": []
+        },
+        {
+          "name": "Accepted",
+          "line": "1. Nf3 d5 2. c4 dxc4 3. e3 Nf6 4. Bxc4 e6",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, with g3",
+          "line": "1. c4 c6 2. Nf3 d5 3. g3 Nf6 4. b3 g6",
+          "eco": "A11",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, Bled Variation",
+          "line": "1. Nf3 d5 2. b3 Nf6 3. Bb2 g6 4. c4 c6",
+          "eco": "A12",
+          "tags": []
+        },
+        {
+          "name": "Réti Opening: Anglo-Slav Variation, London Defensive System",
+          "line": "1. c4 Nf6 2. g3 c6 3. Nf3 d5 4. b3 Bf5",
+          "eco": "A12",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "qpg",
+      "name": "Дебют ферзевых пешек",
+      "eco": "D00–D05",
+      "match": [
+        "Queen's Pawn Game"
+      ],
+      "mainline": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3 c5 5. c3",
+      "idea": "Белые играют d4 без раннего c4. Это спокойный дебют с идеей развить фигуры и затем провести e4 или c4.",
+      "white": [
+        "Развивайте фигуры и готовьте e4.",
+        "Играйте Bd3 и Nbd2.",
+        "Не спешите с c4."
+      ],
+      "black": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте ...c5, атакуя d4.",
+        "Не запирайте слона c8."
+      ],
+      "mistakes": [
+        "2...c5?! — преждевременно, белые играют e3 и Bd3.",
+        "3...Bf5?! — слон под темпом."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3 c5 5. c3",
+          "tags": []
+        },
+        {
+          "name": "London System",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bf4",
+          "tags": []
+        },
+        {
+          "name": "Colle System",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3",
+          "tags": []
+        },
+        {
+          "name": "Torre Attack",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 d5 4. e3 Be7",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Veresov Opening",
+          "line": "1. d4 d5 2. Nc3 Nf6 3. Bg5 Nbd7 4. Nf3",
+          "tags": []
+        },
+        {
+          "name": "Queen's Pawn Game: Levitsky Attack, Euwe Variation, Modern Line",
+          "line": "1. d4 d5 2. Nf3 c6 3. Bg5 h6 4. Bh4 Qb6",
+          "eco": "D02",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Pawn Game: Barry Attack",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Nc3 d5 4. Bf4 Bg7",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Queen's Pawn Game: Torre Attack",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bg5 e6 4. e3 c5 5. Nbd2",
+          "eco": "D03",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bishops-opening",
+      "name": "Дебют слона",
+      "eco": "C23–C24",
+      "match": [
+        "Bishop's Opening"
+      ],
+      "mainline": "1. e4 e5 2. Bc4 Nf6 3. d3 c6 4. Nf3 d5",
+      "idea": "Белые выводят слона на c4 раньше коня. Дебют может перейти в итальянскую или венскую партию. Идея — быстрый контроль поля f7.",
+      "white": [
+        "Развивайте коня и готовьте d4.",
+        "Следите за полем f7.",
+        "Не выводите ферзя слишком рано."
+      ],
+      "black": [
+        "Занимайте центр ходом ...Nf6 и ...d5.",
+        "Развивайте фигуры.",
+        "Не допускайте Bxf7+."
+      ],
+      "mistakes": [
+        "2...Nf6 3.d3 — белые получают удобную игру.",
+        "2...Bc5 3.Nf3 — симметрия без выгоды."
+      ],
+      "variations": [
+        {
+          "name": "Berlin",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d3 c6 4. Nf3 d5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. Nf3 Nc6",
+          "tags": []
+        },
+        {
+          "name": "Vienna Hybrid",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Urusov Gambit",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d4 exd4 4. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ponziani Gambit",
+          "line": "1. e4 e5 2. Bc4 Nf6 3. d4 Nxe4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Lewis Countergambit",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. c3 d5 4. Bxd5 Nf6",
+          "eco": "C23",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Boden-Kieseritzky Gambit, Lichtenhein Defense",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Bc4 Nxe4 4. Nc3 d5",
+          "eco": "C27",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bishop's Opening: Lewis Countergambit, Walker Variation",
+          "line": "1. e4 e5 2. Bc4 Bc5 3. c3 d5 4. Bxd5 Nf6 5. d4",
+          "eco": "C23",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "vienna",
+      "name": "Венская партия",
+      "eco": "C25–C29",
+      "match": [
+        "Vienna Game",
+        "Vienna Gambit"
+      ],
+      "mainline": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+      "idea": "Белые развивают коня на c3 и играют f4, атакуя центр. Это агрессивный дебют с идеей быстрой атаки на королевском фланге.",
+      "white": [
+        "Играйте f4 и развивайтесь.",
+        "Атакуйте на королевском фланге.",
+        "Следите за пешкой e4."
+      ],
+      "black": [
+        "Занимайте центр ходом ...d5.",
+        "Не открывайте позицию без подготовки.",
+        "Ищите контригру на ферзевом фланге."
+      ],
+      "mistakes": [
+        "2...Nf6 3.f4! — белые получают атаку.",
+        "3...exf4?! — белые играют e5."
+      ],
+      "variations": [
+        {
+          "name": "Vienna Gambit",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Falkbeer",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. exd5",
+          "tags": []
+        },
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. Bc4 Bc5",
+          "tags": []
+        },
+        {
+          "name": "Mieses Variation",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. g3 d5 4. exd5 Nxd5 5. Bg2",
+          "tags": []
+        },
+        {
+          "name": "Vienna Gambit: Main Line",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Nf3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Game: Mieses Variation, Erben Gambit",
+          "line": "1. e4 e5 2. Nc3 Nf6 3. g3 d5 4. exd5 c6",
+          "eco": "C26",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Gambit, with Max Lange Defense: Quelle Gambit",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. f4 Bc5 4. fxe5 d6",
+          "eco": "C25",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Vienna Gambit, with Max Lange Defense: Cunningham Defense",
+          "line": "1. e4 e5 2. Nc3 Nc6 3. f4 exf4 4. Nf3 Be7",
+          "eco": "C25",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "scotch",
+      "name": "Шотландская партия",
+      "eco": "C44–C45",
+      "match": [
+        "Scotch Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Bc5 5. Nb3 Bb6",
+      "idea": "Белые сразу вскрывают центр ходом d4. Партия переходит в открытую игру с быстрым развитием. Это хороший выбор против симметричных защит.",
+      "white": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте Nxc6 и Be3.",
+        "Атакуйте на королевском фланге."
+      ],
+      "black": [
+        "Развивайте слона на c5 или b4.",
+        "Играйте ...Nf6 и ...d6.",
+        "Не допускайте Ndb5."
+      ],
+      "mistakes": [
+        "3...exd4 4.Nxd4 — белые получают центр.",
+        "4...Nxd4?! — белые играют Qxd4."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Bc5 5. Nb3 Bb6",
+          "tags": []
+        },
+        {
+          "name": "Mieses",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6",
+          "tags": []
+        },
+        {
+          "name": "Scotch Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Schmidt Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Göring Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 dxc3 5. Nxc3",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Scotch Gambit, Göring Gambit Declined",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. c3 d5",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Haxo Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bc5",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Scotch Game: Scotch Gambit, Dubois Réti Defense",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 exd4",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "petrov",
+      "name": "Русская партия",
+      "eco": "C42–C43",
+      "match": [
+        "Petrov's Defense",
+        "Russian Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3",
+      "idea": "Чёрные симметрично атакуют пешку e4. Партия часто переходит в спокойную позицию с равными шансами. Это надёжный ответ на 1.e4.",
+      "white": [
+        "Занимайте центр и развивайтесь.",
+        "Играйте d4 и Bd3.",
+        "Не пытайтесь удержать пешку e5."
+      ],
+      "black": [
+        "Возвращайте пешку и развивайтесь.",
+        "Играйте ...d5 и ...Nc6.",
+        "Не допускайте Nc3 с давлением."
+      ],
+      "mistakes": [
+        "2...Nxe4?! — белые играют Nxe5 с равной игрой.",
+        "3...Nxe4?! — белые играют Qe2."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3",
+          "tags": []
+        },
+        {
+          "name": "Steinitz",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3 Be7",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Cochrane Gambit",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nxf7 Kxf7 5. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Three Knights Game",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nc3 Bb4 4. Nxe5",
+          "tags": []
+        },
+        {
+          "name": "Petrov's Defense: Modern Attack, Murrey Variation",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. d4 Nxe4 4. Bd3 Nc6",
+          "eco": "C43",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Petrov's Defense: Damiano Variation, Kholmov Gambit",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nxe4 4. Qe2 Qe7",
+          "eco": "C42",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Petrov's Defense: Stafford Gambit Accepted",
+          "line": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6",
+          "eco": "C42",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "two-knights",
+      "name": "Защита двух коней",
+      "eco": "C55–C59",
+      "match": [
+        "Italian Game: Two Knights Defense",
+        "Two Knights Defense"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5 6. Bb5+ c6",
+      "idea": "Чёрные контратакуют пешку e4 вместо защиты f7. Это острая защита, где обе стороны должны знать тактические продолжения.",
+      "white": [
+        "Атакуйте f7 ходом Ng5.",
+        "Играйте d4 и развивайтесь.",
+        "Следите за тактикой на f7."
+      ],
+      "black": [
+        "Играйте ...d5, контратакуя центр.",
+        "Отводите коня на a5.",
+        "Не допускайте Nxf7."
+      ],
+      "mistakes": [
+        "4...d5 5.exd5 — белые получают пешку.",
+        "5...Nxd5?! — белые играют d4."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5 6. Bb5+ c6",
+          "tags": []
+        },
+        {
+          "name": "Fried Liver",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Nxf7",
+          "tags": []
+        },
+        {
+          "name": "Traxler",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5",
+          "tags": []
+        },
+        {
+          "name": "Modern Bishop's Opening",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Be7 5. O-O O-O",
+          "tags": []
+        },
+        {
+          "name": "Lolli Attack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. d4",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5",
+          "eco": "C57",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Ponziani-Steinitz Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Nxe4",
+          "eco": "C57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Italian Game: Two Knights Defense, Traxler Counterattack, Knight Sacrifice Line",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7",
+          "eco": "C57",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "four-knights",
+      "name": "Дебют четырёх коней",
+      "eco": "C47–C49",
+      "match": [
+        "Four Knights Game"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4 5. O-O O-O 6. d3 d6",
+      "idea": "Обе стороны развивают коней и слона, не вскрывая центр. Это спокойный дебют с равными шансами и позиционной борьбой.",
+      "white": [
+        "Развивайте фигуры и рокируйте.",
+        "Играйте d3 и Be3.",
+        "Готовьте d4 в нужный момент."
+      ],
+      "black": [
+        "Развивайтесь симметрично.",
+        "Играйте ...d6 и ...Be6.",
+        "Не открывайте центр без подготовки."
+      ],
+      "mistakes": [
+        "3...Nf6 4.Bb5 — белые связывают коня.",
+        "4...Nd4?! — конь меняется, теряя темп."
+      ],
+      "variations": [
+        {
+          "name": "Classical",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4 5. O-O O-O 6. d3 d6",
+          "tags": []
+        },
+        {
+          "name": "Scotch Four Knights",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 exd4 5. Nxd4",
+          "tags": []
+        },
+        {
+          "name": "Spanish Four Knights",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4",
+          "tags": []
+        },
+        {
+          "name": "Italian Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bc4 Nxe4 5. Nxe4 d5",
+          "tags": []
+        },
+        {
+          "name": "Halloween Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Nxe5 Nxe5 5. d4",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Belgrade Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 exd4 5. Nd5",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Krause Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 Bb4 5. Nxe5",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Four Knights Game: Scotch Variation, Oxford Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 Bb4 5. d5 Nd4",
+          "eco": "C47",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "london",
+      "name": "Лондонская система",
+      "eco": "D02",
+      "match": [
+        "London System"
+      ],
+      "mainline": "1. d4 d5 2. Nf3 Nf6 3. Bf4 e6 4. e3 c5 5. c3",
+      "idea": "Белые выводят слона на f4 до хода e3 и строят надёжную схему. Это система, а не конкретный вариант: белые играют почти одинаково против многих ответов.",
+      "white": [
+        "Играйте Bf4, e3, Bd3 и Nbd2.",
+        "Готовьте e4 или атаку на королевском фланге.",
+        "Не спешите с c4."
+      ],
+      "black": [
+        "Занимайте центр ходом ...c5.",
+        "Развивайте слона на f5 или g4.",
+        "Атакуйте пешку d4."
+      ],
+      "mistakes": [
+        "2...Bf5?! — белые играют Bf4 и получают удобную схему.",
+        "3...c5 4.e3 — белые сохраняют центр."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 d5 2. Nf3 Nf6 3. Bf4 e6 4. e3 c5 5. c3",
+          "tags": []
+        },
+        {
+          "name": "vs King's Indian",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6",
+          "tags": []
+        },
+        {
+          "name": "Jobava London",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bf4",
+          "tags": []
+        },
+        {
+          "name": "Main Line: Early ...c5",
+          "line": "1. d4 d5 2. Bf4 Nf6 3. e3 c5 4. c3 Nc6 5. Nf3 Qb6",
+          "tags": []
+        },
+        {
+          "name": "Queen's Indian Setup",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bf4 b6 4. e3 Bb7 5. Bd3",
+          "tags": []
+        },
+        {
+          "name": "London System, with Bd3",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Bd3",
+          "eco": "A48",
+          "tags": []
+        },
+        {
+          "name": "London System, with Be2",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bf4 Bg7 4. e3 d6 5. Be2",
+          "eco": "A48",
+          "tags": []
+        },
+        {
+          "name": "London System: Poisoned Pawn Variation",
+          "line": "1. d4 Nf6 2. Nf3 d5 3. Bf4 c5 4. e3 Qb6 5. Nc3",
+          "eco": "D02",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "trompowsky",
+      "name": "Атака Тромповского",
+      "eco": "A45",
+      "match": [
+        "Trompowsky Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nc3",
+      "idea": "Белые сразу выводят слона на g5, атакуя коня f6. Это уводит партию от теории ферзевого гамбита и создаёт нестандартную позицию.",
+      "white": [
+        "Меняйте слона на f6 и играйте e4.",
+        "Занимайте центр.",
+        "Используйте ослабленную структуру чёрных."
+      ],
+      "black": [
+        "Играйте ...e6 и ...h6, отгоняя слона.",
+        "Развивайтесь и занимайте центр.",
+        "Не допускайте e4 с удобством."
+      ],
+      "mistakes": [
+        "2...e6 3.e4 — белые получают центр.",
+        "3...h6 4.Bxf6 — чёрные теряют пешечную структуру."
+      ],
+      "variations": [
+        {
+          "name": "Main Line",
+          "line": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nc3",
+          "tags": []
+        },
+        {
+          "name": "Borg",
+          "line": "1. d4 Nf6 2. Bg5 Ne4",
+          "tags": []
+        },
+        {
+          "name": "Edge",
+          "line": "1. d4 Nf6 2. Bg5 c5",
+          "tags": []
+        },
+        {
+          "name": "Classical Defense",
+          "line": "1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6",
+          "tags": []
+        },
+        {
+          "name": "Raptor Variation",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. h4 c5 4. d5",
+          "tags": []
+        },
+        {
+          "name": "Trompowsky Attack: Raptor Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. h4 Nxg5 4. hxg5 e5",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Trompowsky Attack: Edge Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. Bh4 d5 4. f3 Nf6 5. Nc3 Bf5 6. e4",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Trompowsky Attack: Edge Variation, Hergert Gambit",
+          "line": "1. d4 Nf6 2. Bg5 Ne4 3. Bh4 c6 4. Nd2 Qa5 5. c3 Nxd2 6. Qxd2 d5 7. e4",
+          "eco": "A45",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "kings-gambit",
+      "name": "Королевский гамбит",
+      "eco": "C31, C33, C30",
+      "match": [
+        "King's Gambit"
+      ],
+      "mainline": "1. e4 e5 2. f4 exf4 3. Nf3 g5 4. h4 g4 5. Ne5",
+      "idea": "f4 вскрывает линию f ценой пешки и ослабления короля.",
+      "white": [
+        "Готовьте Nf3 и Bc4, проверяя шахи по диагонали h4–e1."
+      ],
+      "black": [
+        "Отвечайте развитием и ударом ...d5; удержание лишней пешки не всегда выгодно."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Hinrichsen Gambit",
+          "line": "1. e4 e5 2. f4 d5 3. d4",
+          "eco": "C31",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Blackburne Attack",
+          "line": "1. e4 e5 2. f4 d5 3. Nf3",
+          "eco": "C31",
+          "tags": [
+            "attack",
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Falkbeer Countergambit, Milner-Barry Variation",
+          "line": "1. e4 e5 2. f4 d5 3. Nc3",
+          "eco": "C31",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Gaga Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. g3",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Orsini Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. b3",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Stamma Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. h4",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Accepted: Villemson Gambit",
+          "line": "1. e4 e5 2. f4 exf4 3. d4",
+          "eco": "C33",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "King's Gambit Declined: Classical Variation, Walthoffen Attack",
+          "line": "1. e4 e5 2. f4 Bc5 3. Qh5",
+          "eco": "C30",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "danish",
+      "name": "Датский гамбит",
+      "eco": "C21",
+      "match": [
+        "Danish Gambit"
+      ],
+      "mainline": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 d5",
+      "idea": "После d4 и c3 белые предлагают пешки ради открытых диагоналей слонов.",
+      "white": [
+        "Развивайте слонов с темпом и используйте открытые линии до завершения развития чёрных."
+      ],
+      "black": [
+        "Проверяйте ...d5: возврат материала часто помогает закончить развитие."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Danish Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. c3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Declined: Sörensen Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 d5",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Svenonius Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 Ne7",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Schlechter Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 d5",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Chigorin Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Qe7",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Classical Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Nf6",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Danish Gambit Accepted: Copenhagen Defense",
+          "line": "1. e4 e5 2. d4 exd4 3. c3 dxc3 4. Bc4 cxb2 5. Bxb2 Bb4+",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "center-game",
+      "name": "Центральный дебют",
+      "eco": "C21, C22",
+      "match": [
+        "Center Game"
+      ],
+      "mainline": "1. e4 e5 2. d4 exd4 3. Qxd4 Nc6 4. Qe3 Nf6 5. Nc3",
+      "idea": "Раннее d4 сразу оспаривает центр; после Qxd4 ферзь может попасть под темп ...Nc6.",
+      "white": [
+        "Выбирайте поле ферзю с учётом развития коней чёрных."
+      ],
+      "black": [
+        "Нападайте на ферзя с развитием и готовьте ...d5."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Center Game: Halasz-McDonnell Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. f4",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Ross Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. Bd3",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game: von der Lasa Gambit",
+          "line": "1. e4 e5 2. d4 exd4 3. Bc4",
+          "eco": "C21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Center Game",
+          "line": "1. e4 e5 2. d4 exd4 3. Qxd4",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3 c5",
+          "eco": "C21",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Normal Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Qxd4 Nc6",
+          "eco": "C22",
+          "tags": []
+        },
+        {
+          "name": "Center Game: Kieseritzky Variation",
+          "line": "1. e4 e5 2. d4 exd4 3. Nf3 c5 4. Bc4",
+          "eco": "C21",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "philidor",
+      "name": "Защита Филидора",
+      "eco": "C41",
+      "match": [
+        "Philidor Defense"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Nc3 Nbd7 5. Bc4 Be7",
+      "idea": "Пешка d6 поддерживает e5, но ограничивает слона c8 до размена в центре.",
+      "white": [
+        "Занимайте центр ходом d4 и развивайте фигуры перед атакой."
+      ],
+      "black": [
+        "Подготовьте ...Nf6 и развитие слона; момент ...exd4 меняет структуру."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Philidor Countergambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 f5",
+          "eco": "C41",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense: Hanham Variation",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Nd7",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Lopez Countergambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4 f5",
+          "eco": "C41",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense: Nimzowitsch Variation",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Nf6",
+          "eco": "C41",
+          "tags": []
+        },
+        {
+          "name": "Philidor Defense: Philidor Gambit",
+          "line": "1. e4 e5 2. Nf3 d6 3. d4 Bd7",
+          "eco": "C41",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Philidor Defense",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4 Be7",
+          "eco": "C41",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "ponziani",
+      "name": "Дебют Понциани",
+      "eco": "C44",
+      "match": [
+        "Ponziani Opening"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. d4 Nxe4 5. d5",
+      "idea": "Ход c3 готовит d4, но пока оставляет поле c3 недоступным коню.",
+      "white": [
+        "Проверяйте центральный ответ ...d5 прежде чем наращивать пешечный центр."
+      ],
+      "black": [
+        "Используйте временную задержку развития белых для ...d5 или ...Nf6."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Ponziani Opening",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Ponziani Countergambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 f5",
+          "eco": "C44",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Jaenisch Counterattack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6",
+          "eco": "C44",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Romanishin Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Be7",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Réti Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nge7",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Jaenisch Counterattack",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. d3",
+          "eco": "C44",
+          "tags": [
+            "attack",
+            "counter"
+          ]
+        },
+        {
+          "name": "Ponziani Opening: Spanish Variation",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 d5 4. Bb5",
+          "eco": "C44",
+          "tags": []
+        },
+        {
+          "name": "Ponziani Opening: Neumann Gambit",
+          "line": "1. e4 e5 2. Nf3 Nc6 3. c3 Nf6 4. Bc4",
+          "eco": "C44",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "latvian",
+      "name": "Латышский гамбит",
+      "eco": "C40",
+      "match": [
+        "Latvian Gambit"
+      ],
+      "mainline": "1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. d4 d6 5. Nc4",
+      "idea": "Ответ ...f5 атакует e4 и одновременно ослабляет диагональ короля чёрных.",
+      "white": [
+        "Считайте Nxe5 и шахи ферзём: сохранность короля важнее захвата всех пешек."
+      ],
+      "black": [
+        "Проверяйте форсированные шахи белых до каждого нового пешечного хода."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Latvian Gambit: Diepstraten Countergambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. c4",
+          "eco": "C40",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Lobster Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. g4",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mason Countergambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. d4",
+          "eco": "C40",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Senechaud Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. b4",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mayet Attack",
+          "line": "1. e4 e5 2. Nf3 f5 3. Bc4",
+          "eco": "C40",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mlotkowski Variation",
+          "line": "1. e4 e5 2. Nf3 f5 3. Nc3",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit Accepted",
+          "line": "1. e4 e5 2. Nf3 f5 3. exf5",
+          "eco": "C40",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Latvian Gambit: Mayet Attack, Strautins Gambit",
+          "line": "1. e4 e5 2. Nf3 f5 3. Bc4 b5",
+          "eco": "C40",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "blackmar-diemer",
+      "name": "Гамбит Блэкмара — Димера",
+      "eco": "D00",
+      "match": [
+        "Blackmar-Diemer Gambit"
+      ],
+      "mainline": "1. d4 d5 2. e4 dxe4 3. Nc3 Nf6 4. f3 exf3 5. Nxf3",
+      "idea": "Ходы e4 и f3 предлагают пешку за развитие и открытую линию f.",
+      "white": [
+        "Развивайте коня взятием на f3 и готовьте рокировку перед атакой."
+      ],
+      "black": [
+        "Ищите ...e6 и ...c6 или активное развитие слона; не отставайте в развитии."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Blackmar-Diemer Gambit: Blackmar Gambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. f3",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Diemer-Rosenberg Attack",
+          "line": "1. d4 d5 2. e4 dxe4 3. Be3",
+          "eco": "D00",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Fritz Attack",
+          "line": "1. d4 d5 2. e4 dxe4 3. Bc4",
+          "eco": "D00",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Lemberger Countergambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 e5",
+          "eco": "D00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Netherlands Variation",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 f5",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Reversed Albin Countergambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 c5",
+          "eco": "D00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 Nf6",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Blackmar-Diemer Gambit: Zeller Defense",
+          "line": "1. d4 d5 2. e4 dxe4 3. Nc3 Bf5",
+          "eco": "D00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "benko",
+      "name": "Волжский гамбит",
+      "eco": "A57",
+      "match": [
+        "Benko Gambit"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 Bxa6",
+      "idea": "Чёрные жертвуют пешку b ради линий a и b и давления на ферзевый фланг.",
+      "white": [
+        "Планируйте развитие и защиту пешек a2 и b2 после принятия гамбита."
+      ],
+      "black": [
+        "Развивайте слона на g7 и ладьи по открытым линиям, не теряя темпов на возврат пешки."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Benko Gambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Hjørring Countergambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. e4",
+          "eco": "A57",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Pseudo-Sämisch",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. f3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Sosonko Variation",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. a4",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit: Mutkin Countergambit",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. g4",
+          "eco": "A57",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Bishop Attack",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Bg5",
+          "eco": "A57",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Main Line",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nf3",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Benko Gambit Declined: Quiet Line",
+          "line": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nd2",
+          "eco": "A57",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "gambit"
+      ]
+    },
+    {
+      "id": "owen",
+      "name": "Защита Оуэна",
+      "eco": "B00",
+      "match": [
+        "Owen Defense"
+      ],
+      "mainline": "1. e4 b6 2. d4 Bb7 3. Bd3 e6 4. Nf3 c5 5. c3",
+      "idea": "Фианкетто ...b6 и ...Bb7 направлено на e4; белые получают пространство в центре.",
+      "white": [
+        "Поддерживайте d4–e4 и следите за давлением слона b7."
+      ],
+      "black": [
+        "Подрывайте центр ходами ...e6 и ...c5 после развития слона."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Owen Defense: Naselwaus Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Bg5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Smith Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Nf3",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Unicorn Variation",
+          "line": "1. e4 f6 2. d4 b6 3. c4 Bb7",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Owen Defense: Wind Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. f3 e5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Hekili-Loa Gambit",
+          "line": "1. e4 b6 2. d4 c5 3. dxc5 Nc6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Owen Defense: Matovinsky Gambit",
+          "line": "1. e4 b6 2. d4 Bb7 3. Bd3 f5 4. exf5 Bxg2 5. Qh5+ g6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzowitsch-defense",
+      "name": "Защита Нимцовича против e4",
+      "eco": "B00",
+      "match": [
+        "Nimzowitsch Defense"
+      ],
+      "mainline": "1. e4 Nc6 2. d4 d5 3. Nc3 dxe4 4. d5 Ne5 5. Nxe4",
+      "idea": "Раннее ...Nc6 давит на d4 и допускает большой пешечный центр белых.",
+      "white": [
+        "Выбирайте между d4 и Nf3, учитывая ответ ...d5."
+      ],
+      "black": [
+        "Определите момент ...d5 или ...e5, чтобы конь c6 поддерживал борьбу в центре."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Nimzowitsch Defense: Kennedy Variation, Linksspringer Variation",
+          "line": "1. e4 Nc6 2. d4 e5 3. d5",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Advance Variation",
+          "line": "1. e4 Nc6 2. d4 d5 3. e5",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Hornung Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Be3",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3",
+          "eco": "B00",
+          "tags": []
+        },
+        {
+          "name": "Nimzowitsch Defense: Colorado Countergambit Accepted",
+          "line": "1. e4 Nc6 2. Nf3 f5 3. exf5",
+          "eco": "B00",
+          "tags": [
+            "counter",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Brandics Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 a6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Erben Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 g6",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Heinola-Deppe Gambit",
+          "line": "1. e4 Nc6 2. d4 d5 3. Nc3 e5",
+          "eco": "B00",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bird",
+      "name": "Дебют Берда",
+      "eco": "A02, A03, B21",
+      "match": [
+        "Bird Opening"
+      ],
+      "mainline": "1. f4 d5 2. Nf3 Nf6 3. e3 g6 4. b3 Bg7 5. Bb2",
+      "idea": "Ход f4 контролирует e5, но ослабляет короля и допускает гамбит Фрома ...e5.",
+      "white": [
+        "Развивайте Nf3 и готовьте рокировку; проверяйте шахи по диагонали h4–e1."
+      ],
+      "black": [
+        "Выбирайте устойчивый центр ...d5 или конкретно рассчитывайте контргамбит ...e5."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Bird Opening: Batavo-Polish Attack",
+          "line": "1. f4 Nf6 2. Nf3 g6 3. b4",
+          "eco": "A02",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Bird Opening: Lasker Variation",
+          "line": "1. f4 d5 2. Nf3 Nf6 3. e3 c5",
+          "eco": "A03",
+          "tags": []
+        },
+        {
+          "name": "Bird Opening: Dutch Variation, Batavo Gambit",
+          "line": "1. e4 c5 2. f4 d5 3. Nf3 dxe4",
+          "eco": "B21",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: From's Gambit, Langheld Gambit",
+          "line": "1. f4 e5 2. fxe5 d6 3. exd6 Nf6",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Siegener Gambit",
+          "line": "1. f4 e5 2. d4 exd4 3. Nf3 c5 4. c3",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Swiss Gambit",
+          "line": "1. f4 f5 2. e4 fxe4 3. Nc3 Nf6 4. g4",
+          "eco": "A02",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Williams Gambit",
+          "line": "1. f4 d5 2. e4 dxe4 3. Nc3 Nf6 4. Qe2",
+          "eco": "A03",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Bird Opening: Williams-Zilbermints Gambit",
+          "line": "1. f4 d5 2. e4 dxe4 3. Nc3 Nf6 4. Nge2",
+          "eco": "A03",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "nimzo-larsen",
+      "name": "Дебют Нимцовича — Ларсена",
+      "eco": "A06, A01",
+      "match": [
+        "Nimzo-Larsen Attack"
+      ],
+      "mainline": "1. b3 e5 2. Bb2 Nc6 3. e3 Nf6 4. Bb5 Bd6 5. Nf3",
+      "idea": "После b3 слон b2 оказывает дальнее давление на центр и королевский фланг.",
+      "white": [
+        "Сочетайте Bb2 с e3 и Nf3, сохраняя диагональ слона открытой."
+      ],
+      "black": [
+        "Занимайте центр и учитывайте давление на g7 после развития слона b2."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Nimzo-Larsen Attack: Norfolk Gambit",
+          "line": "1. Nf3 d5 2. b3 c5 3. e4",
+          "eco": "A06",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Ringelbach Gambit",
+          "line": "1. b3 f5 2. Bb2 e6 3. e4",
+          "eco": "A01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Modern Variation",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. e3",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Pachman Gambit",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. f4",
+          "eco": "A01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Spike Variation",
+          "line": "1. b3 Nf6 2. Bb2 g6 3. g4",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Modern Variation",
+          "line": "1. b3 e5 2. Bb2 Nc6 3. c4 Nf6",
+          "eco": "A01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Nimzo-Larsen Attack: Norfolk Gambit",
+          "line": "1. Nf3 d5 2. b3 Nf6 3. Bb2 c5 4. e4",
+          "eco": "A06",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "kings-indian-attack",
+      "name": "Староиндийское начало",
+      "eco": "A08, A05, A07",
+      "match": [
+        "King's Indian Attack"
+      ],
+      "mainline": "1. Nf3 d5 2. g3 Nf6 3. Bg2 e6 4. O-O Be7 5. d3 O-O 6. Nbd2 c5 7. e4",
+      "idea": "Построение Nf3, g3, Bg2 и d3 готовит e4 и иногда атаку ходом e5.",
+      "white": [
+        "Согласуйте e4–e5 с развитием и безопасностью центра."
+      ],
+      "black": [
+        "Создавайте пространство в центре и ищите контригру на ферзевом фланге."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "King's Indian Attack: Sicilian Variation",
+          "line": "1. Nf3 d5 2. g3 c5 3. Bg2",
+          "eco": "A08",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Smyslov Variation",
+          "line": "1. Nf3 Nf6 2. g3 g6 3. b4",
+          "eco": "A05",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with e6",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 e6",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: French Variation",
+          "line": "1. Nf3 d5 2. g3 c5 3. Bg2 Nc6",
+          "eco": "A08",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Keres Variation",
+          "line": "1. Nf3 d5 2. g3 Bg4 3. Bg2 Nd7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with Bf5",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 c6 4. O-O Bf5",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack, with e6",
+          "line": "1. Nf3 Nf6 2. g3 d5 3. Bg2 e6 4. O-O Be7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "King's Indian Attack: Keres Variation",
+          "line": "1. Nf3 d5 2. g3 c6 3. Bg2 Bg4 4. O-O Nd7",
+          "eco": "A07",
+          "tags": [
+            "attack"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "torre",
+      "name": "Атака Торре",
+      "eco": "A46, A48",
+      "match": [
+        "Torre Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e3 d5 5. Nbd2",
+      "idea": "Слон выходит на g5 до e3 и связывает коня либо провоцирует ослабления.",
+      "white": [
+        "Ставьте e3 и Nbd2, проверяя центральное продвижение e4."
+      ],
+      "black": [
+        "Подрывайте d4 ходом ...c5 и выбирайте момент развития слона c8."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Torre Attack: Classical Defense",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5",
+          "eco": "A46",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Fianchetto Defense",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bg5",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Classical Defense, Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 h6",
+          "eco": "A46",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Wagner Gambit",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e4",
+          "eco": "A46",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        },
+        {
+          "name": "Torre Attack: Fianchetto Defense, Euwe Variation",
+          "line": "1. d4 Nf6 2. Nf3 g6 3. Bg5 Bg7 4. Nbd2 c5",
+          "eco": "A48",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Torre Attack: Classical Defense, Petrosian Gambit",
+          "line": "1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e3 b6 5. d5",
+          "eco": "A46",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "veresov",
+      "name": "Атака Рихтера — Вересова",
+      "eco": "D01",
+      "match": [
+        "Richter-Veresov Attack"
+      ],
+      "mainline": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3 e6 5. e4",
+      "idea": "Конь c3 и слон g5 поддерживают борьбу за e4 без раннего c4.",
+      "white": [
+        "Готовьте e4 и оценивайте последствия Bxf6 для структуры чёрных."
+      ],
+      "black": [
+        "Развивайте фигуры с контролем e4; проверяйте ...Bf5 и ...c5."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Richter-Veresov Attack",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Boyce Defense",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Ne4",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Richter Variation",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5 4. f3",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Two Knights System",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Veresov Variation",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Bf5 4. Bxf6",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Two Knights System, Grünfeld Defense",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. Nf3 g6",
+          "eco": "D01",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Richter-Veresov Attack: Malich Gambit",
+          "line": "1. d4 Nf6 2. Nc3 d5 3. Bg5 c5 4. Bxf6 gxf6 5. e4 dxe4 6. d5",
+          "eco": "D01",
+          "tags": [
+            "attack",
+            "gambit"
+          ]
+        }
+      ],
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "polish",
+      "name": "Дебют Сокольского",
+      "eco": "A00, A05",
+      "match": [
+        "Polish Opening"
+      ],
+      "mainline": "1. b4 e5 2. Bb2 Bxb4 3. Bxe5 Nf6 4. Nf3 O-O 5. e3",
+      "idea": "Ход b4 готовит Bb2 и пространство на ферзевом фланге, но сама пешка требует внимания.",
+      "white": [
+        "Проверяйте нападение ...Bxb4 и развивайте слона b2 с поддержкой центра."
+      ],
+      "black": [
+        "Занимайте центр и используйте темпы против выдвинутой пешки b4."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Polish Opening: Bugayev Advance Variation",
+          "line": "1. b4 e5 2. Bb2 f6 3. b5",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Myers Variation",
+          "line": "1. b4 d5 2. Bb2 c6 3. a4",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Outflank Variation, Schuehler Gambit",
+          "line": "1. b4 c6 2. Bb2 a5 3. b5",
+          "eco": "A00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Polish Opening: Tartakower Gambit",
+          "line": "1. b4 e5 2. Bb2 f6 3. e4",
+          "eco": "A00",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Polish Opening: King's Indian Variation, Schiffler Attack",
+          "line": "1. b4 Nf6 2. Bb2 g6 3. e4",
+          "eco": "A00",
+          "tags": [
+            "attack"
+          ]
+        },
+        {
+          "name": "Polish Opening, with d5",
+          "line": "1. b4 d5 2. Bb2 Nf6 3. Nf3",
+          "eco": "A00",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Zukertort System",
+          "line": "1. Nf3 Nf6 2. b4 g6 3. Bb2",
+          "eco": "A05",
+          "tags": []
+        },
+        {
+          "name": "Polish Opening: Queen's Indian Variation",
+          "line": "1. b4 e6 2. Bb2 Nf6 3. b5 b6",
+          "eco": "A00",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "semi-slav",
+      "name": "Полуславянская защита",
+      "eco": "D31, D43, D45",
+      "match": [
+        "Semi-Slav Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5",
+      "idea": "Пешки c6 и e6 укрепляют d5, ограничивая слона c8 до вскрытия центра.",
+      "white": [
+        "Выбирайте между e3 и Bg5; в острых линиях считайте ...dxc4 и ...b5."
+      ],
+      "black": [
+        "Готовьте ...c5 или ...e5, чтобы освободить фигуры и ударить по центру."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Semi-Slav Defense: Accelerated Move Order",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Marshall Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense",
+          "line": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6",
+          "eco": "D43",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Noteboom Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. Nf3 dxc4",
+          "eco": "D31",
+          "tags": []
+        },
+        {
+          "name": "Semi-Slav Defense: Anti-Noteboom, Stonewall Variation, Portisch Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e3 f5 5. g4",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Gunderam Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c6 4. e4 dxe4 5. f3",
+          "eco": "D31",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Semi-Slav Defense: Main Line",
+          "line": "1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. e3 e6 5. Nf3",
+          "eco": "D45",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "tarrasch",
+      "name": "Защита Тарраша",
+      "eco": "D32, D33",
+      "match": [
+        "Tarrasch Defense"
+      ],
+      "mainline": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3",
+      "idea": "Раннее ...c5 оспаривает центр и часто ведёт к изолированной пешке d5.",
+      "white": [
+        "Блокируйте d5 и меняйте активные фигуры соперника, если образовался изолятор."
+      ],
+      "black": [
+        "Используйте свободное развитие и ищите ...d4 до того, как пешку d5 заблокируют."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Tarrasch Defense",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Schara Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 cxd4",
+          "eco": "D32",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Tarrasch Defense: Marshall Gambit",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. e4",
+          "eco": "D32",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Tarrasch Defense: Two Knights Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Symmetrical Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. e3 Nf6 5. Nf3 Nc6",
+          "eco": "D32",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Rubinstein System",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3",
+          "eco": "D33",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Swedish Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3 c4",
+          "eco": "D33",
+          "tags": []
+        },
+        {
+          "name": "Tarrasch Defense: Prague Variation",
+          "line": "1. d4 d5 2. c4 e6 3. Nc3 c5 4. cxd5 exd5 5. Nf3 Nc6 6. g3 Nf6",
+          "eco": "D33",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "bogo-indian",
+      "name": "Защита Боголюбова",
+      "eco": "E11",
+      "match": [
+        "Bogo-Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7 5. g3",
+      "idea": "Шах ...Bb4+ вынуждает белых определить расположение лёгких фигур.",
+      "white": [
+        "Выбирайте Bd2 или Nbd2, учитывая размен чернопольных слонов."
+      ],
+      "black": [
+        "Сочетайте размен на d2 с борьбой за e4 и своевременным ...d5."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Bogo-Indian Defense",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Grünfeld Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nbd2",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: New England Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nfd2",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Vitolins Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 c5",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Wade-Smyslov Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 a5",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Haiti Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Nc6",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Nimzowitsch Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7",
+          "eco": "E11",
+          "tags": []
+        },
+        {
+          "name": "Bogo-Indian Defense: Retreat Variation",
+          "line": "1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Be7",
+          "eco": "E11",
+          "tags": []
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": "old-indian",
+      "name": "Старая индийская защита",
+      "eco": "A53, A54",
+      "match": [
+        "Old Indian Defense"
+      ],
+      "mainline": "1. d4 Nf6 2. c4 d6 3. Nc3 e5 4. Nf3 Nbd7 5. e4 Be7",
+      "idea": "Построение ...d6 и ...e5 создаёт компактный центр с развитием слона на e7.",
+      "white": [
+        "Используйте пространство, но готовьтесь к ...exd4 и давлению на e4."
+      ],
+      "black": [
+        "Закончите развитие и выберите контригру ...c6–d5 либо ...f5 по структуре."
+      ],
+      "mistakes": [
+        "Перед жертвой проверьте форсированные ответы: шахи, взятия и угрозы; название гамбита не гарантирует компенсацию."
+      ],
+      "variations": [
+        {
+          "name": "Old Indian Defense: Aged Gibbon Gambit",
+          "line": "1. d4 Nf6 2. c4 d6 3. g4",
+          "eco": "A53",
+          "tags": [
+            "gambit"
+          ]
+        },
+        {
+          "name": "Old Indian Defense: Czech Variation, with Nc3",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 c6",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Czech Variation, with Nf3",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nf3 c6",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Ukrainian Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 e5",
+          "eco": "A54",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Tartakower-Indian",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nf3 Bg4",
+          "eco": "A54",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation, Fianchetto Variation",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5 4. g3",
+          "eco": "A53",
+          "tags": []
+        },
+        {
+          "name": "Old Indian Defense: Janowski Variation, Grinberg Gambit",
+          "line": "1. d4 Nf6 2. c4 d6 3. Nc3 Bf5 4. e4",
+          "eco": "A53",
+          "tags": [
+            "gambit"
+          ]
+        }
+      ],
+      "tags": []
+    }
+  ],
+  "source": {
+    "url": "https://github.com/lichess-org/chess-openings",
+    "license": "CC0-1.0",
+    "retrieved": "2026-11-23",
+    "rows": 3865
+  }
+}

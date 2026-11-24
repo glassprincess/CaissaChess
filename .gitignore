@@ -1,0 +1,16 @@
+.gradle/
+.kotlin/
+**/build/
+local.properties
+tools/cache/
+dist/*.apk
+build-debug.log
+*.jks
+*.keystore
+
+work/
+backups/
+app/src/main/jniLibs/
+outputs/
+__pycache__/
+*.log

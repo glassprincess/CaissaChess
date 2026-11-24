@@ -1,0 +1,47 @@
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.GameSession = factory();
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+  const RATINGS = [250,500,1200,1800,2250,2800,3500,4000];
+  const profiles = [
+    [0,0,180,.65], [0,0,220,.35], [3,0,350,0], [20,1800,500,0],
+    [20,2250,700,0], [20,2800,1000,0], [20,0,1500,0], [20,0,3000,0]
+  ];
+  function profile(elo) {
+    let i = RATINGS.indexOf(Number(elo)); if (i < 0) i = 2;
+    const p = profiles[i];
+    return {elo:RATINGS[i],skill:p[0],engineElo:p[1],movetime:p[2],randomChance:p[3]};
+  }
+  function createClock(options) {
+    const now = options.now || Date.now, base = Math.max(0, options.baseMs || 0);
+    const increment = Math.max(0, options.incrementMs || 0);
+    const left = {w:base,b:base};
+    let turn = "w", running = false, started = false, stamp = 0, flag = null;
+    function settle() {
+      if (!running || !base) return;
+      const time = now();
+      left[turn] = Math.max(0,left[turn] - Math.max(0,time-stamp)); stamp = time;
+      if (!left[turn]) { flag = turn; running = false; }
+    }
+    return {
+      start:function (color) { if (started) return; started=true;turn=color;stamp=now();running=!!base; },
+      move:function (next) { settle();if(flag)return false;if(base)left[turn]+=increment;turn=next;stamp=now();return true; },
+      remaining:function (color) {settle();return left[color];},
+      snapshot:function () {settle();return {w:left.w,b:left.b,turn:turn,running:running,flag:flag,timed:!!base};},
+      restore:function (snapshot) {left.w=snapshot.w;left.b=snapshot.b;turn=snapshot.turn;flag=snapshot.flag;stamp=now();running=!!base&&!flag;},
+      pause:function () {settle();running=false;},
+      resume:function () {if(started && base && !flag){stamp=now();running=true;}}
+    };
+  }
+  function estimate(accuracy, count, opponentElo) {
+    if (accuracy === null || count < 6) return null;
+    // A single-game indicator, deliberately bounded rather than a player rating.
+    return Math.round(Math.max(250,Math.min(3500,Number(opponentElo)*.35 + 250 + Math.pow(Math.max(0,accuracy)/100,3)*2400))/50)*50;
+  }
+  function timeoutWinner(board,flag) {
+    const winner=flag==="w"?"b":"w";
+    return board.some(function(piece){return piece!=="." && piece.toLowerCase()!=="k" && (piece===piece.toUpperCase()?"w":"b")===winner;})?winner:null;
+  }
+  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner};
+});

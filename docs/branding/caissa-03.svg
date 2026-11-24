@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="#81B64C" role="img" aria-labelledby="title">
+  <title id="title">Каисса — Инициал</title>
+  <path d="M91 31a44 44 0 1 0 0 66L80 85a28 28 0 1 1 0-42Z"/>
+  <path d="M80 41c0-4 5-5 7-1l1 4 1-8c0-4 4-4 4 0l1 8 1-4c2-4 7-3 7 1l-3 12H83Zm1 18h20l-5 20H86Zm-2 26h24v9H79ZM59 27c-8-2-13-8-13-16 9 1 14 7 13 16Zm7-1c-3-8 0-16 7-21 4 9 1 17-7 21Z"/>
+</svg>
