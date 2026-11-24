@@ -80,6 +80,6 @@ python tools/fetch-engines.py
 Stockfish — GPLv3, фигуры cburnett — CC BY-SA 3.0,
 дебютные данные Lichess — CC0. [Сторонние компоненты](THIRD_PARTY_NOTICES.md).
 
-Три варианта будущего значка Каиссы: [ферзь и лавр](docs/branding/caissa-01.svg),
-[муза](docs/branding/caissa-02.svg), [инициал](docs/branding/caissa-03.svg).
+Для нового значка выбран [«Ферзь и лавр»](docs/branding/caissa-01.svg).
+Его добавление запланировано на следующее крупное обновление.
 В текущем APK остаётся зелёный конь.
