@@ -11,7 +11,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 let browser, socket, server;
 async function run() {
   server = http.createServer((req, res) => {
-    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><link rel="stylesheet" href="board-premove.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="board.js"></script><script>var moves=[];var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);}});</script></html>');
+    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><link rel="stylesheet" href="board-premove.css"><link rel="stylesheet" href="board-review.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="board.js"></script><script>var moves=[];var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);}});</script></html>');
     const file = path.join(root, req.url);
     fs.readFile(file, (err, data) => {
       res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.html') ? 'text/html' : file.endsWith('.json') ? 'application/json' : 'image/svg+xml');
@@ -50,6 +50,26 @@ async function run() {
   assert.strictEqual(await js('winner.style.left'), '25%');
   await js('board.render(state,{annotations:[]})');
   assert.strictEqual(await js('document.querySelectorAll(".move-badge").length'), 0);
+  await js('board.setOrientation("w");var hintState=ChessLogic.startState(),hintFen=ChessLogic.toFen(hintState),hint={move:"e2e4",key:"best",file:"best.svg",color:"#81b64c",animate:true};board.render(hintState,{annotation:hint});var hintSquare=document.querySelector(\'.sq[data-sq="28"]\'),hintBadge=document.querySelector(".move-badge")');
+  assert.deepStrictEqual(await js('[ChessLogic.toFen(hintState)===hintFen,hintState.board[28],hintSquare.style.getPropertyValue("--review-tint"),getComputedStyle(hintSquare).backgroundColor,getComputedStyle(hintSquare).backgroundImage,hintBadge.firstChild.className]'), [true, '.', 'rgba(129, 182, 76, 0.26)', 'rgb(235, 236, 208)', 'linear-gradient(rgba(129, 182, 76, 0.26), rgba(129, 182, 76, 0.26))', ''], 'Hint marks the empty future target with subtle tint and corner star without moving');
+  await js('board.render(hintState,{annotation:{move:"e2e4",key:"great",file:"great_find.svg",color:"#1bada6"}});var great=document.querySelector(".move-badge"),greatIcon=great.firstChild');
+  assert.deepStrictEqual(await js('[hintSquare.style.getPropertyValue("--review-tint"),greatIcon.className,getComputedStyle(greatIcon).animationName,greatIcon.getAttribute("src")]'), ['rgba(93, 145, 178, 0.26)', 'brilliant-enter', 'brilliant-reveal', 'analysis-icons/great_find.svg'], 'Great uses muted slate blue and the existing full-piece-to-corner animation');
+  await js('board.render(hintState);board.setOrientation("b")');
+  assert.strictEqual(await js('great===document.querySelector(".move-badge") && greatIcon===great.firstChild'), true, 'Great marker survives rerender and flip without restarting');
+  await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+  assert.strictEqual(await js('getComputedStyle(greatIcon).animationName'), 'none', 'Great respects reduced motion');
+  await cdp('Emulation.setEmulatedMedia', { features: [] });
+  await js('board.setOrientation("w");board.render(hintState,{annotation:{move:"e2e4",key:"brilliant",file:"brilliant.svg",color:"#1bada6"}})');
+  assert.strictEqual(await js('hintSquare.style.getPropertyValue("--review-tint")'), 'rgba(27, 173, 166, 0.26)', 'Brilliant keeps a distinct teal tint');
+  for (const [key, color, expected] of [['inaccuracy', '#f7c045', 'rgba(247, 192, 69, 0.26)'], ['blunder', '#fa412d', 'rgba(250, 65, 45, 0.26)']]) {
+    await js('board.render(hintState,{annotation:{move:"e2e4",key:' + JSON.stringify(key) + ',color:' + JSON.stringify(color) + '}})');
+    assert.strictEqual(await js('hintSquare.style.getPropertyValue("--review-tint")'), expected, key + ' preserves RGB at low alpha');
+  }
+  await js('var initialKnight=document.querySelector(\'.pc[data-sq="6"]\');window.CaissaAppearance={pieceUrl:function(code){return "pieces-test/"+code+".svg";}};board.render(hintState,{annotation:null})');
+  assert.strictEqual(await js('initialKnight===document.querySelector(\'.pc[data-sq="6"]\') && initialKnight.firstChild.getAttribute("src")==="pieces-test/wN.svg"'), true, 'Appearance rerender refreshes existing sprites without a position change');
+  await js('var previewPromotion=ChessLogic.fromFen("1r5k/P7/8/8/8/8/8/7K b - - 0 1");board.render(previewPromotion,{premove:{from:48,to:57,promo:"n"}})');
+  assert.strictEqual(await js('document.querySelector(".pc.premove-piece img").getAttribute("src")'), 'pieces-test/wN.svg', 'Promotion preview uses chosen piece from appearance');
+  await js('delete window.CaissaAppearance;board.render(previewPromotion,{premove:null})');
   await js(`board.setOrientation("w");var real=Object.assign({},ChessLogic.startState(),{turn:"b"}),realFen=ChessLogic.toFen(real);board.render(real,{annotation:null});var pawn=document.querySelector('.pc[data-sq="12"]');board.render(real,{premove:{from:12,to:28}})`);
   assert.deepStrictEqual(await js(`[ChessLogic.toFen(real)===realFen,real.turn,pawn.dataset.sq,pawn.style.left,pawn.style.top,document.querySelectorAll(".pc").length,document.querySelector('.sq[data-sq="28"]').classList.contains("premove-to")]`), [true, 'b', '28', '50%', '50%', 32, true], 'Premove visibly moves the existing pawn without changing actual position');
   assert.strictEqual(await js('getComputedStyle(document.querySelector(".sq.premove-to")).backgroundColor'), 'rgb(208, 132, 132)', 'Premove target is light red');

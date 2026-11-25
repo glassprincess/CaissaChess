@@ -43,6 +43,14 @@
     const winner=flag==="w"?"b":"w";
     return board.some(function(piece){return piece!=="." && piece.toLowerCase()!=="k" && (piece===piece.toUpperCase()?"w":"b")===winner;})?winner:null;
   }
+  function jumpIndex(index,direction,last,min) {
+    return Math.max(min === undefined ? -1 : min,Math.min(last,index + direction * 10));
+  }
+  function botThinkDelay(remainingMs,random) {
+    const range = remainingMs > 10000 ? [350,1000] : remainingMs > 1500 ? [200,650] : [120,300];
+    const draw = Math.max(0,Math.min(1 - Number.EPSILON,(random || Math.random)()));
+    return range[0] + Math.floor(draw * (range[1] - range[0] + 1));
+  }
   function premoveMoves(state,color) {
     if (color !== "w" && color !== "b") return [];
     const moves = [], ownKing = color === "w" ? "K" : "k", direction = color === "w" ? 1 : -1;
@@ -78,5 +86,5 @@
     }
     return moves;
   }
-  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves};
+  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves,jumpIndex:jumpIndex,botThinkDelay:botThinkDelay};
 });

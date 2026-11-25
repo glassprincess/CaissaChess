@@ -70,6 +70,10 @@ node tests/review-regression.js
 node tests/review-pipeline.js
 node tests/engine-queue.js
 node tests/engine-strength.js
+node tests/game-session.js
+node tests/appearance.js
+node tests/trainer.js
+# Optional: REAL_STOCKFISH=1 STOCKFISH=/path/to/stockfish node tests/trainer-engine.js
 python tests/fetch-engines.py
 ```
 
@@ -78,6 +82,7 @@ Browser tests require Edge or Chrome; override its path with `BROWSER`:
 ```sh
 node tests/ui-smoke.js
 node tests/board-caissa.js
+node tests/ux150.js
 node tests/i18n.js --browser
 ```
 

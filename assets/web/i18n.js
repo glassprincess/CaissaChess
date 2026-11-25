@@ -227,7 +227,14 @@ Lichess не ответил за 12 секунд.|Lichess did not respond within
 Неверный FEN: пешка на крайней горизонтали|Invalid FEN: pawn on the first or eighth rank
 Неверный FEN: король стороны, сделавшей ход, под шахом|Invalid FEN: the side that just moved is in check
 Неверный FEN: взятие на проходе|Invalid FEN: en passant
-Неверный FEN: права на рокировку|Invalid FEN: castling rights`;
+Неверный FEN: права на рокировку|Invalid FEN: castling rights
+Тема|Theme
+Фигуры|Pieces
+Классика|Classic
+Предпросмотр фигур|Piece preview
+Тренажёр|Training
+На 5 ходов назад|Back 5 moves
+На 5 ходов вперёд|Forward 5 moves`;
   entries.split("\n").forEach(function (line) {
     const pair = line.split("|"); catalogue[pair[0]] = pair[1];
   });

@@ -1,0 +1,33 @@
+.trainer-head h2 { margin: 0 0 6px; font-size: 23px; }
+.trainer-head p { margin: 0 0 16px; }
+#trainerRoot[data-trainer-active="true"] .trainer-head p,
+#trainerRoot[data-trainer-active="true"] .trainer-rules { display: none; }
+#trainerRoot[data-trainer-active="true"] .trainer-head h2 { font-size: 20px; margin-bottom: 10px; }
+#trainerRoot .btn { padding: 10px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); }
+#trainerRoot .btn.primary { background: var(--accent); color: #17220d; border-color: var(--accent); }
+#trainerRoot .btn:hover:not(:disabled) { filter: brightness(1.12); }
+#trainerRoot .btn:active:not(:disabled) { filter: brightness(.9); }
+.trainer-settings { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
+.trainer-settings label { flex: 1 1 150px; min-width: 0; }
+.trainer-settings label > span { display: block; margin-bottom: 5px; }
+.trainer-settings > button { min-height: 44px; }
+.trainer-rules { font-size: 13px; line-height: 1.5; }
+.trainer-stats { min-height: 26px; font-variant-numeric: tabular-nums; font-weight: 600; }
+.trainer-position { min-height: 24px; font-size: 14px; color: var(--muted); }
+.trainer-board { width: 100%; aspect-ratio: 1; }
+.trainer-feedback { background: var(--panel); padding: 14px; margin-top: 12px; border-radius: 8px; min-height: 68px; }
+.trainer-feedback p { margin: 8px 0 0; line-height: 1.5; overflow-wrap: anywhere; }
+.trainer-feedback p:empty { display: none; }
+.trainer-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.trainer-actions .btn { flex: 1 1 auto; min-height: 44px; }
+.trainer-result { border-left: 3px solid var(--accent); background: var(--panel); padding: 16px; margin: 12px 0; }
+.trainer-source { font-size: 12px; line-height: 1.5; }
+.trainer-access { margin: 16px 0; }
+.trainer-access summary { cursor: pointer; padding: 8px 0; }
+.trainer-access form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
+.trainer-access label > span { display: block; margin-bottom: 6px; }
+.trainer-access input { width: 130px; min-height: 44px; padding: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.trainer-promotion { display: flex; justify-content: center; gap: 8px; padding: 10px; }
+.trainer-promotion[hidden], .trainer-actions [hidden], .trainer-result[hidden] { display: none; }
+.trainer-promotion .btn { min-width: 48px; min-height: 48px; }
+@media (max-width: 380px) { .trainer-settings label { flex-basis: 120px; } .trainer-settings > button { width: 100%; } }

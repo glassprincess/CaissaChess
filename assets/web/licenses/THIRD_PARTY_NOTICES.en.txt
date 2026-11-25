@@ -15,3 +15,8 @@ https://github.com/lichess-org/chess-openings
 Online continuations: Lichess Masters / lila-openingexplorer.
 
 Sounds: Chess.com. Move and result badges supplied by GlassPrincess.
+
+Piece sets: Merida (Armando Hernandez Marroquin, GPLv2+), Chessnut
+(Alexis Luengas, Apache 2.0), Celtic (Maurizio Monge, MIT).
+Sources and full licenses: assets/web/licenses/PIECE_SETS.txt (PIECE_SETS.txt in APK).
+Puzzles: Lichess chess-puzzles database, CC0. See lichess-puzzles.txt.

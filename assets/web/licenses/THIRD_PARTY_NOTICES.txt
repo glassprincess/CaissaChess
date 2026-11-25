@@ -17,3 +17,8 @@ https://github.com/lichess-org/chess-openings
 Значки ходов и исходов предоставлены GlassPrincess.
 
 Звуки: Chess.com.
+
+Piece sets: Merida (Armando Hernandez Marroquin, GPLv2+), Chessnut
+(Alexis Luengas, Apache 2.0), Celtic (Maurizio Monge, MIT).
+Sources and full licenses: assets/web/licenses/PIECE_SETS.txt (PIECE_SETS.txt in APK).
+Puzzles: Lichess chess-puzzles database, CC0. See lichess-puzzles.txt.

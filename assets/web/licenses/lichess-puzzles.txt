@@ -1,0 +1,12 @@
+Lichess puzzle positions, moves, ratings, and themes: CC0 1.0 Universal.
+Source: https://database.lichess.org/#puzzles
+Official mirror: https://huggingface.co/datasets/Lichess/chess-puzzles
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+puzzles.json contains 60 original puzzle records selected from the first 100
+rows returned by the official mirror on 2026-11-25, with rating 600–2400,
+popularity >=70, and 2–10 UCI plies (including the setup move).
+Each record links to its Lichess puzzle and original game. The FEN is before
+the opponent's setup move. The solution begins after that setup move.
+The application validates the legality of every bundled line at load time.
+No full database download or external connection is required during play.

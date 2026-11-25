@@ -12,17 +12,24 @@
   const Game = window.GameSession;
   const UI = window.CaissaI18n;
   const Sounds = window.CaissaSounds;
+  const Appearance = window.CaissaAppearance;
+  let trainer = null;
+  function applyAppearance() {
+    const selected=Appearance.apply(App.settings);
+    App.settings.theme=selected.theme;App.settings.pieces=selected.pieces;
+    if(window.AndroidEngine && window.AndroidEngine.setTheme)window.AndroidEngine.setTheme(selected.theme);
+  }
 
   const App = {
     tab: "play",
-    settings: { depth: 14, level: 1200, sound: true, volume: 85, showArrow: true, lang:"ru" },
+    settings: { depth: 14, level: 1200, sound: true, volume: 85, showArrow: true, lang:"ru", theme:"classic", pieces:"cburnett" },
     lines: [], guides: [], guideSets:null, index: null,
     engineReady: false
   };
 
   const play = {
     active: false, color: "w", level: 1200, state: null, moves: [], lastMove: null,
-    thinking: false, hint: null, hintPending:false, evalScore: null, evalTurn: "w", orientation: "w",
+    thinking: false, hint: null, hintPending:false, hintsUsed:0, evalScore: null, evalTurn: "w", orientation: "w",
     gen: 0, error: false, evals: [], reviewing: false, nav: null, clock:null, outcome:null, report:null, reportError:false, reportPromise:null, reportProgress:null, reportStarted:0, reportElapsed:0, resultReady:false, lowTime:false, premove:null
   };
 
@@ -245,6 +252,7 @@
     renderArrowControls(); renderPlay(); renderLive();
     if (batch.rows.length) renderPgnBoard();
     if (openings.line) renderOpeningBoard();
+    if(trainer)trainer.refreshAppearance();
   }
 
   function toggleArrows() {
@@ -314,7 +322,7 @@
     let html = '<h3>Превращение</h3><div class="promo-grid">';
     for (let i = 0; i < names.length; i++) {
       html += '<button data-promo="' + names[i][0] + '" aria-label="' + names[i][1] + '">' +
-        '<img src="pieces/' + p + names[i][0].toUpperCase() + '.svg" alt="' + names[i][1] + '"></button>';
+        '<img src="' + Appearance.pieceUrl(p + names[i][0].toUpperCase()) + '" alt="' + names[i][1] + '"></button>';
     }
     html += "</div>";
     showModal(html);
@@ -348,6 +356,11 @@
     const d = App.settings.depth === 18 ? 18 : 14;
     let html = "<h3>Настройки</h3>";
     html += '<label class="field"><span class="field-label">Язык</span><select id="setLanguage" class="select"><option value="ru"'+(App.settings.lang==="ru"?' selected':'')+'>Русский</option><option value="en"'+(App.settings.lang==="en"?' selected':'')+'>English</option></select></label>';
+    html += '<label class="field"><span class="field-label">Тема</span><select id="setTheme" class="select">';
+    Appearance.themes.forEach(function(item){html+='<option value="'+item.id+'"'+(App.settings.theme===item.id?' selected':'')+'>'+esc(item.id==='classic'?UI.t('Классика'):item.name)+'</option>';});
+    html+='</select></label><label class="field"><span class="field-label">Фигуры</span><select id="setPieces" class="select">';
+    Appearance.pieceSets.forEach(function(item){html+='<option value="'+item.id+'"'+(App.settings.pieces===item.id?' selected':'')+'>'+esc(item.name)+'</option>';});
+    html+='</select></label><div id="piecePreview" class="settings-piece-preview" aria-label="Предпросмотр фигур"></div>';
     html += '<div class="field"><span class="field-label">Глубина разбора по умолчанию</span>' +
       '<select id="setDepth" class="select"><option value="14"' + (d === 14 ? " selected" : "") + ">Быстро (14)</option>" +
       '<option value="18"' + (d === 18 ? " selected" : "") + ">Глубоко (18)</option></select></div>";
@@ -358,10 +371,12 @@
     html += '<label class="check"><input type="checkbox" id="setSound"' + (App.settings.sound ? " checked" : "") + "> Звук ходов</label>";
     html += '<label class="field"><span class="field-label">Громкость ходов</span><span class="sound-volume"><input id="setVolume" type="range" min="0" max="100" value="' + App.settings.volume + '"><output id="volumeValue">' + App.settings.volume + '%</output></span></label>';
     html += '<label class="check"><input type="checkbox" id="setArrow"' + (App.settings.showArrow ? " checked" : "") + "> Стрелки в анализе и дебютах</label>";
-    html += '<div class="modal-actions"><button class="ghost" data-close="1">Отмена</button>' +
+    html += '<div class="modal-actions settings-actions"><button id="settingsCancel" class="ghost" data-close="1">Отмена</button>' +
       '<button class="primary" id="setSave">Сохранить</button></div>';
-    html += '<footer class="settings-footer"><p class="muted">Caissa 1.4.1 · GlassPrincess</p><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
+    html += '<footer class="settings-footer"><p class="muted">Caissa 1.5.0 · GlassPrincess</p><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
     showModal(html);
+    function previewPieces(){ $("piecePreview").innerHTML=['wK','wQ','wR','wB','wN','wP'].map(function(code){return '<img src="'+Appearance.pieceUrl(code,$("setPieces").value)+'" alt="'+code+'">';}).join(''); }
+    previewPieces();$("setPieces").addEventListener("change",previewPieces);
     $("setVolume").addEventListener("input", function () { $("volumeValue").textContent=this.value+"%"; });
     $("setVolume").addEventListener("change", function () { Sounds.play("move",Number(this.value)); });
     $("showLicenses").addEventListener("click", function () {
@@ -376,6 +391,8 @@
       App.settings.volume = Number($("setVolume").value);
       App.settings.showArrow = $("setArrow").checked;
       App.settings.lang = $("setLanguage").value;
+      App.settings.theme=$("setTheme").value;App.settings.pieces=$("setPieces").value;
+      applyAppearance();
       if (!play.active) play.level = App.settings.level;
       live.showArrow = App.settings.showArrow;
       saveSettings();
@@ -390,11 +407,13 @@
   // ---------- tabs ----------
 
   function showTab(name) {
+    if(App.tab==="training" && name!=="training" && trainer)trainer.hide();
     App.tab = name;
-    const screens = ["play", "analysis", "openings"];
+    const screens = ["play", "analysis", "openings", "training"];
     for (let i = 0; i < screens.length; i++) setHidden("screen-" + screens[i], screens[i] !== name);
     const btns = $("tabbar").querySelectorAll("button");
     for (let i = 0; i < btns.length; i++) btns[i].classList.toggle("active", btns[i].getAttribute("data-tab") === name);
+    if(name==="training" && trainer){Eng.cancel("live");live.gen++;live.analyzing=false;Eng.cancel("openings");Eng.cancel("pgn-view");trainer.show();}
     if (name === "analysis") setAnalysisMode(currentAnalysisMode);
     if (name === "openings") { if (openings.view === "list") renderOpeningList(); else requestOpeningEval(); }
     window.scrollTo(0, 0);
@@ -447,7 +466,7 @@
     play.clock.start("w");
     play.state = Chess.startState();
     play.moves = []; play.nav = null; endSoundState.play = "";
-    play.evals = []; play.reviewing = false;
+    play.evals = []; play.reviewing = false;play.hintsUsed=0;
     play.lastMove = null;
     play.hint = null;
     play.thinking = false;
@@ -498,7 +517,7 @@
     playBoard.render(st, {lastMove:row ? row.uci : null, interactive:humanTurn || (canPremove && !play.premove),inputState:inputState,
       inputMoves:canPremove?Game.premoveMoves(st,play.color):null,premove:!viewing && !play.outcome?play.premove:null,
       arrow:!viewing && !play.premove?play.hint:null, showArrow:true,
-      annotation:!viewing && play.outcome && play.outcome.flag ? timeoutAnnotations() : status === "play" ? null : boardAnnotation(null, st, status)});
+      annotation:!viewing && play.outcome && play.outcome.flag ? timeoutAnnotations() : status === "play" ? (!viewing && play.hint && !play.premove ? {move:play.hint,key:"best",file:"best.svg",color:MR.ICONS.best.color,label:UI.t("Лучший ход"),animate:true,eventId:"hint:"+play.hintsUsed} : null) : boardAnnotation(null, st, status)});
     const ev = play.evals[index + 1], score = ev && ev.lines[0] ? ev.lines[0].eval : viewing ? null : play.evalScore;
     renderEvalBar("playEval", score, ev && ev.lines[0] ? st.turn : play.evalTurn, st, status);
     $("playPosition").textContent = (index + 1) + " / " + play.moves.length;
@@ -510,7 +529,8 @@
     renderClocks();
     setHidden("playReport",!play.outcome || !play.resultReady);
     setHidden("playCancelPremove",!play.premove);
-    $("playHint").disabled = !humanTurn || play.hintPending; $("playReview").disabled = !play.moves.length || !play.outcome;
+    $("playHint").textContent=UI.t("Подсказка")+" · "+(3-play.hintsUsed)+"/3";
+    $("playHint").disabled = !humanTurn || play.hintPending || play.hintsUsed>=3; $("playReview").disabled = !play.moves.length || !play.outcome;
   }
 
   function commitPlay(row, next) {
@@ -578,7 +598,10 @@
     const randomMove=Math.random()<profile.randomChance && legal.length ? Chess.uci(legal[Math.floor(Math.random()*legal.length)]) : null;
     const request=randomMove ? new Promise(function(resolve){setTimeout(function(){resolve({bestmove:randomMove,lines:[]});},200);}) :
       search({fen:Chess.toFen(play.state),multipv:1,movetime:profile.movetime,skill:profile.skill,elo:profile.engineElo},"play");
-    request.then(function (res) {
+    request.then(function(res){
+      if(gen!==play.gen || !res || !res.bestmove || !play.clock || !play.clock.snapshot().timed)return res;
+      return delay(Game.botThinkDelay(play.clock.remaining(turn))).then(function(){return res;});
+    }).then(function (res) {
       if (gen !== play.gen || !play.active || play.outcome) return;
       play.thinking = false;
       if (!res || !res.bestmove) { play.error = true; play.clock.pause(); renderPlay(); return; }
@@ -726,7 +749,7 @@
   }
 
   function hintPlay() {
-    if (!play.active || play.thinking || play.hintPending || play.state.turn !== play.color || viewingPlay()) return;
+    if (!play.active || play.thinking || play.hintPending || play.hintsUsed>=3 || play.state.turn !== play.color || viewingPlay()) return;
     if (playStatus() !== "play") return;
     const gen = play.gen;
     const turn = play.state.turn;
@@ -735,9 +758,9 @@
     search({ fen: fen, multipv: 1, depth: 18, movetime:1500, skill:20, elo:0 }, "play-hint").then(function (res) {
       if (gen !== play.gen || Chess.toFen(play.state) !== fen) return;
       play.hintPending=false;
-      if(!res || !res.bestmove){renderPlay();return;}
+      if(!res || !res.bestmove || !findUci(play.state,res.bestmove)){renderPlay();return;}
       if (Chess.toFen(play.state) !== fen) return;
-      play.hint = res.bestmove;
+      play.hint = res.bestmove;play.hintsUsed++;
       if (res.lines && res.lines.length) {
         play.evalScore = res.lines[0].eval;
         play.evalTurn = turn;
@@ -933,7 +956,7 @@
     const cur = Chess.toFen(live.state);
     showModal('<h3>Позиция из FEN</h3><p class="muted" style="font-size:13px">Вставьте FEN. Ход, рокировки и взятие на проходе сохраняются.</p>' +
       '<textarea id="fenInput" rows="3">' + esc(cur) + "</textarea>" +
-      '<div class="modal-actions"><button class="ghost" data-close="1">Отмена</button>' +
+      '<div class="modal-actions settings-actions"><button id="settingsCancel" class="ghost" data-close="1">Отмена</button>' +
       '<button class="primary" id="fenOk">Загрузить</button></div>');
     $("fenOk").addEventListener("click", function () {
       const v = $("fenInput").value.trim();
@@ -1436,6 +1459,7 @@
   }
   function applyLanguage() {
     UI.setLanguage(App.settings.lang);
+    if(trainer)trainer.refreshLanguage();
     const oldGuide=openings.guide,variant=openings.variant,step=openings.step,custom=openings.custom;
     if(App.guideSets){
       App.guides=App.guideSets[App.settings.lang];
@@ -1532,17 +1556,17 @@
     $("playReview").addEventListener("click", reviewPlay);
     $("playReport").addEventListener("click",showPlayResult);
     $("playCancelPremove").addEventListener("click",function(){play.premove=null;renderPlay();});
-    $("playFirst").addEventListener("click", function () {setPlayView(-1);});
+    $("playFirst").addEventListener("click", function () {setPlayView(Game.jumpIndex(viewingPlay()?play.nav:play.moves.length-1,-1,play.moves.length-1));});
     $("playPrev").addEventListener("click", function () {setPlayView((viewingPlay() ? play.nav : play.moves.length - 1) - 1);});
     $("playNext").addEventListener("click", function () {setPlayView((viewingPlay() ? play.nav : play.moves.length - 1) + 1);});
-    $("playLast").addEventListener("click", function () {setPlayView(play.moves.length - 1);});
+    $("playLast").addEventListener("click", function () {setPlayView(Game.jumpIndex(viewingPlay()?play.nav:play.moves.length-1,1,play.moves.length-1));});
     $("playReturn").addEventListener("click", function () {setPlayView(play.moves.length - 1);});
     $("playMoves").addEventListener("click", function (e) {const button=e.target.closest("[data-ply]");if(button)setPlayView(Number(button.getAttribute("data-ply")));});
   }
 
   function bindLive() {
-    $("liveFirst").addEventListener("click",function(){navigateLive(-1);});
-    $("liveLast").addEventListener("click",function(){navigateLive(live.moves.length-1);});
+    $("liveFirst").addEventListener("click",function(){navigateLive(Game.jumpIndex(live.nav===null?live.moves.length-1:live.nav,-1,live.moves.length-1));});
+    $("liveLast").addEventListener("click",function(){navigateLive(Game.jumpIndex(live.nav===null?live.moves.length-1:live.nav,1,live.moves.length-1));});
     $("liveUndo").addEventListener("click", undoLive);
     $("liveReset").addEventListener("click", resetLive);
     $("liveFen").addEventListener("click", showFenModal);
@@ -1603,10 +1627,10 @@
         setDepthButtons(App.settings.depth);
       });
     }
-    $("pgnFirst").addEventListener("click", function () { batch.nav = -1; renderPgnBoard(); });
+    $("pgnFirst").addEventListener("click", function () { batch.nav = Game.jumpIndex(batch.nav,-1,batch.rows.length-1); renderPgnBoard(); });
     $("pgnPrev").addEventListener("click", function () { batch.nav = Math.max(-1, batch.nav - 1); renderPgnBoard(); });
     $("pgnNext").addEventListener("click", function () { batch.nav = Math.min(batch.rows.length - 1, batch.nav + 1); renderPgnBoard(); });
-    $("pgnLast").addEventListener("click", function () { batch.nav = batch.rows.length - 1; renderPgnBoard(); });
+    $("pgnLast").addEventListener("click", function () { batch.nav = Game.jumpIndex(batch.nav,1,batch.rows.length-1); renderPgnBoard(); });
     $("pgnMoves").addEventListener("click", function (e) {
       const b = e.target.closest ? e.target.closest("[data-ply]") : null;
       if (!b) return;
@@ -1624,8 +1648,8 @@
     $("openingVariantSelect").addEventListener("change", function () { selectOpeningVariant(Number(this.value)); });
     $("openingPrev").addEventListener("click", function () { setOpeningStep(openings.step - 1); });
     $("openingNext").addEventListener("click", function () { setOpeningStep(openings.step + 1); });
-    $("openingFirst").addEventListener("click", function () { setOpeningStep(0); });
-    $("openingLast").addEventListener("click", function () { setOpeningStep(openings.line.moves.length); });
+    $("openingFirst").addEventListener("click", function () { setOpeningStep(Game.jumpIndex(openings.step,-1,openings.line.moves.length,0)); });
+    $("openingLast").addEventListener("click", function () { setOpeningStep(Game.jumpIndex(openings.step,1,openings.line.moves.length,0)); });
     $("openingTimeline").addEventListener("input", function () { setOpeningStep(Number(this.value)); });
     $("openingArrow").addEventListener("click", toggleArrows);
     $("openingMoves").addEventListener("click", function (e) {
@@ -1651,11 +1675,13 @@
 
   function init() {
     loadSettings();
+    applyAppearance();
     Sounds.configure(function(){return App.settings;});Sounds.preload();
     UI.setLanguage(App.settings.lang);UI.observe();
     if(window.AndroidEngine && window.AndroidEngine.setLanguage)window.AndroidEngine.setLanguage(App.settings.lang);
     setDepthButtons(App.settings.depth);
     createBoards();
+    trainer=window.CaissaTrainer.create($("trainerRoot"),{Chess:Chess,Pgn:Pgn,Eng:Eng,Sounds:Sounds,I18n:UI,isReady:function(){return App.engineReady;}});
     renderArrowControls();
     bindChrome();
     bindPlay();
@@ -1674,7 +1700,7 @@
         $("liveExplain").textContent = "Движок недоступен. Проверьте сборку.";
         return;
       }
-      startLiveAnalysis();
+      if(App.tab!=="training")startLiveAnalysis();
 
     });
   }

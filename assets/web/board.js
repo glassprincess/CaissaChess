@@ -9,6 +9,14 @@
 
   const FILES = "abcdefgh";
   const PIECE_NAMES = { p: "P", n: "N", b: "B", r: "R", q: "Q", k: "K" };
+  const REVIEW_KEYS = ["brilliant", "great", "best", "excellent", "good", "book", "forced", "equal", "inaccuracy", "mistake", "missed", "miss", "blunder"];
+
+  function reviewTint(annotation) {
+    if (!annotation || REVIEW_KEYS.indexOf(annotation.key) < 0) return "";
+    const color = annotation.key === "great" ? "#5d91b2" : annotation.color;
+    if (!/^#[0-9a-f]{6}$/i.test(color || "")) return "";
+    return "rgba(" + [1, 3, 5].map(function (offset) { return parseInt(color.slice(offset, offset + 2), 16); }).join(", ") + ", 0.26)";
+  }
 
   function sqIndex(file, rank) { return rank * 8 + file; }
 
@@ -160,6 +168,7 @@
       const last = lastMove ? parseUci(lastMove) : null;
       const annotation = annotations[0];
       const marked = annotation && annotation.move ? parseUci(annotation.move) : null;
+      const tint = reviewTint(annotation);
       const checkSq = checkSquare(state);
       const preview = previewPlacements(state, premove);
       const targets = selected === null ? [] : movesForInput().filter(function (m) {
@@ -177,9 +186,11 @@
           if (sq === checkSq) cls += " check";
           if (preview.some(function (placement) { return placement.to === sq; })) cls += " premove-to";
           if (preview.some(function (placement) { return placement.from === sq; })) cls += " premove-from";
+          if (marked && sq === marked.to && tint) cls += " review-square";
           d.className = cls;
-          d.style.backgroundColor = marked && sq === marked.to ? annotation.color || "" : "";
-          d.style.backgroundImage = marked && sq === marked.to && sq !== checkSq ? "none" : "";
+          d.style.setProperty("--review-tint", marked && sq === marked.to ? tint : "");
+          d.style.backgroundColor = marked && sq === marked.to && !tint ? annotation.color || "" : "";
+          d.style.backgroundImage = marked && sq === marked.to && !tint && sq !== checkSq ? "none" : "";
           d.dataset.sq = String(sq);
           const fileLabel = row === 7 ? FILES[f] : "";
           const rankLabel = col === 0 ? String(r + 1) : "";
@@ -215,7 +226,8 @@
         d.style.visibility = hidden ? "hidden" : "";
         d.style.left = (pos.col * 12.5) + "%";
         d.style.top = (pos.row * 12.5) + "%";
-        const src = "pieces/" + pieceName(placement ? placement.piece : p) + ".svg";
+        const code = pieceName(placement ? placement.piece : p);
+        const src = root.CaissaAppearance ? root.CaissaAppearance.pieceUrl(code) : "pieces/" + code + ".svg";
         if (d.firstChild.getAttribute("src") !== src) d.firstChild.setAttribute("src", src);
       }
       drawArrow();
@@ -245,7 +257,7 @@
             const icon = document.createElement("img");
             icon.src = "analysis-icons/" + annotation.file;
             icon.alt = annotation.label || "";
-            if (["brilliant", "missed", "miss", "mate", "draw", "winner", "clock"].indexOf(annotation.key) >= 0 && annotation.animate !== false) icon.className = "brilliant-enter";
+            if (["brilliant", "great", "missed", "miss", "mate", "draw", "winner", "clock"].indexOf(annotation.key) >= 0 && annotation.animate !== false) icon.className = "brilliant-enter";
             mark.appendChild(icon);
           } else {
             const text = document.createElement("span");

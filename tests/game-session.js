@@ -1,5 +1,22 @@
 const assert = require('assert');
 const G = require('../assets/web/game-session.js');
+assert.strictEqual(G.jumpIndex(3,1,40),13,'jump advances ten plies from the current index');
+assert.strictEqual(G.jumpIndex(23,-1,40),13,'jump returns ten plies from the current index');
+assert.strictEqual(G.jumpIndex(-1,1,40),9);
+assert.strictEqual(G.jumpIndex(37,1,40),40,'forward jump clamps to last ply');
+assert.strictEqual(G.jumpIndex(4,-1,40),-1,'backward jump clamps to initial position');
+assert.strictEqual(G.jumpIndex(4,-1,40,0),0,'opening navigation can start at zero');
+assert.strictEqual(G.jumpIndex(-1,1,2),2,'short histories clamp');
+assert.strictEqual(G.jumpIndex(-1,-1,-1),-1,'empty history stays at initial position');
+for (const [remaining,min,max] of [[10001,350,1000],[10000,200,650],[1501,200,650],[1500,120,300],[0,120,300]]) {
+  assert.strictEqual(G.botThinkDelay(remaining,()=>0),min,'delay minimum at '+remaining);
+  assert.strictEqual(G.botThinkDelay(remaining,()=>.999),max,'delay upper range at '+remaining);
+  assert.strictEqual(G.botThinkDelay(remaining,()=>-2),min,'negative draw clamps');
+  assert.strictEqual(G.botThinkDelay(remaining,()=>2),max,'oversized draw clamps below one');
+  assert.ok(G.botThinkDelay(remaining,()=>.2)<G.botThinkDelay(remaining,()=>.8),'different draws vary delay');
+}
+assert.ok(G.botThinkDelay(60000)>=350 && G.botThinkDelay(60000)<=1000,'default random source stays in range');
+console.log('ok five-move navigation jumps and clock-aware randomized bot delays');
 let now = 1000;
 const c = G.createClock({baseMs:60000, incrementMs:2000, now:()=>now});
 c.start('w'); now += 3000;

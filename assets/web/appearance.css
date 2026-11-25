@@ -1,0 +1,29 @@
+html[data-theme="gruvbox"], html[data-theme="catppuccin"] { color-scheme: dark; }
+html[data-theme]:not([data-theme="classic"]) #launch { background: var(--panel); }
+html[data-theme]:not([data-theme="classic"]) .toast,
+html[data-theme]:not([data-theme="classic"]) .seg button.active,
+html[data-theme]:not([data-theme="classic"]) .mv.active,
+html[data-theme]:not([data-theme="classic"]) .player .clock,
+html[data-theme]:not([data-theme="classic"]) .result-metrics > div { background: var(--line); }
+html[data-theme]:not([data-theme="classic"]) .badge.eval { background: var(--line) !important; }
+html[data-theme]:not([data-theme="classic"]) .primary,
+html[data-theme]:not([data-theme="classic"]) .controls button.primary,
+html[data-theme]:not([data-theme="classic"]) .player .clock.ticking { background: var(--accent); color: var(--panel2); }
+html[data-theme]:not([data-theme="classic"]) .primary:active { background: var(--accent-dark); }
+html[data-theme]:not([data-theme="classic"]) .player .clock.low { background: var(--panel2); color: #ffb4ab; }
+html[data-theme]:not([data-theme="classic"]) .result-metrics strong { color: var(--accent); }
+html[data-theme]:not([data-theme="classic"]) .result-metrics span { color: var(--text); }
+html[data-theme]:not([data-theme="classic"]) .sound-volume input { accent-color: var(--accent); }
+html[data-theme]:not([data-theme="classic"]) .result-actions #resultNew { border-color: var(--muted); }
+html[data-theme]:not([data-theme="classic"]) .opening-card:active { background: var(--line); }
+html[data-theme]:not([data-theme="classic"]) .opening-card .eco,
+html[data-theme]:not([data-theme="classic"]) .board-tools .step-action,
+html[data-theme]:not([data-theme="classic"]) .opening-filters button.active { background: var(--panel2); color: var(--accent); }
+html[data-theme]:not([data-theme="classic"]) .acc.black .bar span { background: var(--accent-dark); }
+html[data-theme]:not([data-theme="classic"]) .sq.light .coord,
+html[data-theme]:not([data-theme="classic"]) .sq.dark .coord { color: var(--panel2); opacity: 1; }
+html[data-theme]:not([data-theme="classic"]) .evalbar { background: var(--line); }
+.modal .settings-actions { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.settings-actions #settingsCancel { border: 1px solid var(--line); border-radius: 7px; min-height: 44px; padding: 10px 14px; }
+.settings-piece-preview { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.settings-piece-preview img { display: block; width: 32px; height: 32px; object-fit: contain; }

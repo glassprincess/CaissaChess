@@ -1,5 +1,15 @@
 # Changes
 
+## 1.5.0
+
+- Mixed offline trainer: 60 Lichess puzzles, engine feedback, practice, sprint and survival.
+- Classic, Gruvbox and Catppuccin themes; four Lichess piece sets with previews.
+- Three hints per game, each with an arrow, best-move badge and target tint.
+- Double arrows jump five full moves across all history views.
+- Subtle move colors and a distinct animated great-move badge.
+- Random extra thinking time for bots in timed games, charged to the bot clock.
+- Separated, bordered Cancel button in settings.
+
 ## 1.4.1
 
 - Added capture.mp3 for captures and sound when stepping through opening lines.

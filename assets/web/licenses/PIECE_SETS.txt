@@ -1,0 +1,38 @@
+Caissa piece sets
+
+The added SVGs are unmodified files from Lichess lila public/piece, retrieved
+2026-11-25. Each family contains wP,wN,wB,wR,wQ,wK,bP,bN,bB,bR,bQ,bK.
+Only these 36 SVGs were downloaded; no Lichess application code is included.
+
+Upstream: https://github.com/lichess-org/lila/tree/master/public/piece
+Attribution/license authority:
+https://github.com/lichess-org/lila/blob/master/COPYING.md
+A copy is included in LICHESS_COPYING.md.
+
+Merida — Armando Hernandez Marroquin
+Source: https://github.com/lichess-org/lila/tree/master/public/piece/merida
+License: GNU General Public License version 2 or, at your option, any later version.
+License text: MERIDA_GPL-2.0.txt
+
+Chessnut — Alexis Luengas
+Source: https://github.com/lichess-org/lila/tree/master/public/piece/chessnut
+Author: https://github.com/LexLuengas
+License: Apache License 2.0
+License text: CHESSNUT_APACHE-2.0.txt
+Upstream license: https://github.com/LexLuengas/chessnut-pieces/blob/master/LICENSE.txt
+
+Celtic — Copyright (c) Maurizio Monge
+Source: https://github.com/lichess-org/lila/tree/master/public/piece/celtic
+Author: https://github.com/maurimo/chess-art
+License: MIT
+License text (including copyright/permission notice): CELTIC_MIT.txt
+Upstream license: https://github.com/maurimo/chess-art/blob/main/LICENSE
+
+Existing default Cburnett — Colin M.L. Burnett
+Source: https://github.com/lichess-org/lila/tree/master/public/piece/cburnett
+License: GNU General Public License version 2 or, at your option, any later version.
+The existing default SVGs were not replaced.
+
+Alpha and California were not included: upstream lists Alpha as personal
+noncommercial only, and California as CC BY-NC-SA 4.0. The selected alternatives
+permit redistribution without a noncommercial restriction.

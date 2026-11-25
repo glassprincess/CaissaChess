@@ -53,6 +53,7 @@ async function run() {
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
   await cdp('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/'});
   await sleep(600);
+  await js("document.getElementById('playTime').value='0:0'");
   await test('глубина выбирается до запуска PGN',async()=>{
     await js(`document.querySelector('[data-tab="analysis"]').click();document.querySelector('[data-mode="pgn"]').click()`);
     assert.ok(await js(`document.getElementById('pgnDepth').getBoundingClientRect().height > 0`));
@@ -132,7 +133,7 @@ async function run() {
     assert.ok(await js(`(function(){var host=document.createElement('div');host.style.width='320px';document.body.appendChild(host);var st=ChessLogic.startState(),b=FisherBoard.create(host,{});b.render(st);var r=host.getBoundingClientRect(),opts={clientX:r.left+r.width*4.5/8,clientY:r.top+r.height*6.5/8,bubbles:true,isPrimary:true};host.dispatchEvent(new PointerEvent('pointerdown',opts));var piece=host.querySelector('.dragging');b.render(st,{arrow:'e2e4'});var stable=piece===host.querySelector('.dragging')&&piece.isConnected;window.dispatchEvent(new PointerEvent('pointercancel'));host.remove();return stable;})()`));
   });
   await test('бейдж хода и цвет клетки используют готовые SVG',async()=>{
-    assert.ok(await js(`(function(){var host=document.createElement('div');document.body.appendChild(host);var st=ChessLogic.startState(),mv=ChessLogic.legalMoves(st).filter(function(m){return ChessLogic.uci(m)==='e2e4';})[0];var b=FisherBoard.create(host,{});b.render(ChessLogic.apply(st,mv),{lastMove:'e2e4',annotation:{move:'e2e4',key:'brilliant',file:'brilliant.svg',color:'#1bada6',label:'Блестящий ход',animate:true}});var mark=host.querySelector('.move-badge img'),sq=host.querySelector('.sq[data-sq="28"]');var ok=mark&&mark.getAttribute('src')==='analysis-icons/brilliant.svg'&&sq.style.backgroundColor==='rgb(27, 173, 166)'&&mark.classList.contains('brilliant-enter');host.remove();return !!ok;})()`));
+    assert.ok(await js(`(function(){var host=document.createElement('div');document.body.appendChild(host);var st=ChessLogic.startState(),mv=ChessLogic.legalMoves(st).filter(function(m){return ChessLogic.uci(m)==='e2e4';})[0];var b=FisherBoard.create(host,{});b.render(ChessLogic.apply(st,mv),{lastMove:'e2e4',annotation:{move:'e2e4',key:'brilliant',file:'brilliant.svg',color:'#1bada6',label:'Блестящий ход',animate:true}});var mark=host.querySelector('.move-badge img'),sq=host.querySelector('.sq[data-sq="28"]');var ok=mark&&mark.getAttribute('src')==='analysis-icons/brilliant.svg'&&sq.style.getPropertyValue('--review-tint')==='rgba(27, 173, 166, 0.26)'&&mark.classList.contains('brilliant-enter');host.remove();return !!ok;})()`));
   });
   await test('стрелки выключаются в PGN и настройка сохраняется',async()=>{
     await js(`document.querySelector('[data-tab="analysis"]').click();document.querySelector('[data-mode="pgn"]').click();document.getElementById('pgnText').value='1. e4 e5 *';document.getElementById('pgnParse').click()`);await sleep(250);await click('pgnFirst');
@@ -375,6 +376,42 @@ async function run() {
     assert.deepStrictEqual(await js(`window.__sounds`),['move','move','move','capture']);await click('openingPrev');
     assert.strictEqual(await js(`window.__sounds[4]`),'capture');const count=await js(`window.__sounds.length`);await sleep(450);assert.strictEqual(await js(`window.__sounds.length`),count);
     assert.strictEqual(await js(`document.querySelector('.brand img').getAttribute('src')`),'caissa-queen.svg');
+  });
+  await test('темы и фигуры сохраняются, отмена не применяет предпросмотр',async()=>{
+    await click('settingsBtn');
+    await js(`document.getElementById('setPieces').value='merida';document.getElementById('setPieces').dispatchEvent(new Event('change'));document.getElementById('setTheme').value='gruvbox'`);
+    assert.ok(await js(`document.querySelector('#piecePreview img').getAttribute('src').includes('merida')`));
+    const gap=await js(`document.getElementById('setSave').getBoundingClientRect().left-document.getElementById('settingsCancel').getBoundingClientRect().right`);assert.ok(gap>=20);
+    await click('settingsCancel');assert.strictEqual(await js(`document.documentElement.dataset.theme`),'classic');
+    await click('settingsBtn');await js(`document.getElementById('setTheme').value='catppuccin';document.getElementById('setPieces').value='chessnut'`);await click('setSave');
+    assert.strictEqual(await js(`document.documentElement.dataset.theme`),'catppuccin');
+    assert.ok(await js(`Array.from(document.querySelectorAll('#openingBoard .pc img')).every(function(img){return img.src.includes('chessnut');})`));
+    await screenshot('catppuccin-mobile.png');
+    await click('settingsBtn');assert.strictEqual(await js(`document.getElementById('setPieces').value`),'chessnut');
+    await js(`document.getElementById('setTheme').value='classic';document.getElementById('setPieces').value='cburnett'`);await click('setSave');
+  });
+  await test('три подсказки помечают клетку и не восстанавливаются после отката',async()=>{
+    await js(`document.querySelector('[data-tab="play"]').click()`);await newGame();
+    await js(`document.getElementById('playTime').value='0:0'`);await click('startGame');
+    for(let i=0;i<3;i++){await click('playHint');await until(`document.getElementById('playHint').textContent.includes('${2-i}/3')`);}
+    assert.ok(await js(`document.getElementById('playHint').disabled`));
+    assert.ok(await js(`document.querySelector('#playBoard .move-badge img[src="analysis-icons/best.svg"]')!==null&&document.querySelector('#playBoard .review-square')!==null`));
+    await playTap('e2','e4');await until(`document.querySelectorAll('#playMoves .mv').length>=2`);
+    assert.ok(await js(`document.querySelector('#playBoard .review-square')===null`));
+    await click('playUndo');assert.ok(await js(`document.getElementById('playHint').disabled&&document.getElementById('playHint').textContent.includes('0/3')`));
+  });
+  await test('тренажёр загружает позиции, показывает решение и помещается на узком экране',async()=>{
+    await js(`document.querySelector('[data-tab="training"]').click()`);
+    await until(`!document.querySelector('[data-trainer="start"]').disabled`);
+    await js(`document.querySelector('[data-trainer="start"]').click()`);
+    await until(`document.querySelector('[data-trainer="feedback"]').textContent.includes('Найдите')`);
+    assert.ok(await js(`document.querySelectorAll('#trainerRoot .pc').length>2`));
+    await js(`document.querySelector('[data-trainer="solution"]').click()`);
+    assert.ok(await js(`document.querySelector('[data-trainer="explanation"]').textContent.includes('Линия:')`));
+    await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:720,deviceScaleFactor:1,mobile:true});
+    assert.ok(await js(`document.documentElement.scrollWidth<=320`));
+    await screenshot('training-mobile.png');
+    await js(`document.querySelector('[data-tab="play"]').click()`);
   });
   if (process.env.SCREENSHOT_DIR) {
     fs.mkdirSync(process.env.SCREENSHOT_DIR,{recursive:true});

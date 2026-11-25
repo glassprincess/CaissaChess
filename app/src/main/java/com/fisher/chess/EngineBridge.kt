@@ -6,6 +6,8 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.content.Context
+import android.app.Activity
+import android.view.View
 import android.webkit.WebView
 import org.json.JSONObject
 
@@ -72,6 +74,25 @@ class EngineBridge(
     @android.webkit.JavascriptInterface
     fun setLanguage(language: String) {
         files.language = if (language == "en") "en" else "ru"
+    }
+
+    @android.webkit.JavascriptInterface
+    @Suppress("DEPRECATION")
+    fun setTheme(name: String) {
+        val background = when (name) {
+            "gruvbox" -> 0xFF282828.toInt()
+            "catppuccin" -> 0xFF1E1E2E.toInt()
+            else -> 0xFF302E2B.toInt()
+        }
+        main.post {
+            webView.setBackgroundColor(background)
+            (webView.parent as? View)?.setBackgroundColor(background)
+            (webView.context as? Activity)?.window?.let { window ->
+                window.statusBarColor = background
+                window.navigationBarColor = background
+                window.decorView.setBackgroundColor(background)
+            }
+        }
     }
 
     @android.webkit.JavascriptInterface
