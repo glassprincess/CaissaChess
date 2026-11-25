@@ -3,10 +3,13 @@ Source: https://database.lichess.org/#puzzles
 Official mirror: https://huggingface.co/datasets/Lichess/chess-puzzles
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
-puzzles.json contains 60 original puzzle records selected from the first 100
-rows returned by the official mirror on 2026-11-25, with rating 600–2400,
-popularity >=70, and 2–10 UCI plies (including the setup move).
+puzzles.json contains 600 original puzzle records from bounded pages of the
+official mirror, retrieved on 2026-11-25, with rating 600–2400. The initial
+60 records use popularity >=70; the added 540 use popularity >=75, at least
+100 plays, and rating deviation <=110. Every complete line is legal.
 Each record links to its Lichess puzzle and original game. The FEN is before
 the opponent's setup move. The solution begins after that setup move.
 The application validates the legality of every bundled line at load time.
 No full database download or external connection is required during play.
+When online, the app requests https://lichess.org/api/puzzle/next anonymously.
+Validated online records are cached locally, with bundled fallback on failure.

@@ -1,7 +1,7 @@
 (function (root, factory) {
-  if (typeof module === "object" && module.exports) module.exports = factory();
-  else root.GameSession = factory();
-})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./chess.js"));
+  else root.GameSession = factory(root.ChessLogic);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (Chess) {
   "use strict";
   const RATINGS = [250,500,1200,1800,2250,2800,3500,4000];
   const profiles = [
@@ -51,6 +51,13 @@
     const draw = Math.max(0,Math.min(1 - Number.EPSILON,(random || Math.random)()));
     return range[0] + Math.floor(draw * (range[1] - range[0] + 1));
   }
+  function botTiming(profile,remainingMs,incrementMs,random) {
+    if(remainingMs===null)return {movetime:profile.movetime,totalMs:profile.movetime};
+    const draw=Math.max(0,Math.min(1,(random || Math.random)()));
+    const cap=Math.max(1,Math.min(Math.floor(remainingMs*.2),Math.floor(remainingMs/70+Math.max(0,incrementMs||0)*.65)));
+    const total=Math.max(1,Math.floor(Math.min(cap*(.75+draw*.25),profile.movetime+botThinkDelay(remainingMs,function(){return draw;}))));
+    return {movetime:Math.max(1,Math.min(profile.movetime,Math.floor(total*.78))),totalMs:total};
+  }
   function premoveMoves(state,color) {
     if (color !== "w" && color !== "b") return [];
     const moves = [], ownKing = color === "w" ? "K" : "k", direction = color === "w" ? 1 : -1;
@@ -86,5 +93,53 @@
     }
     return moves;
   }
-  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves,jumpIndex:jumpIndex,botThinkDelay:botThinkDelay};
+  function projectPremoves(state, queue, color) {
+    const projected = Object.assign({}, state, {board:state.board.slice(), castle:Object.assign({}, state.castle), turn:color || state.turn, ep:-1});
+    const origins = state.board.map(function (piece, sq) { return piece === "." ? -1 : sq; });
+    const moved = Object.create(null);
+    function place(from, to, piece) {
+      const origin = origins[from];
+      if (origin < 0) return;
+      projected.board[from] = "."; origins[from] = -1;
+      projected.board[to] = piece; origins[to] = origin; moved[origin] = true;
+    }
+    (queue || []).forEach(function (move) {
+      if (!move || move.from < 0 || move.from > 63 || move.to < 0 || move.to > 63 || move.from === move.to) return;
+      const piece = projected.board[move.from];
+      if (!piece || piece === ".") return;
+      const white = piece === piece.toUpperCase(), side = white ? "w" : "b", home = white ? 0 : 56;
+      if (color && side !== color) return;
+      let sprite = piece;
+      if (piece.toLowerCase() === "p" && (move.to >> 3) === (white ? 7 : 0) && "qrbn".indexOf(move.promo || "-") >= 0)
+        sprite = white ? move.promo.toUpperCase() : move.promo;
+      place(move.from, move.to, sprite);
+      if (piece.toLowerCase() === "k") {
+        if (move.from === home + 4 && Math.abs(move.to - move.from) === 2) {
+          const rookFrom = home + (move.to > move.from ? 7 : 0), rookTo = home + (move.to > move.from ? 5 : 3);
+          if (projected.board[rookFrom] === (white ? "R" : "r")) place(rookFrom, rookTo, projected.board[rookFrom]);
+        }
+        projected.castle[white ? "K" : "k"] = false; projected.castle[white ? "Q" : "q"] = false;
+      }
+      [move.from,move.to].forEach(function (sq) {
+        const right = {0:"Q",7:"K",56:"q",63:"k"}[sq];
+        if (right) projected.castle[right] = false;
+      });
+    });
+    const placements = [];
+    origins.forEach(function (origin, to) {
+      if (origin >= 0 && moved[origin]) placements.push({from:origin,to:to,piece:projected.board[to]});
+    });
+    return {state:projected,placements:placements,hidden:state.board.map(function (piece, sq) { return piece !== "." && origins.indexOf(sq) < 0 ? sq : -1; }).filter(function (sq) { return sq >= 0; })};
+  }
+  function nextPremove(state, queue, color) {
+    if (!queue || !queue.length) return {move:null,queue:[]};
+    const head = queue[0], piece = state.board[head.from];
+    const owner = color || (piece && piece !== "." ? (piece === piece.toUpperCase() ? "w" : "b") : state.turn);
+    if (state.turn !== owner) return {move:null,queue:queue};
+    const move = Chess.legalMoves(state).filter(function (candidate) {
+      return candidate.from === head.from && candidate.to === head.to && (candidate.promo || "") === (head.promo || "");
+    })[0];
+    return {move:move || null,queue:move ? queue.slice(1) : []};
+  }
+  return {projectPremoves:projectPremoves,nextPremove:nextPremove,RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves,jumpIndex:jumpIndex,botThinkDelay:botThinkDelay,botTiming:botTiming};
 });

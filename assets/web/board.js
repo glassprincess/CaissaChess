@@ -1,10 +1,11 @@
 /* Доска: отрисовка, тап-тап и перетаскивание, подсветка, стрелка. */
 (function (root, factory) {
   const Chess = (typeof module === "object" && module.exports) ? require("./chess.js") : root.ChessLogic;
-  const api = factory(Chess, root);
+  const Game = (typeof module === "object" && module.exports) ? require("./game-session.js") : root.GameSession;
+  const api = factory(Chess, root, Game);
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.FisherBoard = api;
-})(typeof globalThis !== "undefined" ? globalThis : this, function (Chess, root) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (Chess, root, Game) {
   "use strict";
 
   const FILES = "abcdefgh";
@@ -33,7 +34,7 @@
     let annotations = [], marks = Object.create(null), positionFen = "";
     let pointerId = null;
     let orientation = opts.orientation || "w";
-    let state = null, inputState = null, inputMoves = null, premove = null;
+    let state = null, inputState = null, inputMoves = null, premove = [];
     let selected = null;
     let lastMove = null;
     let showArrow = true;
@@ -55,29 +56,24 @@
     function movesForInput() { return inputMoves || Chess.legalMoves(inputState || state); }
 
     function previewPlacements(st, queued) {
-      if (!st || !queued || queued.from < 0 || queued.from > 63 || queued.to < 0 || queued.to > 63 ||
-          queued.from === queued.to || !st.board[queued.from] || st.board[queued.from] === ".") return [];
-      const piece = st.board[queued.from];
-      let sprite = piece;
-      if (piece.toLowerCase() === "p" && queued.promo && "qrbn".indexOf(queued.promo) >= 0 &&
-          ((queued.to >> 3) === 0 || (queued.to >> 3) === 7)) sprite = piece === "P" ? queued.promo.toUpperCase() : queued.promo;
-      const placements = [{from:queued.from, to:queued.to, piece:sprite}];
-      if (piece.toLowerCase() === "k" && (queued.from === 4 || queued.from === 60) && Math.abs(queued.to - queued.from) === 2) {
-        const home = queued.from - 4, kingSide = queued.to > queued.from;
-        const from = home + (kingSide ? 7 : 0), to = home + (kingSide ? 5 : 3);
-        if (st.board[from] === (piece === "K" ? "R" : "r")) placements.push({from:from, to:to, piece:st.board[from]});
-      }
+      if (!st || !queued.length) return [];
+      const projection = Game.projectPremoves(st, queued);
+      const placements = projection.placements;
+      // Keep covered originals alive so cancelling restores them without replacing sprites.
+      projection.hidden.forEach(function (from) {
+        placements.push({from:from,to:-1,piece:st.board[from],hidden:true});
+      });
       return placements;
     }
 
-    function previewKey(queued) { return queued ? queued.from + ":" + queued.to + ":" + (queued.promo || "") : ""; }
+    function previewKey(queued) { return queued.map(function (m) { return m.from + ":" + m.to + ":" + (m.promo || ""); }).join("|"); }
 
     function previewMotions(st, queued) {
       const motions = [];
       previewPlacements(state, premove).concat(previewPlacements(st, queued)).forEach(function (placement) {
         const node = pieces[placement.from];
         if (!node || motions.some(function (motion) { return motion.node === node; })) return;
-        const rect = releaseMotion && releaseMotion.from === placement.from ? releaseMotion.rect : node.getBoundingClientRect();
+        const rect = releaseMotion && (releaseMotion.node === node || releaseMotion.from === placement.from) ? releaseMotion.rect : node.getBoundingClientRect();
         motions.push({node:node, rect:rect}); cancelMotion(node);
       });
       return motions;
@@ -184,8 +180,8 @@
           if (sq === selected) cls += " selected";
           if (targets.indexOf(sq) >= 0) cls += state.board[sq] === "." ? " move" : " capture";
           if (sq === checkSq) cls += " check";
-          if (preview.some(function (placement) { return placement.to === sq; })) cls += " premove-to";
-          if (preview.some(function (placement) { return placement.from === sq; })) cls += " premove-from";
+          if (premove.some(function (move) { return move.to === sq; })) cls += " premove-to";
+          if (premove.some(function (move) { return move.from === sq; })) cls += " premove-from";
           if (marked && sq === marked.to && tint) cls += " review-square";
           d.className = cls;
           d.style.setProperty("--review-tint", marked && sq === marked.to ? tint : "");
@@ -194,8 +190,9 @@
           d.dataset.sq = String(sq);
           const fileLabel = row === 7 ? FILES[f] : "";
           const rankLabel = col === 0 ? String(r + 1) : "";
-          d.innerHTML = (fileLabel ? '<span class="coord file">' + fileLabel + "</span>" : "") +
+          const labels = (fileLabel ? '<span class="coord file">' + fileLabel + "</span>" : "") +
             (rankLabel ? '<span class="coord rank">' + rankLabel + "</span>" : "");
+          if (d._labels !== labels) { d.innerHTML = labels; d._labels = labels; }
         }
       }
 
@@ -206,8 +203,8 @@
           continue;
         }
         const placement = preview.filter(function (candidate) { return candidate.from === sq; })[0];
-        const hidden = !placement && preview.some(function (candidate) { return candidate.to === sq; });
-        const visibleSq = placement ? placement.to : sq, pos = display(visibleSq);
+        const hidden = placement ? !!placement.hidden : preview.some(function (candidate) { return candidate.to === sq; });
+        const visibleSq = placement && !hidden ? placement.to : sq, pos = display(visibleSq);
         let d = pieces[sq];
         if (!d) {
           d = document.createElement("div");
@@ -319,7 +316,7 @@
 
     function isOwn(sq) {
       if (!state || sq < 0) return false;
-      const p = state.board[sq];
+      const p = (inputState || state).board[sq];
       if (p === ".") return false;
       return (p === p.toUpperCase()) === ((inputState || state).turn === "w");
     }
@@ -329,7 +326,6 @@
       const sq = eventSquare(e);
       if (sq < 0) return;
       e.preventDefault();
-      pieces.forEach(cancelMotion);
       deselectOnTap = sq === selected;
       function capture() {
         pointerId = e.pointerId;
@@ -341,19 +337,19 @@
           dragFrom = selected;
           dragStart = { x: e.clientX, y: e.clientY };
           dragEl = pcLayer.querySelector('.pc[data-sq="' + selected + '"]');
-          if (dragEl) dragEl.classList.add("dragging");
+          if (dragEl) { cancelMotion(dragEl); dragEl.classList.add("dragging"); }
           capture();
           return;
         }
-        if (!isOwn(sq)) { selected = null; render(); return; }
+        if (!isOwn(sq)) { cancelPremove(); selected = null; render(); return; }
       }
-      if (!isOwn(sq)) { selected = null; render(); return; }
+      if (!isOwn(sq)) { cancelPremove(); selected = null; render(); return; }
       selected = sq;
       render();
       dragFrom = sq;
       dragStart = { x: e.clientX, y: e.clientY };
       dragEl = pcLayer.querySelector('.pc[data-sq="' + sq + '"]');
-      if (dragEl) dragEl.classList.add("dragging");
+      if (dragEl) { cancelMotion(dragEl); dragEl.classList.add("dragging"); }
       capture();
     }
 
@@ -372,6 +368,7 @@
       const wasDrag = dragStart && (Math.abs(e.clientX - dragStart.x) + Math.abs(e.clientY - dragStart.y) >= 4);
       const to = eventSquare(e);
       const deselect = deselectOnTap;
+      const releasedNode = dragEl;
       const releasedRect = wasDrag && dragEl ? dragEl.getBoundingClientRect() : null;
       clearDrag();
       const legal = to >= 0 && to !== from && movesForInput().some(function (m) {
@@ -379,17 +376,24 @@
       });
       if (legal) {
         selected = null;
-        releaseMotion = releasedRect ? {from:from, to:to, rect:releasedRect} : null;
+        releaseMotion = releasedRect ? {from:from, to:to, rect:releasedRect, node:releasedNode} : null;
         if (opts.onMove) opts.onMove(from, to);
         render();
         releaseMotion = null;
         return;
       }
-      if (!wasDrag) { if (deselect) selected = null; render(); return; }
+      if (!wasDrag) { if (deselect) { selected = null; cancelPremove(); } render(); return; }
       selected = null;
       render();
     }
 
+    function cancelPremove() {
+      if (!premove.length) return;
+      clearDrag(); selected = null;
+      if (opts.onCancelPremove) opts.onCancelPremove();
+    }
+    root.addEventListener("contextmenu", function (event) { if (premove.length) { event.preventDefault(); cancelPremove(); } });
+    root.addEventListener("keydown", function (event) { if (event.key === "Escape" && premove.length) cancelPremove(); });
     el.addEventListener("pointerdown", onDown);
     root.addEventListener("pointermove", onMove);
     root.addEventListener("pointerup", onUp);
@@ -402,11 +406,11 @@
       render: function (st, o) {
         o = o || {};
         const fen = Chess.toFen(st);
-        const nextPremove = o.premove !== undefined ? o.premove : premove;
+        const nextPremove = o.premoves !== undefined ? (o.premoves || []).slice() : o.premove !== undefined ? (o.premove ? [o.premove] : []) : premove;
         const nextInputState = o.inputState !== undefined ? o.inputState : inputState;
-        const heldPiece = dragFrom === null ? null : st.board[dragFrom];
-        const preserveDrag = dragEl && dragEl === pieces[dragFrom] && heldPiece && heldPiece !== "." &&
-          state.board[dragFrom] === heldPiece &&
+        const heldPiece = dragFrom === null ? null : (nextInputState || st).board[dragFrom];
+        const preserveDrag = dragEl && dragEl.dataset.sq === String(dragFrom) && heldPiece && heldPiece !== "." &&
+          (inputState || state).board[dragFrom] === heldPiece &&
           (heldPiece === heldPiece.toUpperCase() ? "w" : "b") === (nextInputState || st).turn;
         const motions = previewKey(nextPremove) !== previewKey(premove) ? previewMotions(st, nextPremove) : [];
         const actualMotions = positionFen !== fen ? prepareMotion(st) : [];

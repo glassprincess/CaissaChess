@@ -234,7 +234,22 @@ Lichess не ответил за 12 секунд.|Lichess did not respond within
 Предпросмотр фигур|Piece preview
 Тренажёр|Training
 На 5 ходов назад|Back 5 moves
-На 5 ходов вперёд|Forward 5 moves`;
+На 5 ходов вперёд|Forward 5 moves
+Маты|Checkmates
+Премувы|Premoves
+Матовые схемы|Checkmate patterns
+Проверять обновления|Check for updates automatically
+Проверить обновления|Check for updates
+Проверяю…|Checking…
+Обновить Caissa?|Update Caissa?
+Доступна новая версия|A new version is available
+Полный список изменений|Full release notes
+Больше не спрашивать|Do not ask again
+Проверку можно включить снова в настройках.|You can enable update checks again in Settings.
+Установлена последняя версия|You are using the latest version
+Нет подключения к интернету|No internet connection
+Не удалось проверить обновления. Попробуйте позже.|Could not check for updates. Try again later.
+Да|Yes`;
   entries.split("\n").forEach(function (line) {
     const pair = line.split("|"); catalogue[pair[0]] = pair[1];
   });

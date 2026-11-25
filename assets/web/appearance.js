@@ -7,7 +7,7 @@
 
   const palettes = {
     classic: { bg: "#302e2b", panel: "#262421", panel2: "#21201d", line: "#3d3a37", text: "#e6e6e6", muted: "#a3a2a0", accent: "#81b64c", "accent-dark": "#6a9a3d", light: "#ebecd0", dark: "#779556" },
-    gruvbox: { bg: "#282828", panel: "#32302f", panel2: "#1d2021", line: "#504945", text: "#ebdbb2", muted: "#bdae93", accent: "#b8bb26", "accent-dark": "#98971a", light: "#ebdbb2", dark: "#a18462" },
+    gruvbox: { bg: "#282828", panel: "#32302f", panel2: "#1d2021", line: "#504945", text: "#ebdbb2", muted: "#bdae93", accent: "#fabd2f", "accent-dark": "#d79921", light: "#ebdbb2", dark: "#a18462" },
     catppuccin: { bg: "#1e1e2e", panel: "#242436", panel2: "#181825", line: "#45475a", text: "#cdd6f4", muted: "#a6adc8", accent: "#cba6f7", "accent-dark": "#b58add", light: "#cdd6f4", dark: "#7687ab" }
   };
   const themes = [{ id: "classic", name: "Classic" }, { id: "gruvbox", name: "Gruvbox" }, { id: "catppuccin", name: "Catppuccin" }];

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="board-review.css">
 <link rel="stylesheet" href="appearance.css">
 <link rel="stylesheet" href="trainer.css">
+<link rel="stylesheet" href="updates.css">
 </head>
 <body>
 <div id="launch" aria-hidden="true"><img src="caissa-queen.svg" alt=""><strong>Caissa</strong></div>
@@ -188,7 +189,7 @@
 
     <section id="screen-openings" class="screen hidden">
       <div id="openingListView">
-        <div class="opening-filters" id="openingFilters" aria-label="Тип дебюта"><button data-filter="all" class="active" aria-pressed="true">Все</button><button data-filter="attack" aria-pressed="false">Атаки</button><button data-filter="counter" aria-pressed="false">Контры</button><button data-filter="gambit" aria-pressed="false">Гамбиты</button></div>
+        <div class="opening-filters" id="openingFilters" aria-label="Тип дебюта"><button data-filter="all" class="active" aria-pressed="true">Все</button><button data-filter="attack" aria-pressed="false">Атаки</button><button data-filter="counter" aria-pressed="false">Контры</button><button data-filter="gambit" aria-pressed="false">Гамбиты</button><button data-filter="mates" aria-pressed="false">Маты</button></div>
         <input id="openingSearch" type="search" placeholder="Поиск дебюта" autocomplete="off">
         <div id="openingList" class="opening-list"></div>
       </div>
@@ -271,7 +272,9 @@
 <script src="sounds.js"></script>
 <script src="appearance.js"></script>
 <script src="board.js"></script>
+<script src="puzzle-provider.js"></script>
 <script src="trainer.js"></script>
+<script src="updates.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -72,6 +72,9 @@ class EngineBridge(
     }
 
     @android.webkit.JavascriptInterface
+    fun getAbi(): String = Build.SUPPORTED_ABIS.firstOrNull { it == "arm64-v8a" || it == "armeabi-v7a" } ?: ""
+
+    @android.webkit.JavascriptInterface
     fun setLanguage(language: String) {
         files.language = if (language == "en") "en" else "ru"
     }

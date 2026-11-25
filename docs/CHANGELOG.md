@@ -1,5 +1,15 @@
 # Changes
 
+## 1.5.1
+
+- GitHub update checks: version, short bilingual notes, full release link, ABI-specific APK and persistent opt-out.
+- 600 offline puzzles plus anonymous online Lichess puzzles, validated cache and offline fallback.
+- Trainer setup locks during a run; full-width start, concise labels, move history and direct retries without solution spoilers. Two failed attempts still allow credit; the third or help forfeits it. Removed UCI entry.
+- Unlimited premove queues, projected pieces and whole-queue cancellation on an illegal move.
+- Clock-aware bot search budgets and uninterrupted opponent move animations.
+- Eleven basic mating lessons in a new Checkmates filter, with Russian and English notes.
+- Theme-colored queen, settings focus spacing and equal aligned action buttons.
+
 ## 1.5.0
 
 - Mixed offline trainer: 60 Lichess puzzles, engine feedback, practice, sprint and survival.

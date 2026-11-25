@@ -1,0 +1,19 @@
+.update-dialog { min-width: 0; }
+.update-version { display: inline-block; margin: 6px 0 16px; color: var(--accent); font-size: 22px; font-weight: 700; overflow-wrap: anywhere; }
+.update-notes { margin: 0 0 14px; padding-left: 20px; line-height: 1.5; overflow-wrap: anywhere; }
+.update-notes li + li { margin-top: 6px; }
+.update-release-link { display: inline-block; padding: 8px 0; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.update-question { margin: 16px 0 12px; }
+.modal .update-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.update-actions .update-action {
+  display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none;
+  min-width: 0; min-height: 52px; padding: 10px 12px;
+  background: var(--panel2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 8px; font-weight: 600; line-height: 1.35; white-space: normal; overflow-wrap: anywhere;
+}
+.update-actions .update-action:hover { border-color: var(--accent); }
+.update-actions .update-action:active { background: var(--line); }
+.update-actions .update-action:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.update-actions .update-action.primary { background: var(--accent); border-color: var(--accent); color: var(--panel2); }
+.update-actions .update-action.primary:active { background: var(--accent-dark); }

@@ -23,7 +23,12 @@ html[data-theme]:not([data-theme="classic"]) .acc.black .bar span { background: 
 html[data-theme]:not([data-theme="classic"]) .sq.light .coord,
 html[data-theme]:not([data-theme="classic"]) .sq.dark .coord { color: var(--panel2); opacity: 1; }
 html[data-theme]:not([data-theme="classic"]) .evalbar { background: var(--line); }
-.modal .settings-actions { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.modal label.field { display: block; margin: 16px 0; }
+.modal .settings-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 16px; }
+.settings-actions button { min-width: 0; min-height: 48px; text-align: center; white-space: normal; }
 .settings-actions #settingsCancel { border: 1px solid var(--line); border-radius: 7px; min-height: 44px; padding: 10px 14px; }
 .settings-piece-preview { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
 .settings-piece-preview img { display: block; width: 32px; height: 32px; object-fit: contain; }
+
+.settings-footer { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.settings-footer #checkUpdates { width:100%; max-width:260px; min-height:44px; padding:10px 16px; border:1px solid var(--line); border-radius:7px; }

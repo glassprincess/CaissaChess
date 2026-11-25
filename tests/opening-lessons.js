@@ -1,6 +1,7 @@
 "use strict";
 const assert = require("assert");
 const Pgn = require("../assets/web/pgn.js");
+const Chess = require("../assets/web/chess.js");
 const Lessons = require("../assets/web/opening-lessons.js");
 const guides = require("../assets/web/opening-guides.json").guides;
 
@@ -48,8 +49,20 @@ assert(/на проходе/.test(ep[4]));
 const promotion = Lessons.notes(game('[FEN "7k/P7/8/8/8/8/8/7K w - - 0 1"]\n1. a8=Q+'));
 assert(/превращается: ферзь/.test(promotion[0]));
 assert.strictEqual(Lessons.notes({ moves: [] }).length, 0);
-assert.strictEqual(guides.length, 50);
-assert.strictEqual(lines, 445);
+assert.strictEqual(guides.length, 51);
+assert.strictEqual(lines, 456);
+const mates = guides.find(g => g.id === "basic-mates");
+assert(Lessons.matchesFilter(mates, "mates"));
+const matingLines = [{ line: mates.mainline, notes: mates.notes }].concat(mates.variations);
+assert.strictEqual(matingLines.length, 11);
+matingLines.forEach(function (lesson) {
+  const parsed = game(lesson.line);
+  assert.strictEqual(parsed.status, "mate", lesson.line);
+  assert(!Pgn.isCheck(Chess.fromFen(parsed.startFen), "b"), "No pre-existing check on Black");
+  assert.strictEqual(Chess.legalMoves(Chess.fromFen(parsed.finalFen)).length, 0);
+  assert(/#$/.test(parsed.moves[parsed.moves.length - 1].san));
+  assert(lesson.notes[lesson.notes.length - 1].length > 100, "Explain the mating pattern");
+});
 assert(Lessons.matchesFilter(guides.find(g => g.id === "torre"), "attack"));
 assert(Lessons.matchesFilter({variations: [{name: "Falkbeer Countergambit"}]}, "counter"));
 assert(!Lessons.matchesFilter({name: "Quiet system"}, "attack"));

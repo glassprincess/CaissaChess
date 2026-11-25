@@ -50,7 +50,9 @@ async function run() {
   async function until(expression){for(let i=0;i<100;i++){if(await js(expression))return;await sleep(40);}throw Error('Timeout: '+expression);}
   async function test(name,fn){try{await fn();console.log('ok   '+name);count++;}catch(e){console.error('FAIL '+name+'\n'+e.message);process.exitCode=1;}finally{failEngine=false;}}
   await cdp('Runtime.enable',{});
+  await cdp('Page.enable',{});
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await cdp('Page.addScriptToEvaluateOnNewDocument',{source:"Object.defineProperty(navigator,'onLine',{get:function(){return !!window.__online;}});"});
   await cdp('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/'});
   await sleep(600);
   await js("document.getElementById('playTime').value='0:0'");
@@ -246,17 +248,17 @@ async function run() {
     assert.ok(await js(`window.__sounds.indexOf('game-end')>=0`));
   });
   await test('Lichess запрашивается по кнопке и продолжение остаётся доступным из кеша',async()=>{
-    await js(`window.__explorerCalls=0;window.__realFetch=window.fetch;window.fetch=function(url,opts){if(String(url).indexOf('https://explorer.lichess.ovh/')===0){window.__explorerCalls++;return Promise.resolve(new Response(JSON.stringify({white:70,draws:20,black:10,moves:[{uci:'e2e4',white:70,draws:20,black:10}]}),{status:200,headers:{'Content-Type':'application/json'}}));}return window.__realFetch(url,opts);};document.querySelector('[data-tab="openings"]').click();document.getElementById('openingBack').click();document.getElementById('openingSearch').value='';document.getElementById('openingSearch').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.opening-card').click()`);
+    await js(`window.__online=true;window.__explorerCalls=0;window.__realFetch=window.fetch;window.fetch=function(url,opts){if(String(url).indexOf('https://explorer.lichess.ovh/')===0){window.__explorerCalls++;return Promise.resolve(new Response(JSON.stringify({white:70,draws:20,black:10,moves:[{uci:'e2e4',white:70,draws:20,black:10}]}),{status:200,headers:{'Content-Type':'application/json'}}));}return window.__realFetch(url,opts);};document.querySelector('[data-tab="openings"]').click();document.getElementById('openingBack').click();document.getElementById('openingSearch').value='';document.getElementById('openingSearch').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.opening-card').click()`);
     assert.strictEqual(await js(`window.__explorerCalls`),0);
     await click('explorerLoad');await until(`document.querySelectorAll('#explorerMoves [data-uci]').length===1`);
     await js(`document.querySelector('#explorerMoves [data-uci]').click()`);await until(`window.__explorerCalls===2`);
     assert.ok((await js(`document.getElementById('openingCurrentMove').textContent`)).includes('e4'));
     await click('openingFirst');await click('explorerLoad');await until(`document.querySelectorAll('#explorerMoves [data-uci]').length===1`);
-    assert.strictEqual(await js(`window.__explorerCalls`),2);await js(`window.fetch=window.__realFetch`);
+    assert.strictEqual(await js(`window.__explorerCalls`),2);await js(`window.fetch=window.__realFetch;window.__online=false`);
   });
   await test('Caissa: рейтинги, время и отсутствие переключателя стрелок в игре',async()=>{
     assert.strictEqual(await js(`document.title`),'Caissa');
-    assert.strictEqual(await js(`getComputedStyle(document.querySelector('.brand'),'::before').content`),'none');
+    assert.ok(await js(`getComputedStyle(document.querySelector('.brand'),'::before').maskImage.includes('caissa-queen.svg')`));
     assert.deepStrictEqual(await js(`Array.from(document.querySelectorAll('#levelSeg button')).map(function(b){return Number(b.dataset.level);})`),[250,500,1200,1800,2250,2800,3500,4000]);
     assert.strictEqual(await js(`document.getElementById('playArrows')`),null);
     assert.ok(await js(`document.querySelector('#playTime option[value="3:2"]')!==null`));
@@ -323,8 +325,8 @@ async function run() {
   });
   await test('главное меню: конь у названия, кнопка начала отделена от времени',async()=>{
     await js(`document.querySelector('[data-tab="play"]').click()`);await newGame();
-    const spacing=await js(`(function(){var image=document.querySelector('.brand img').getBoundingClientRect(),brand=document.querySelector('.brand').getBoundingClientRect(),time=document.getElementById('playTime').getBoundingClientRect(),start=document.getElementById('startGame').getBoundingClientRect();return {gap:parseFloat(getComputedStyle(document.querySelector('.brand')).gap),imageCenter:image.top+image.height/2,brandCenter:brand.top+brand.height/2,space:start.top-time.bottom};})()`);
-    assert.ok(spacing.gap<=4&&Math.abs(spacing.imageCenter-spacing.brandCenter)<3&&spacing.space>=16,JSON.stringify(spacing));await screenshot('setup-mobile.png');
+    const spacing=await js(`(function(){var image=getComputedStyle(document.querySelector('.brand'),'::before'),brand=document.querySelector('.brand').getBoundingClientRect(),time=document.getElementById('playTime').getBoundingClientRect(),start=document.getElementById('startGame').getBoundingClientRect();return {gap:parseFloat(getComputedStyle(document.querySelector('.brand')).gap),imageWidth:parseFloat(image.width),imageHeight:parseFloat(image.height),align:getComputedStyle(document.querySelector('.brand')).alignItems,space:start.top-time.bottom};})()`);
+    assert.ok(spacing.gap<=4&&spacing.imageWidth===28&&spacing.imageHeight===32&&spacing.align==='center'&&spacing.space>=16,JSON.stringify(spacing));await screenshot('setup-mobile.png');
   });
   await test('английский охватывает меню, настройки, дебюты, пояснения и ошибки',async()=>{
     await click('settingsBtn');await js(`document.getElementById('setLanguage').value='en'`);await click('setSave');
@@ -381,7 +383,7 @@ async function run() {
     await click('settingsBtn');
     await js(`document.getElementById('setPieces').value='merida';document.getElementById('setPieces').dispatchEvent(new Event('change'));document.getElementById('setTheme').value='gruvbox'`);
     assert.ok(await js(`document.querySelector('#piecePreview img').getAttribute('src').includes('merida')`));
-    const gap=await js(`document.getElementById('setSave').getBoundingClientRect().left-document.getElementById('settingsCancel').getBoundingClientRect().right`);assert.ok(gap>=20);
+    const gap=await js(`document.getElementById('setSave').getBoundingClientRect().left-document.getElementById('settingsCancel').getBoundingClientRect().right`);assert.ok(gap>=16);
     await click('settingsCancel');assert.strictEqual(await js(`document.documentElement.dataset.theme`),'classic');
     await click('settingsBtn');await js(`document.getElementById('setTheme').value='catppuccin';document.getElementById('setPieces').value='chessnut'`);await click('setSave');
     assert.strictEqual(await js(`document.documentElement.dataset.theme`),'catppuccin');

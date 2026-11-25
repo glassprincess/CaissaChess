@@ -22,12 +22,17 @@
 .trainer-actions .btn { flex: 1 1 auto; min-height: 44px; }
 .trainer-result { border-left: 3px solid var(--accent); background: var(--panel); padding: 16px; margin: 12px 0; }
 .trainer-source { font-size: 12px; line-height: 1.5; }
-.trainer-access { margin: 16px 0; }
-.trainer-access summary { cursor: pointer; padding: 8px 0; }
-.trainer-access form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
-.trainer-access label > span { display: block; margin-bottom: 6px; }
-.trainer-access input { width: 130px; min-height: 44px; padding: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
 .trainer-promotion { display: flex; justify-content: center; gap: 8px; padding: 10px; }
 .trainer-promotion[hidden], .trainer-actions [hidden], .trainer-result[hidden] { display: none; }
 .trainer-promotion .btn { min-width: 48px; min-height: 48px; }
 @media (max-width: 380px) { .trainer-settings label { flex-basis: 120px; } .trainer-settings > button { width: 100%; } }
+
+#trainerRoot [hidden] { display: none !important; }
+.trainer-settings > button { flex: 1 0 100%; width: 100%; margin-top: 4px; }
+.trainer-settings label { flex: 1 1 120px; }
+.trainer-settings select { width: 100%; min-width: 0; }
+.trainer-summary { margin: 0 0 10px; font-size: 13px; }
+.trainer-history { display: grid; grid-template-columns: 44px 44px 1fr 44px 44px; align-items: center; gap: 4px; margin-top: 8px; }
+#trainerRoot .trainer-history .btn { min-height: 44px; padding: 6px; font-size: 24px; }
+.trainer-history > span { text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+#trainerRoot .trainer-history .trainer-current { grid-column: 1 / -1; font-size: 14px; color: var(--accent); }

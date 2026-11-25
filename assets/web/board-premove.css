@@ -2,3 +2,5 @@
 .board .sq.premove-to { background-color: #d08484; background-image: none; }
 .board .sq.premove-from { background-color: #bb8580; background-image: none; }
 .board .pc.premove-piece { z-index: 8; }
+
+.board .sq.premove-from.premove-to { background-color: #d08484; }

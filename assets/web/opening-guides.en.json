@@ -4016,6 +4016,166 @@
         }
       ],
       "tags": []
+    },
+    {
+      "id": "basic-mates",
+      "name": "Basic checkmates",
+      "mainlineTitle": "Scholar’s mate",
+      "eco": "",
+      "match": [],
+      "tags": [
+        "mates"
+      ],
+      "mainline": "1. e4 e5 2. Bc4 Nc6 3. Qh5 Nf6 4. Qxf7#",
+      "notes": [
+        "White moves the pawn from e2 to e4. The move occupies the central square e4. From e4, it controls d5. It opens a diagonal for the bishop on f1.",
+        "Black moves the pawn from e7 to e5. The move occupies the central square e5. From e5, it controls d4. It opens a diagonal for the bishop on f8.",
+        "White moves the bishop from f1 to c4. This develops a piece from its starting rank. From c4, it controls d5. It attacks enemy pieces or pawns on f7; whether a capture is possible depends on the reply and any pins.",
+        "Black moves the knight from b8 to c6. This develops a piece from its starting rank. From c6, it controls d4, e5.",
+        "White moves the queen from d1 to h5. From h5, it controls e5. It attacks enemy pieces or pawns on e5, f7, h7; whether a capture is possible depends on the reply and any pins.",
+        "Black moves the knight from g8 to f6. This develops a piece from its starting rank. From f6, it controls e4, d5. It attacks enemy pieces or pawns on e4, h5; whether a capture is possible depends on the reply and any pins.",
+        "White moves the queen from h5 to f7 and captures the pawn. From f7, it controls d5. It attacks enemy pieces or pawns on f6, d7, g7, f8; whether a capture is possible depends on the reply and any pins. Checkmate: the king has no legal way to escape check. The queen captures f7 with support from the bishop on c4. The king cannot capture the protected queen or block an adjacent check. Defend f7 while developing; after Qh5, ...g6 is one possible defense."
+      ],
+      "idea": "Learn eleven named mating patterns: three opening traps from the starting position and eight simplified setup positions. Each line ends in checkmate. The traps illustrate defensive mistakes, not forced wins against correct play.",
+      "white": [
+        "Before checking, count every escape square and possible capture.",
+        "Coordinate the attacking pieces: a protected checking piece is often essential."
+      ],
+      "black": [
+        "Watch the weak f7 square and avoid exposing the e8–h5 diagonal.",
+        "Give the king an escape square when the back rank becomes vulnerable."
+      ],
+      "mistakes": [
+        "A threat is not mate: check captures, blocks and king moves.",
+        "Setup positions teach a pattern; they are not continuations of the opening traps."
+      ],
+      "variations": [
+        {
+          "id": "fool",
+          "name": "Fool's mate",
+          "line": "1. f3 e5 2. g4 Qh4#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the pawn from f2 to f3. From f3, it controls e4.",
+            "Black moves the pawn from e7 to e5. The move occupies the central square e5. From e5, it controls d4. It opens a diagonal for the bishop on f8.",
+            "White moves the pawn from g2 to g4. From its new square, it controls f5, h5.",
+            "Black moves the queen from d8 to h4. From its new square, it controls e1, f2, h2, g3 and other squares. It attacks enemy pieces or pawns on h2, g4; whether a capture is possible depends on the reply and any pins. Checkmate: the king has no legal way to escape check. The moves f3 and g4 expose the h4–e1 diagonal. The queen mates while White's own pieces block the king's escape squares. Avoid weakening this diagonal without calculating the consequences."
+          ]
+        },
+        {
+          "id": "legal",
+          "name": "Legal's mate",
+          "line": "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 g6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the pawn from e2 to e4. The move occupies the central square e4. From e4, it controls d5. It opens a diagonal for the bishop on f1.",
+            "Black moves the pawn from e7 to e5. The move occupies the central square e5. From e5, it controls d4. It opens a diagonal for the bishop on f8.",
+            "White moves the knight from g1 to f3. This develops a piece from its starting rank. From f3, it controls d4, e5. It attacks enemy pieces or pawns on e5; whether a capture is possible depends on the reply and any pins.",
+            "Black moves the pawn from d7 to d6. From d6, it controls e5. It opens a diagonal for the bishop on c8.",
+            "White moves the bishop from f1 to c4. This develops a piece from its starting rank. From c4, it controls d5. It attacks enemy pieces or pawns on f7; whether a capture is possible depends on the reply and any pins.",
+            "Black moves the bishop from c8 to g4. This develops a piece from its starting rank. From its new square, it controls f3, h3, f5, h5 and other squares. It attacks enemy pieces or pawns on f3; whether a capture is possible depends on the reply and any pins.",
+            "White moves the knight from b1 to c3. This develops a piece from its starting rank. From c3, it controls e4, d5.",
+            "Black moves the pawn from g7 to g6. From its new square, it controls f5, h5.",
+            "White moves the knight from f3 to e5 and captures the pawn. The move occupies the central square e5. From its new square, it controls d3, f3, c4, g4 and other squares. It attacks enemy pieces or pawns on g4, g6, f7; whether a capture is possible depends on the reply and any pins.",
+            "Black moves the bishop from g4 to d1 and captures the queen. From its new square, it controls c2, e2, f3, g4 and other squares. It attacks enemy pieces or pawns on c2; whether a capture is possible depends on the reply and any pins.",
+            "White moves the bishop from c4 to f7 and captures the pawn. From f7, it controls d5. It attacks enemy pieces or pawns on g6, g8; whether a capture is possible depends on the reply and any pins. Check: the opponent must make the king safe.",
+            "Black moves the king from e8 to e7. From its new square, it controls d6, e6, f6, d7 and other squares. It attacks enemy pieces or pawns on f7; whether a capture is possible depends on the reply and any pins.",
+            "White moves the knight from c3 to d5. The move occupies the central square d5. From its new square, it controls c3, e3, b4, f4 and other squares. It attacks enemy pieces or pawns on c7; whether a capture is possible depends on the reply and any pins. Checkmate: the king has no legal way to escape check. The knight on d5 gives mate: Ne5 covers d7, Bf7 covers e8 and e6, and Black's own pieces block the remaining escapes. Taking the queen on d1 loses; Black should instead consider ...dxe5."
+          ]
+        },
+        {
+          "id": "back-rank",
+          "name": "Back-rank mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1\"]\n\n1. Ra8#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the rook from a1 to a8. From its new square, it controls a1, a2, a3, a4 and other squares. Checkmate: the king has no legal way to escape check. The rook invades the eighth rank. Pawns on f7, g7 and h7 prevent the king from moving down, while the rook controls the entire rank. Check whether your king has a safe escape square before leaving the back rank undefended."
+          ]
+        },
+        {
+          "id": "smothered",
+          "name": "Smothered mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"6rk/6pp/7N/8/8/8/8/K7 w - - 0 1\"]\n\n1. Nf7#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the knight from h6 to f7. From f7, it controls e5. Checkmate: the king has no legal way to escape check. The knight on f7 attacks h8. Black's rook on g8 and pawns on g7 and h7 trap their own king; a knight check cannot be blocked. An escape square had to be created before this move."
+          ]
+        },
+        {
+          "id": "arabian",
+          "name": "Arabian mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"7k/R7/5N2/8/8/8/8/K7 w - - 0 1\"]\n\n1. Rh7#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the rook from a7 to h7. From its new square, it controls h1, h2, h3, h4 and other squares. Checkmate: the king has no legal way to escape check. The rook on h7 checks along the h-file, while the knight on f6 protects the rook and controls g8. The rook covers g7, so the rook and knight together trap the king in the corner."
+          ]
+        },
+        {
+          "id": "anastasia",
+          "name": "Anastasia's mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"8/4N1pk/8/R7/8/8/8/K7 w - - 0 1\"]\n\n1. Rh5#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the rook from a5 to h5. From h5, it controls d5, e5. Checkmate: the king has no legal way to escape check. The rook on h5 controls the h-file. The knight on e7 covers g8 and g6, and Black's own pawn on g7 blocks the last escape. In this pattern, the knight keeps the king on the edge of the board."
+          ]
+        },
+        {
+          "id": "boden",
+          "name": "Boden's mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"2kr4/3p4/8/8/2B2B2/8/8/6K1 w - - 0 1\"]\n\n1. Ba6#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the bishop from c4 to a6. From its new square, it controls f1, e2, d3, c4 and other squares. Checkmate: the king has no legal way to escape check. The bishop on a6 checks along a6–c8, while the bishop on f4 covers b8 and c7. The rook on d8 and pawn on d7 obstruct their own king: the two bishops seal the escapes on crossing diagonals."
+          ]
+        },
+        {
+          "id": "epaulette",
+          "name": "Epaulette mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"3rkr2/8/8/8/8/1Q6/8/K7 w - - 0 1\"]\n\n1. Qe6#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the queen from b3 to e6. From e6, it controls e4, d5, e5. Checkmate: the king has no legal way to escape check. The queen on e6 controls e8 and the nearby squares on the seventh rank. Black's own rooks on d8 and f8 act like epaulettes, blocking sideways escapes. The king has no safe square."
+          ]
+        },
+        {
+          "id": "dovetail",
+          "name": "Dovetail mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"8/8/4k3/3r1r2/1B5Q/8/8/K7 w - - 0 1\"]\n\n1. Qe7#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the queen from h4 to e7. From its new square, it controls b4, h4, c5, g5 and other squares. Checkmate: the king has no legal way to escape check. The queen on e7 gives an adjacent check and is protected by the bishop on b4. Black's own rooks on d5 and f5 occupy the two diagonal escape squares behind the king that the queen does not control. These two obstructions form the dovetail pattern."
+          ]
+        },
+        {
+          "id": "ladder",
+          "name": "Ladder mate (setup position)",
+          "line": "[SetUp \"1\"]\n[FEN \"6k1/R7/8/8/8/8/8/1R5K w - - 0 1\"]\n\n1. Rb8#",
+          "tags": [
+            "mates"
+          ],
+          "notes": [
+            "White moves the rook from b1 to b8. From its new square, it controls b1, b2, b3, b4 and other squares. Checkmate: the king has no legal way to escape check. The rook on b8 checks along the eighth rank, while the rook on a7 cuts off the seventh. Rooks take away successive ranks like steps of a ladder; keep each rook out of the enemy king's reach."
+          ]
+        }
+      ]
     }
   ],
   "source": {

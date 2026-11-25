@@ -73,6 +73,9 @@ node tests/engine-strength.js
 node tests/game-session.js
 node tests/appearance.js
 node tests/trainer.js
+node tests/puzzle-provider.js
+node tests/bot-timing.js
+node tests/updates.js
 # Optional: REAL_STOCKFISH=1 STOCKFISH=/path/to/stockfish node tests/trainer-engine.js
 python tests/fetch-engines.py
 ```
@@ -83,6 +86,8 @@ Browser tests require Edge or Chrome; override its path with `BROWSER`:
 node tests/ui-smoke.js
 node tests/board-caissa.js
 node tests/ux150.js
+node tests/ux151.js
+node tests/appearance151-ui.js
 node tests/i18n.js --browser
 ```
 

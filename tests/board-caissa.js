@@ -11,7 +11,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 let browser, socket, server;
 async function run() {
   server = http.createServer((req, res) => {
-    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><link rel="stylesheet" href="board-premove.css"><link rel="stylesheet" href="board-review.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="board.js"></script><script>var moves=[];var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);}});</script></html>');
+    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><link rel="stylesheet" href="board-premove.css"><link rel="stylesheet" href="board-review.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="game-session.js"></script><script src="board.js"></script><script>var moves=[],cancels=0;var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);},onCancelPremove:function(){cancels++;board.render(real,{premoves:[]});}});</script></html>');
     const file = path.join(root, req.url);
     fs.readFile(file, (err, data) => {
       res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.html') ? 'text/html' : file.endsWith('.json') ? 'application/json' : 'image/svg+xml');
@@ -92,6 +92,19 @@ async function run() {
   assert.strictEqual(await js('promoted.dataset.sq==="57" && promoted.firstChild.getAttribute("src")==="pieces/wN.svg" && document.querySelectorAll(".pc.premove-hidden").length===1 && promotion.board[48]==="P" && promotion.board[57]==="r"'), true, 'Promotion capture previews requested sprite without mutating or removing captured piece');
   await js('board.render(promotion,{premove:null})');
   assert.strictEqual(await js('promoted.firstChild.getAttribute("src")==="pieces/wP.svg" && document.querySelectorAll(".pc.premove-hidden").length===0'), true, 'Promotion cancellation restores pawn sprite and captured rook');
+  await js('var future=GameSession.projectPremoves(real,[{from:12,to:28},{from:28,to:36}],"w");board.render(real,{premoves:[{from:12,to:28},{from:28,to:36}],inputState:future.state,inputMoves:GameSession.premoveMoves(future.state,"w")});moves=[]');
+  assert.strictEqual(await js('document.querySelector(".pc.premove-piece").dataset.sq'), '36' , 'Queued pawn previews final square after successive moves');
+  await js('(function(){var b=document.getElementById("board"),r=b.getBoundingClientRect();[36,44].forEach(function(sq){var o={clientX:r.left+r.width*((sq&7)+.5)/8,clientY:r.top+r.height*(7-(sq>>3)+.5)/8,bubbles:true,isPrimary:true,pointerId:29};b.dispatchEvent(new PointerEvent("pointerdown",o));window.dispatchEvent(new PointerEvent("pointerup",o));});})()');
+  assert.deepStrictEqual(await js('moves'), [[36,44]], 'Future pieces can be selected at projected locations');
+  await js('var q=[{from:12,to:28},{from:28,to:36}];board.render(real,{premoves:q});window.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape"}));');
+  assert.deepStrictEqual(await js('[cancels,document.querySelectorAll(".pc.premove-piece").length]'), [1,0], 'Escape clears the whole queue');
+  await js('board.render(real,{premoves:q});window.dispatchEvent(new MouseEvent("contextmenu",{bubbles:true,cancelable:true}));');
+  assert.deepStrictEqual(await js('[cancels,document.querySelectorAll(".pc.premove-piece").length]'), [2,0], 'Right click anywhere clears the whole queue');
+  await js('board.render(real,{premoves:q,inputState:future.state,inputMoves:GameSession.premoveMoves(future.state,"w")});var r=document.getElementById("board").getBoundingClientRect();document.getElementById("board").dispatchEvent(new PointerEvent("pointerdown",{clientX:r.left+r.width*.5/8,clientY:r.top+r.height*4.5/8,bubbles:true,isPrimary:true,pointerId:31}));');
+  assert.deepStrictEqual(await js('[cancels,document.querySelectorAll(".pc.premove-piece").length]'), [3,0], 'Empty board tap clears the whole queue');
+  await js('board.render(real,{premoves:[],inputState:null,inputMoves:null});board.render(botNext,{lastMove:"g8f6"});var botSprite=document.querySelector(\'.pc[data-sq="45"]\'),botAnimation=botSprite._fisherMotion;var r=document.getElementById("board").getBoundingClientRect();document.getElementById("board").dispatchEvent(new PointerEvent("pointerdown",{clientX:r.left+r.width*4.5/8,clientY:r.top+r.height*6.5/8,bubbles:true,isPrimary:true,pointerId:30}));');
+  assert.strictEqual(await js('!!botAnimation && botSprite._fisherMotion===botAnimation'), true, 'Selecting own premove does not cancel opponent sliding animation');
+  await js('window.dispatchEvent(new PointerEvent("pointercancel",{pointerId:30}));board.render(real,{premove:null,premoves:[],inputState:null,inputMoves:null})');
   await js('var ownTarget=ChessLogic.fromFen("7k/8/8/8/8/8/PP6/7K b - - 0 1");board.render(ownTarget,{premove:{from:8,to:9}})');
   assert.strictEqual(await js('document.querySelectorAll(".pc.premove-hidden").length'), 1, 'Potential recapture onto own occupied square hides its current occupant');
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });

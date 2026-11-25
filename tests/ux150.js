@@ -50,7 +50,9 @@ async function run() {
   async function until(expression){for(let i=0;i<100;i++){if(await js(expression))return;await sleep(40);}throw Error('Timeout: '+expression);}
   async function test(name,fn){try{await fn();console.log('ok   '+name);count++;}catch(e){console.error('FAIL '+name+'\n'+e.message);process.exitCode=1;}finally{failEngine=false;}}
   await cdp('Runtime.enable',{});
+  await cdp('Page.enable',{});
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await cdp('Page.addScriptToEvaluateOnNewDocument',{source:"Object.defineProperty(navigator,'onLine',{get:function(){return false;}});"});
   await cdp('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/'});
   await sleep(600);
   await js("document.getElementById('playTime').value='0:0'");
@@ -59,7 +61,7 @@ async function run() {
     replyDelay=900;const start=Date.now();await click('startGame');await sleep(120);
     assert.strictEqual(await js(`document.querySelectorAll('#playMoves .mv').length`),0);
     await until(`document.querySelectorAll('#playMoves .mv').length===1`);assert.ok(Date.now()-start>=350);
-    assert.ok(await js(`document.querySelector('#playTop .clock').textContent!=='1:00'`));
+    assert.ok(await js(`!document.querySelector('#playTop .clock').classList.contains('ticking')`));
     replyDelay=30;
   });
   await test('double arrows jump ten plies rather than endpoints',async()=>{

@@ -12,6 +12,8 @@
   const Game = window.GameSession;
   const UI = window.CaissaI18n;
   const Sounds = window.CaissaSounds;
+  const VERSION="1.5.1";
+  let updates=null,pendingUpdate=null;
   const Appearance = window.CaissaAppearance;
   let trainer = null;
   function applyAppearance() {
@@ -30,7 +32,7 @@
   const play = {
     active: false, color: "w", level: 1200, state: null, moves: [], lastMove: null,
     thinking: false, hint: null, hintPending:false, hintsUsed:0, evalScore: null, evalTurn: "w", orientation: "w",
-    gen: 0, error: false, evals: [], reviewing: false, nav: null, clock:null, outcome:null, report:null, reportError:false, reportPromise:null, reportProgress:null, reportStarted:0, reportElapsed:0, resultReady:false, lowTime:false, premove:null
+    gen: 0, error: false, evals: [], reviewing: false, nav: null, clock:null, outcome:null, report:null, reportError:false, reportPromise:null, reportProgress:null, reportStarted:0, reportElapsed:0, resultReady:false, lowTime:false, premoves:[],incrementMs:0
   };
 
   const live = {
@@ -315,6 +317,7 @@
     $("modalRoot").classList.add("hidden");
     $("modalBox").innerHTML = "";
     if (modalFocus && document.body.contains(modalFocus)) modalFocus.focus();
+    setTimeout(tryShowUpdate,0);
   }
   function showPromotion(color, cb) {
     const p = color === "w" ? "w" : "b";
@@ -371,9 +374,10 @@
     html += '<label class="check"><input type="checkbox" id="setSound"' + (App.settings.sound ? " checked" : "") + "> Звук ходов</label>";
     html += '<label class="field"><span class="field-label">Громкость ходов</span><span class="sound-volume"><input id="setVolume" type="range" min="0" max="100" value="' + App.settings.volume + '"><output id="volumeValue">' + App.settings.volume + '%</output></span></label>';
     html += '<label class="check"><input type="checkbox" id="setArrow"' + (App.settings.showArrow ? " checked" : "") + "> Стрелки в анализе и дебютах</label>";
+    html += '<label class="check"><input type="checkbox" id="setUpdates"'+(!updates || !updates.isDisabled()?' checked':'')+'> Проверять обновления</label>';
     html += '<div class="modal-actions settings-actions"><button id="settingsCancel" class="ghost" data-close="1">Отмена</button>' +
       '<button class="primary" id="setSave">Сохранить</button></div>';
-    html += '<footer class="settings-footer"><p class="muted">Caissa 1.5.0 · GlassPrincess</p><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
+    html += '<footer class="settings-footer"><p class="muted">Caissa '+VERSION+' · GlassPrincess</p><button class="ghost" id="checkUpdates">Проверить обновления</button><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
     showModal(html);
     function previewPieces(){ $("piecePreview").innerHTML=['wK','wQ','wR','wB','wN','wP'].map(function(code){return '<img src="'+Appearance.pieceUrl(code,$("setPieces").value)+'" alt="'+code+'">';}).join(''); }
     previewPieces();$("setPieces").addEventListener("change",previewPieces);
@@ -384,7 +388,9 @@
         showModal('<h3>Лицензии и авторы</h3><pre style="white-space:pre-wrap;overflow-wrap:break-word;font:inherit">' + esc(text) + '</pre><button class="ghost" data-close="1">Закрыть</button>');
       }, function () { toast("Не удалось открыть лицензии"); });
     });
+    $("checkUpdates").addEventListener("click",function(){checkForUpdates(true);});
     $("setSave").addEventListener("click", function () {
+      if(updates){if($("setUpdates").checked)updates.enable();else updates.disable();}
       App.settings.depth = Number($("setDepth").value);
       App.settings.level = Number($("setLevel").value);
       App.settings.sound = $("setSound").checked;
@@ -404,6 +410,26 @@
     });
   }
 
+  function tryShowUpdate() {
+    if(!pendingUpdate || (updates && updates.isDisabled()) || document.hidden || App.tab!=="play" || play.active || batch.running || !$("modalRoot").classList.contains("hidden"))return;
+    const release=pendingUpdate;pendingUpdate=null;showUpdate(release);
+  }
+  function showUpdate(release) {
+    const notes=release.notesByLanguage ? release.notesByLanguage[App.settings.lang] : release.notes;
+    showModal('<div class="update-dialog"><span class="update-version">Caissa '+esc(release.version)+'</span><h3>'+UI.t("Обновить Caissa?")+'</h3><p class="muted">'+UI.t("Доступна новая версия")+'</p><ul class="update-notes">'+notes.map(function(note){return '<li>'+esc(note)+'</li>';}).join('')+'</ul><a class="update-release-link" href="'+esc(release.url)+'" target="_blank" rel="noopener">'+UI.t("Полный список изменений")+'</a><div class="update-actions"><a id="updateYes" class="primary update-action" href="'+esc(release.downloadUrl || release.url)+'" target="_blank" rel="noopener">'+UI.t("Да")+'</a><button id="updateNever" class="ghost update-action">'+UI.t("Больше не спрашивать")+'</button></div><p class="muted">'+UI.t("Проверку можно включить снова в настройках.")+'</p></div>');
+    $("updateNever").addEventListener("click",function(){updates.disable();pendingUpdate=null;closeModal();});
+  }
+  function checkForUpdates(manual) {
+    if(!updates)return;
+    const button=$("checkUpdates");if(button){button.disabled=true;button.textContent=UI.t("Проверяю…");}
+    updates.check({manual:manual}).then(function(result){
+      if(button && document.body.contains(button)){button.disabled=false;button.textContent=UI.t("Проверить обновления");}
+      if(result.status==="available"){
+        if(manual && button && document.body.contains(button))showUpdate(result.release);else{pendingUpdate=result.release;tryShowUpdate();}
+      }else if(manual)toast(result.status==="current"?"Установлена последняя версия":result.status==="offline"?"Нет подключения к интернету":"Не удалось проверить обновления. Попробуйте позже.");
+    });
+  }
+
   // ---------- tabs ----------
 
   function showTab(name) {
@@ -417,6 +443,7 @@
     if (name === "analysis") setAnalysisMode(currentAnalysisMode);
     if (name === "openings") { if (openings.view === "list") renderOpeningList(); else requestOpeningEval(); }
     window.scrollTo(0, 0);
+    tryShowUpdate();
   }
 
   let currentAnalysisMode = "live";
@@ -439,7 +466,7 @@
   function resetPlaySetup() {
     Eng.cancel("play-hint");Eng.cancel("play");Eng.cancel("finish-review");
     if(play.clock)play.clock.pause();
-    play.hintPending=false;play.premove=null;play.resultReady=false;play.reportPromise=null;
+    play.hintPending=false;play.premoves=[];play.resultReady=false;play.reportPromise=null;
     play.level=App.settings.level;play.active=false;play.outcome=null;play.report=null;
     play.nav=null;endSoundState.play="";play.moves=[];play.gen++;
     if(batch.fromPlayGen!==null){batch.fromPlayGen=null;batch.running=false;batch.rows=[];batch.evals=[];renderPgnScreen();}
@@ -449,6 +476,7 @@
     play.color="w";
     const levelBtns=$("levelSeg").querySelectorAll("button");
     for(let i=0;i<levelBtns.length;i++)levelBtns[i].classList.toggle("active",Number(levelBtns[i].getAttribute("data-level"))===play.level);
+    setTimeout(tryShowUpdate,0);
   }
 
   function startPlay() {
@@ -459,10 +487,11 @@
     play.color = color;
     play.orientation = color === "b" ? "b" : "w";
     Eng.cancel("finish-review");
-    play.outcome=null;play.report=null;play.reportError=false;play.reportPromise=null;play.reportProgress=null;play.resultReady=false;play.lowTime=false;play.premove=null;
+    play.outcome=null;play.report=null;play.reportError=false;play.reportPromise=null;play.reportProgress=null;play.resultReady=false;play.lowTime=false;play.premoves=[];
     moveAudio.play=Promise.resolve();Sounds.play("game-start");
     const time=$("playTime").value.split(":");
-    play.clock=Game.createClock({baseMs:Number(time[0])*60000,incrementMs:Number(time[1])*1000});
+    play.incrementMs=Number(time[1])*1000;
+    play.clock=Game.createClock({baseMs:Number(time[0])*60000,incrementMs:play.incrementMs});
     play.clock.start("w");
     play.state = Chess.startState();
     play.moves = []; play.nav = null; endSoundState.play = "";
@@ -512,12 +541,12 @@
     setHidden("playRetry", !play.error || viewing); setHidden("playReturn", !viewing);
     const humanTurn = !viewing && !play.outcome && play.state.turn === play.color && !play.thinking && status === "play";
     const canPremove=!viewing && !play.outcome && play.thinking && status==="play";
-    const inputState=canPremove?Object.assign({},st,{turn:play.color,ep:-1}):null;
-    if(canPremove&&play.premove)$("playStatus").textContent="Премув: "+Chess.sqName(play.premove.from)+"–"+Chess.sqName(play.premove.to);
-    playBoard.render(st, {lastMove:row ? row.uci : null, interactive:humanTurn || (canPremove && !play.premove),inputState:inputState,
-      inputMoves:canPremove?Game.premoveMoves(st,play.color):null,premove:!viewing && !play.outcome?play.premove:null,
-      arrow:!viewing && !play.premove?play.hint:null, showArrow:true,
-      annotation:!viewing && play.outcome && play.outcome.flag ? timeoutAnnotations() : status === "play" ? (!viewing && play.hint && !play.premove ? {move:play.hint,key:"best",file:"best.svg",color:MR.ICONS.best.color,label:UI.t("Лучший ход"),animate:true,eventId:"hint:"+play.hintsUsed} : null) : boardAnnotation(null, st, status)});
+    const inputState=canPremove?Game.projectPremoves(st,play.premoves,play.color).state:null;
+    if(canPremove&&play.premoves.length)$("playStatus").textContent=UI.t("Премувы")+": "+play.premoves.length;
+    playBoard.render(st, {lastMove:row ? row.uci : null, interactive:humanTurn || canPremove,inputState:inputState,
+      inputMoves:canPremove?Game.premoveMoves(inputState,play.color):null,premoves:!viewing && !play.outcome?play.premoves:[],
+      arrow:!viewing && !play.premoves.length?play.hint:null, showArrow:true,
+      annotation:!viewing && play.outcome && play.outcome.flag ? timeoutAnnotations() : status === "play" ? (!viewing && play.hint && !play.premoves.length ? {move:play.hint,key:"best",file:"best.svg",color:MR.ICONS.best.color,label:UI.t("Лучший ход"),animate:true,eventId:"hint:"+play.hintsUsed} : null) : boardAnnotation(null, st, status)});
     const ev = play.evals[index + 1], score = ev && ev.lines[0] ? ev.lines[0].eval : viewing ? null : play.evalScore;
     renderEvalBar("playEval", score, ev && ev.lines[0] ? st.turn : play.evalTurn, st, status);
     $("playPosition").textContent = (index + 1) + " / " + play.moves.length;
@@ -528,7 +557,7 @@
     $("playNew").textContent=play.outcome ? "Новая партия" : "Сдаться";
     renderClocks();
     setHidden("playReport",!play.outcome || !play.resultReady);
-    setHidden("playCancelPremove",!play.premove);
+    setHidden("playCancelPremove",!play.premoves.length);
     $("playHint").textContent=UI.t("Подсказка")+" · "+(3-play.hintsUsed)+"/3";
     $("playHint").disabled = !humanTurn || play.hintPending || play.hintsUsed>=3; $("playReview").disabled = !play.moves.length || !play.outcome;
   }
@@ -554,7 +583,7 @@
   function onPlayBoardMove(from, to) {
     if (!play.active || play.outcome || viewingPlay()) return;
     if(play.thinking && play.state.turn!==play.color){
-      const candidates=Game.premoveMoves(play.state,play.color).filter(function(move){return move.from===from&&move.to===to;});
+      const candidates=Game.premoveMoves(Game.projectPremoves(play.state,play.premoves,play.color).state,play.color).filter(function(move){return move.from===from&&move.to===to;});
       if(!candidates.length)return;
       const gen=play.gen;
       if(candidates.some(function(move){return !!move.promo;}))showPromotion(play.color,function(promo){
@@ -595,12 +624,14 @@
     renderPlay();
     if(play.clock)play.clock.resume();
     const profile=Game.profile(play.level), legal=Chess.legalMoves(play.state);
+    const timing=Game.botTiming(profile,play.clock.snapshot().timed?play.clock.remaining(turn):null,play.incrementMs);
+    const started=Date.now();
     const randomMove=Math.random()<profile.randomChance && legal.length ? Chess.uci(legal[Math.floor(Math.random()*legal.length)]) : null;
-    const request=randomMove ? new Promise(function(resolve){setTimeout(function(){resolve({bestmove:randomMove,lines:[]});},200);}) :
-      search({fen:Chess.toFen(play.state),multipv:1,movetime:profile.movetime,skill:profile.skill,elo:profile.engineElo},"play");
+    const request=randomMove ? Promise.resolve({bestmove:randomMove,lines:[]}) :
+      search({fen:Chess.toFen(play.state),multipv:1,movetime:timing.movetime,skill:profile.skill,elo:profile.engineElo},"play");
     request.then(function(res){
       if(gen!==play.gen || !res || !res.bestmove || !play.clock || !play.clock.snapshot().timed)return res;
-      return delay(Game.botThinkDelay(play.clock.remaining(turn))).then(function(){return res;});
+      return delay(Math.max(0,timing.totalMs-(Date.now()-started))).then(function(){return res;});
     }).then(function (res) {
       if (gen !== play.gen || !play.active || play.outcome) return;
       play.thinking = false;
@@ -621,7 +652,7 @@
 
   function undoPlay() {
     Eng.cancel("play-hint");play.hintPending=false;
-    play.nav = null; endSoundState.play = "";play.premove=null;
+    play.nav = null; endSoundState.play = "";play.premoves=[];
     if (!play.moves.length || play.outcome) return;
     play.gen++;
     Eng.cancel("play"); Eng.cancel("play-review"); Eng.cancel("finish-review");
@@ -669,7 +700,7 @@
   function outcomeTitle() {return !play.outcome.winner?"Ничья":play.outcome.winner===play.color?"Вы победили":"Вы проиграли";}
   function finishPlay(winner,reason,flag) {
     if(play.outcome)return;
-    play.outcome={winner:winner,reason:reason,flag:flag||null};play.thinking=false;play.hint=null;play.premove=null;play.clock.pause();
+    play.outcome={winner:winner,reason:reason,flag:flag||null};play.thinking=false;play.hint=null;play.premoves=[];play.clock.pause();
     Eng.cancel("play-hint");play.hintPending=false;
     Eng.cancel("play");Eng.cancel("live");live.gen++;live.analyzing=false;
     play.gen++;const gen=play.gen;
@@ -712,15 +743,17 @@
     if(play.outcome.winner){const win=Chess.sqName(play.state.board.indexOf(play.outcome.winner==="w"?"K":"k"));marks.push({move:win+win,key:"winner",file:"winner.svg",color:"#81b64c",label:"Победа",animate:true});}
     return marks;
   }
+  function cancelPremoves(){play.premoves=[];renderPlay();}
   function queuePremove(from,to,promo) {
     if(!play.thinking || play.outcome)return;
-    if(!Game.premoveMoves(play.state,play.color).some(function(move){return move.from===from&&move.to===to&&(!promo||move.promo===promo);}))return;
-    play.premove={from:from,to:to,promo:promo};Sounds.play("premove");renderPlay();
+    const projected=Game.projectPremoves(play.state,play.premoves,play.color).state;
+    if(!Game.premoveMoves(projected,play.color).some(function(move){return move.from===from&&move.to===to&&(!promo||move.promo===promo);}))return;
+    play.premoves.push({from:from,to:to,promo:promo});Sounds.play("premove");renderPlay();
   }
   function executePremove() {
-    const queued=play.premove;play.premove=null;
-    if(!queued || play.outcome || play.state.turn!==play.color)return;
-    if(findLegal(play.state,queued.from,queued.to,queued.promo))commitPlayMove(queued.from,queued.to,queued.promo);
+    if(!play.premoves.length || play.outcome || play.state.turn!==play.color)return;
+    const next=Game.nextPremove(play.state,play.premoves,play.color);play.premoves=next.queue;
+    if(next.move)commitPlayMove(next.move.from,next.move.to,next.move.promo);
     else renderPlay();
   }
 
@@ -1281,18 +1314,19 @@
     }
   }
 
+  function pgnPreview(line){return line.replace(/\[[^\]]*\]/g,"").replace(/\s+/g," ").trim();}
   function openOpening(g) {
     openings.view = "detail";
     openings.guide = g; openings.custom = null;
     openings.line = null;
     openings.variant = -2;
     setHidden("openingListView", true); setHidden("openingDetailView", false);
-    $("openingTitle").textContent = g.name; $("openingEco").textContent = "ECO " + g.eco;
+    $("openingTitle").textContent = g.name; $("openingEco").textContent = g.tags && g.tags.indexOf("mates")>=0 ? UI.t("Матовые схемы") : "ECO " + g.eco;
     $("openingIdea").textContent = g.idea;
     [ ["openingWhite", g.white], ["openingBlack", g.black], ["openingMistakes", g.mistakes] ].forEach(function (pair) {
       $(pair[0]).innerHTML = pair[1].map(function (text) { return "<li>" + esc(text) + "</li>"; }).join("");
     });
-    let options = '<option value="-1">Основная линия</option>', variants = "";
+    let options = '<option value="-1">'+esc(g.mainlineTitle || UI.t("Основная линия"))+'</option>', variants = "";
     for (let i = 0; i < g.variations.length; i++) {
       const v = g.variations[i];
       if (!window.OpeningLessons.matchesFilter(v, openings.filter)) continue;
@@ -1555,7 +1589,7 @@
     $("playNew").addEventListener("click", surrenderPlay);
     $("playReview").addEventListener("click", reviewPlay);
     $("playReport").addEventListener("click",showPlayResult);
-    $("playCancelPremove").addEventListener("click",function(){play.premove=null;renderPlay();});
+    $("playCancelPremove").addEventListener("click",cancelPremoves);
     $("playFirst").addEventListener("click", function () {setPlayView(Game.jumpIndex(viewingPlay()?play.nav:play.moves.length-1,-1,play.moves.length-1));});
     $("playPrev").addEventListener("click", function () {setPlayView((viewingPlay() ? play.nav : play.moves.length - 1) - 1);});
     $("playNext").addEventListener("click", function () {setPlayView((viewingPlay() ? play.nav : play.moves.length - 1) + 1);});
@@ -1660,7 +1694,7 @@
   }
 
   function createBoards() {
-    playBoard = window.FisherBoard.create($("playBoard"), { onMove: onPlayBoardMove });
+    playBoard = window.FisherBoard.create($("playBoard"), { onMove: onPlayBoardMove, onCancelPremove:cancelPremoves });
     liveBoard = window.FisherBoard.create($("liveBoard"), { onMove: onLiveBoardMove });
     pgnBoard = window.FisherBoard.create($("pgnBoard"), {});
     openingBoard = window.FisherBoard.create($("openingBoard"), {});
@@ -1676,6 +1710,10 @@
   function init() {
     loadSettings();
     applyAppearance();
+    let abi="";
+    if(window.AndroidEngine && window.AndroidEngine.getAbi)abi=window.AndroidEngine.getAbi();
+    updates=window.Updates.create({currentVersion:VERSION,abi:abi,storage:localStorage,getLanguage:function(){return App.settings.lang;},isOnline:function(){return navigator.onLine!==false;},fetch:function(url,options){return window.fetch(url,options);}});
+    setTimeout(function(){checkForUpdates(false);},1800);
     Sounds.configure(function(){return App.settings;});Sounds.preload();
     UI.setLanguage(App.settings.lang);UI.observe();
     if(window.AndroidEngine && window.AndroidEngine.setLanguage)window.AndroidEngine.setLanguage(App.settings.lang);
@@ -1692,7 +1730,7 @@
     initLive();
     loadData();
     setInterval(tickClock,200);
-    document.addEventListener("visibilitychange",tickClock);
+    document.addEventListener("visibilitychange",function(){tickClock();tryShowUpdate();});
     setTimeout(function(){const launch=$("launch");if(launch)launch.remove();},1100);
     Eng.init().then(function (ok) {
       App.engineReady = ok;
