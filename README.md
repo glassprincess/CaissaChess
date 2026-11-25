@@ -123,6 +123,3 @@ python tools/fetch-engines.py
 **GlassPrincess** · [GPLv3](LICENSE).
 Stockfish — GPLv3, фигуры cburnett — CC BY-SA 3.0,
 дебютные данные Lichess — CC0. [Сторонние компоненты](THIRD_PARTY_NOTICES.md).
-
-Для нового значка выбран [«Ферзь и лавр»](docs/branding/caissa-01.svg).
-Он используется в приложении начиная с версии **1.5.1**.
