@@ -6,7 +6,7 @@
   "use strict";
   const files = {"castle":"castle.mp3", "game-end":"game-end.webm", "game-start":"game-start.mp3",
     "check":"move-check.mp3", "move":"move-opponent.mp3", "premove":"premove.mp3",
-    "promote":"promote.mp3", "tenseconds":"tenseconds.mp3"};
+    "promote":"promote.mp3", "tenseconds":"tenseconds.mp3", "capture":"capture.mp3"};
   function create(options) {
     options = options || {};
     let context = options.context || null, settings = options.getSettings || function () {return {sound:true,volume:85};};
@@ -52,6 +52,7 @@
       if(/[+#]/.test(row.san))return "check";
       if(/^O-O/.test(row.san))return "castle";
       if(row.san.indexOf("=")>=0)return "promote";
+      if(row.san.indexOf("x")>=0)return "capture";
       return "move";
     }
     return {configure:function(getSettings){settings=getSettings;},

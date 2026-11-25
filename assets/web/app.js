@@ -360,7 +360,7 @@
     html += '<label class="check"><input type="checkbox" id="setArrow"' + (App.settings.showArrow ? " checked" : "") + "> Стрелки в анализе и дебютах</label>";
     html += '<div class="modal-actions"><button class="ghost" data-close="1">Отмена</button>' +
       '<button class="primary" id="setSave">Сохранить</button></div>';
-    html += '<footer class="settings-footer"><p class="muted">Caissa 1.4.0 · GlassPrincess</p><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
+    html += '<footer class="settings-footer"><p class="muted">Caissa 1.4.1 · GlassPrincess</p><button class="ghost" id="showLicenses">Лицензии</button><a class="source-link" href="https://github.com/glassprincess/CaissaChess" target="_blank" rel="noopener">Исходный код</a></footer>';
     showModal(html);
     $("setVolume").addEventListener("input", function () { $("volumeValue").textContent=this.value+"%"; });
     $("setVolume").addEventListener("change", function () { Sounds.play("move",Number(this.value)); });
@@ -495,8 +495,9 @@
     const canPremove=!viewing && !play.outcome && play.thinking && status==="play";
     const inputState=canPremove?Object.assign({},st,{turn:play.color,ep:-1}):null;
     if(canPremove&&play.premove)$("playStatus").textContent="Премув: "+Chess.sqName(play.premove.from)+"–"+Chess.sqName(play.premove.to);
-    playBoard.render(st, {lastMove:row ? row.uci : null, interactive:humanTurn || canPremove,inputState:inputState,
-      arrow:!viewing ? play.premove?Chess.sqName(play.premove.from)+Chess.sqName(play.premove.to):play.hint : null, showArrow:true,
+    playBoard.render(st, {lastMove:row ? row.uci : null, interactive:humanTurn || (canPremove && !play.premove),inputState:inputState,
+      inputMoves:canPremove?Game.premoveMoves(st,play.color):null,premove:!viewing && !play.outcome?play.premove:null,
+      arrow:!viewing && !play.premove?play.hint:null, showArrow:true,
       annotation:!viewing && play.outcome && play.outcome.flag ? timeoutAnnotations() : status === "play" ? null : boardAnnotation(null, st, status)});
     const ev = play.evals[index + 1], score = ev && ev.lines[0] ? ev.lines[0].eval : viewing ? null : play.evalScore;
     renderEvalBar("playEval", score, ev && ev.lines[0] ? st.turn : play.evalTurn, st, status);
@@ -533,9 +534,10 @@
   function onPlayBoardMove(from, to) {
     if (!play.active || play.outcome || viewingPlay()) return;
     if(play.thinking && play.state.turn!==play.color){
-      const future=Object.assign({},play.state,{turn:play.color,ep:-1});
+      const candidates=Game.premoveMoves(play.state,play.color).filter(function(move){return move.from===from&&move.to===to;});
+      if(!candidates.length)return;
       const gen=play.gen;
-      if(needsPromotion(future,from,to))showPromotion(play.color,function(promo){
+      if(candidates.some(function(move){return !!move.promo;}))showPromotion(play.color,function(promo){
         if(gen!==play.gen || play.outcome)return;
         if(!play.thinking && play.state.turn===play.color)commitPlayMove(from,to,promo);
         else queuePremove(from,to,promo);
@@ -689,6 +691,7 @@
   }
   function queuePremove(from,to,promo) {
     if(!play.thinking || play.outcome)return;
+    if(!Game.premoveMoves(play.state,play.color).some(function(move){return move.from===from&&move.to===to&&(!promo||move.promo===promo);}))return;
     play.premove={from:from,to:to,promo:promo};Sounds.play("premove");renderPlay();
   }
   function executePremove() {
@@ -700,7 +703,7 @@
 
   function finishSearch(opts) {return search(opts,"finish-review");}
   function showPlayResult() {
-    showModal('<div class="result-hero"><img src="'+(play.outcome.flag===play.color?'analysis-icons/clock_'+(play.color==='w'?'white':'black')+'.svg':play.outcome.winner===play.color?'analysis-icons/winner.svg':'caissa-knight.svg')+'" alt=""><h2>'+outcomeTitle()+'</h2><p class="muted">'+esc(play.outcome.reason)+'</p></div><div id="resultReport"><p id="resultProgress" role="status">Разбираю ваши ходы…</p></div><div class="modal-actions result-actions"><button id="resultNew" class="ghost">Новая партия</button><button id="resultReview" class="primary">Разобрать партию</button></div><button class="ghost wide" data-close="1">К доске</button>');
+    showModal('<div class="result-hero"><img src="'+(play.outcome.flag===play.color?'analysis-icons/clock_'+(play.color==='w'?'white':'black')+'.svg':play.outcome.winner===play.color?'analysis-icons/winner.svg':'caissa-queen.svg')+'" alt=""><h2>'+outcomeTitle()+'</h2><p class="muted">'+esc(play.outcome.reason)+'</p></div><div id="resultReport"><p id="resultProgress" role="status">Разбираю ваши ходы…</p></div><div class="modal-actions result-actions"><button id="resultNew" class="ghost">Новая партия</button><button id="resultReview" class="primary">Разобрать партию</button></div><button class="ghost wide" data-close="1">К доске</button>');
     $("resultNew").addEventListener("click",function(){closeModal();resetPlaySetup();});
     $("resultReview").disabled=!play.moves.length;
     $("resultReview").addEventListener("click",function(){closeModal();reviewPlay();});updatePlayReport();
@@ -1283,11 +1286,11 @@
     });
     let first = -1;
     if(openings.filter !== "all") for(let i=0;i<g.variations.length;i++) if(window.OpeningLessons.matchesFilter(g.variations[i],openings.filter)){first=i;break;}
-    selectOpeningVariant(first);
+    selectOpeningVariant(first,true);
     window.scrollTo(0, 0);
   }
 
-  function selectOpeningVariant(index) {
+  function selectOpeningVariant(index,quiet) {
     const g = openings.guide;
     if (!g || index === openings.variant) return;
     const chosen = index === -3 ? openings.custom : index < 0 ? { line: g.mainline, notes: g.notes } : g.variations[index];
@@ -1295,6 +1298,7 @@
     const parsed = Pgn.parse(chosen.line).games[0];
     if (!parsed || !parsed.ok) { toast("Не удалось открыть вариант"); return; }
     const previous = openings.line;
+    const previousFen=previous?openingFen():null;
     let fork = 0;
     if (previous) {
       while (fork < previous.moves.length && fork < parsed.moves.length && previous.moves[fork].uci === parsed.moves[fork].uci) fork++;
@@ -1305,12 +1309,18 @@
     $("openingVariantSelect").value = String(index);
     const buttons = $("openingVariations").querySelectorAll("[data-vi]");
     for (let i = 0; i < buttons.length; i++) buttons[i].classList.toggle("active", Number(buttons[i].getAttribute("data-vi")) === index);
-    setOpeningStep(fork);
+    setOpeningStep(fork,true);
+    if(previousFen && !quiet && previousFen!==openingFen())Sounds.play("move");
   }
 
-  function setOpeningStep(step) {
+  function setOpeningStep(step,quiet) {
     if (!openings.line) return;
+    const previous=openings.step;
     openings.step = Math.max(0, Math.min(openings.line.moves.length, step));
+    if(!quiet && openings.step!==previous){
+      const index=openings.step>previous?openings.step-1:previous-1;
+      const row=openings.line.moves[index];if(row)Sounds.play(Sounds.eventForMove(row));
+    }
     openings.gen++; Eng.cancel("openings"); openings.pendingFen = null;
     renderOpeningBoard(); requestOpeningEval();
   }
@@ -1431,7 +1441,7 @@
       App.guides=App.guideSets[App.settings.lang];
       if(oldGuide){
         const next=App.guides.filter(function(g){return g.id===oldGuide.id;})[0];
-        if(next){openOpening(next);if(variant===-3)openings.custom=custom;selectOpeningVariant(variant);setOpeningStep(step);}
+        if(next){openOpening(next);if(variant===-3)openings.custom=custom;selectOpeningVariant(variant,true);setOpeningStep(step,true);}
       }
       $("openingSearch").value="";renderOpeningList();
     }

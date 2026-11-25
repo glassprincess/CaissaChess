@@ -1,0 +1,4 @@
+/* Red squares identify the queued future move without covering the real check aura. */
+.board .sq.premove-to { background-color: #d08484; background-image: none; }
+.board .sq.premove-from { background-color: #bb8580; background-image: none; }
+.board .pc.premove-piece { z-index: 8; }

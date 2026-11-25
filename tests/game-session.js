@@ -27,3 +27,62 @@ assert.strictEqual(G.timeoutWinner(['K','R','.','k','.'],'b'),'w');
 assert.strictEqual(G.timeoutWinner(['K','Q','.','k','.'],'w'),null);
 assert.strictEqual(G.timeoutWinner(['K','.','.','k','p'],'w'),'b');
 console.log('ok game clocks, rating profiles, limited performance estimate');
+
+assert.strictEqual(typeof G.premoveMoves,'function','premove geometry API is exported');
+const Chess = require('../assets/web/chess.js');
+function square(name){return 'abcdefgh'.indexOf(name[0])+(Number(name[1])-1)*8;}
+function contains(moves,from,to,promo){return moves.some(m=>m.from===square(from)&&m.to===square(to)&&m.promo===promo);}
+function board(pieces,turn,castle){
+  const cells=Array(64).fill('.');
+  Object.keys(pieces).forEach(s=>{cells[square(s)]=pieces[s];});
+  return {board:cells,turn:turn,castle:castle||{K:false,Q:false,k:false,q:false},ep:-1,half:0,full:1};
+}
+const initial=Chess.startState();initial.turn='b';
+const initialBefore=JSON.stringify(initial);
+Object.freeze(initial.board);Object.freeze(initial.castle);Object.freeze(initial);
+const white=G.premoveMoves(initial,'w');
+assert.ok(contains(white,'e2','d3'),'anticipates a capture on an empty white diagonal');
+assert.ok(contains(white,'e2','f3'));
+assert.ok(contains(white,'e2','e3'));
+assert.ok(contains(white,'e2','e4'));
+assert.ok(!contains(white,'e2','d2'));
+assert.ok(!contains(white,'e2','e5'));
+assert.ok(contains(white,'a1','a8'),'sliding premoves may cross a blocker that can disappear');
+assert.ok(!contains(white,'a1','b2'),'rook geometry stays orthogonal');
+assert.ok(contains(white,'b1','d2'),'allows a recapture where a friendly piece is currently standing');
+assert.ok(!white.some(m=>initial.board[m.from]===initial.board[m.from].toLowerCase()),'only own pieces can start a premove');
+assert.ok(!white.some(m=>initial.board[m.to]==='K'),'own king is never a recapture target');
+assert.strictEqual(JSON.stringify(initial),initialBefore,'candidate generation never mutates the actual position or its turn');
+const black=G.premoveMoves(Chess.startState(),'b');
+assert.ok(contains(black,'d7','c6'));
+assert.ok(contains(black,'d7','e6'));
+assert.ok(contains(black,'d7','d6'));
+assert.ok(contains(black,'d7','d5'));
+assert.ok(!contains(black,'d7','d8'));
+const promotion=board({a7:'P',h2:'p',e1:'K',e8:'k'},'b');
+['q','r','b','n'].forEach(p=>{
+  assert.ok(contains(G.premoveMoves(promotion,'w'),'a7','a8',p));
+  assert.ok(contains(G.premoveMoves(promotion,'w'),'a7','b8',p));
+  assert.ok(contains(G.premoveMoves(promotion,'b'),'h2','h1',p));
+  assert.ok(contains(G.premoveMoves(promotion,'b'),'h2','g1',p));
+});
+assert.strictEqual(G.premoveMoves(promotion,'w').filter(m=>m.from===square('a7')).length,8);
+assert.strictEqual(G.premoveMoves(promotion,'b').filter(m=>m.from===square('h2')).length,8);
+assert.ok(contains(white,'e1','g1'),'castling is anticipated even while the path is blocked');
+assert.ok(contains(white,'e1','c1'));
+assert.ok(contains(black,'e8','g8'));
+assert.ok(contains(black,'e8','c8'));
+const noRights=board({e1:'K',e8:'k'},'b');
+assert.ok(!contains(G.premoveMoves(noRights,'w'),'e1','g1'));
+assert.ok(!contains(G.premoveMoves(noRights,'w'),'e1','c1'));
+const away=board({d1:'K',d8:'k'},'b',{K:true,Q:true,k:true,q:true});
+assert.ok(!contains(G.premoveMoves(away,'w'),'d1','f1'),'castling requires the king home square');
+const checked=board({e1:'K',e8:'r',a8:'k',h1:'R'},'b');
+assert.ok(contains(G.premoveMoves(checked,'w'),'h1','h8'),'current check does not restrict future candidates');
+[white,black,G.premoveMoves(promotion,'w'),G.premoveMoves(promotion,'b')].forEach(moves=>{
+  const keys=moves.map(m=>m.from+':'+m.to+':'+(m.promo||''));
+  assert.strictEqual(new Set(keys).size,keys.length,'candidates are not duplicated');
+  assert.ok(moves.every(m=>m.from>=0&&m.from<64&&m.to>=0&&m.to<64&&m.from!==m.to),'all candidates stay on the board');
+});
+assert.deepStrictEqual(G.premoveMoves(initial,'x'),[]);
+console.log('ok premove geometry, recaptures, promotions, castling rights and immutable positions');

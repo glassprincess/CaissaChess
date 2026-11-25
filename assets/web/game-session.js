@@ -43,5 +43,40 @@
     const winner=flag==="w"?"b":"w";
     return board.some(function(piece){return piece!=="." && piece.toLowerCase()!=="k" && (piece===piece.toUpperCase()?"w":"b")===winner;})?winner:null;
   }
-  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner};
+  function premoveMoves(state,color) {
+    if (color !== "w" && color !== "b") return [];
+    const moves = [], ownKing = color === "w" ? "K" : "k", direction = color === "w" ? 1 : -1;
+    // Occupancy and check can change on the opponent's move; execution must use actual legal moves.
+    for (let from = 0; from < 64; from++) {
+      const piece = state.board[from];
+      if (piece === "." || (piece === piece.toUpperCase() ? "w" : "b") !== color) continue;
+      const type = piece.toLowerCase(), file = from & 7, rank = from >> 3;
+      for (let to = 0; to < 64; to++) {
+        if (from === to || state.board[to] === ownKing) continue;
+        const dx = (to & 7) - file, dy = (to >> 3) - rank, ax = Math.abs(dx), ay = Math.abs(dy);
+        let candidate = false;
+        if (type === "p") {
+          candidate = (dy === direction && ax <= 1) ||
+            (dx === 0 && dy === direction * 2 && rank === (color === "w" ? 1 : 6));
+        } else if (type === "n") candidate = (ax === 1 && ay === 2) || (ax === 2 && ay === 1);
+        else if (type === "b") candidate = ax === ay;
+        else if (type === "r") candidate = dx === 0 || dy === 0;
+        else if (type === "q") candidate = dx === 0 || dy === 0 || ax === ay;
+        else if (type === "k") {
+          candidate = ax <= 1 && ay <= 1;
+          const home = color === "w" ? 4 : 60, rights = state.castle || {};
+          if (from === home && dy === 0) {
+            if (dx === 2 && rights[color === "w" ? "K" : "k"]) candidate = true;
+            if (dx === -2 && rights[color === "w" ? "Q" : "q"]) candidate = true;
+          }
+        }
+        if (!candidate) continue;
+        if (type === "p" && (to >> 3) === (color === "w" ? 7 : 0)) {
+          ["q","r","b","n"].forEach(function(promo){moves.push({from:from,to:to,promo:promo});});
+        } else moves.push({from:from,to:to});
+      }
+    }
+    return moves;
+  }
+  return {RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves};
 });

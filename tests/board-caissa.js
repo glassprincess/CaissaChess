@@ -11,7 +11,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 let browser, socket, server;
 async function run() {
   server = http.createServer((req, res) => {
-    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="board.js"></script><script>var moves=[];var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);}});</script></html>');
+    if (req.url === '/') return res.end('<!doctype html><html lang="ru"><meta charset="utf-8"><title>Board regression</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board-fixes.css"><link rel="stylesheet" href="board-premove.css"><div id="board" style="width:320px;height:320px;max-width:none"></div><script src="chess.js"></script><script src="board.js"></script><script>var moves=[];var board=FisherBoard.create(document.getElementById("board"),{onMove:function(from,to){moves.push([from,to]);}});</script></html>');
     const file = path.join(root, req.url);
     fs.readFile(file, (err, data) => {
       res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.html') ? 'text/html' : file.endsWith('.json') ? 'application/json' : 'image/svg+xml');
@@ -50,6 +50,44 @@ async function run() {
   assert.strictEqual(await js('winner.style.left'), '25%');
   await js('board.render(state,{annotations:[]})');
   assert.strictEqual(await js('document.querySelectorAll(".move-badge").length'), 0);
+  await js(`board.setOrientation("w");var real=Object.assign({},ChessLogic.startState(),{turn:"b"}),realFen=ChessLogic.toFen(real);board.render(real,{annotation:null});var pawn=document.querySelector('.pc[data-sq="12"]');board.render(real,{premove:{from:12,to:28}})`);
+  assert.deepStrictEqual(await js(`[ChessLogic.toFen(real)===realFen,real.turn,pawn.dataset.sq,pawn.style.left,pawn.style.top,document.querySelectorAll(".pc").length,document.querySelector('.sq[data-sq="28"]').classList.contains("premove-to")]`), [true, 'b', '28', '50%', '50%', 32, true], 'Premove visibly moves the existing pawn without changing actual position');
+  assert.strictEqual(await js('getComputedStyle(document.querySelector(".sq.premove-to")).backgroundColor'), 'rgb(208, 132, 132)', 'Premove target is light red');
+  await sleep(230);
+  await js('board.render(real,{premove:null})');
+  assert.strictEqual(await js('pawn.dataset.sq'), '12');
+  assert.strictEqual(await js('!!pawn._fisherMotion'), true, 'Cancelling animates the same pawn back');
+  await sleep(230);
+  await js('board.render(real,{premove:{from:12,to:28}})');
+  await sleep(230);
+  await js('var botNext=ChessLogic.apply(real,ChessLogic.legalMoves(real).filter(function(m){return ChessLogic.uci(m)==="g8f6";})[0]);board.render(botNext,{premove:{from:12,to:28}});var played=ChessLogic.apply(botNext,ChessLogic.legalMoves(botNext).filter(function(m){return ChessLogic.uci(m)==="e2e4";})[0]);board.render(played,{premove:null})');
+  assert.strictEqual(await js(`document.querySelector('.pc[data-sq="28"]')===pawn && !pawn._fisherMotion`), true, 'Bot update and actual premove commit do not bounce or duplicate the preview pawn');
+  await js(`var castle=ChessLogic.fromFen("4k3/8/8/8/8/8/8/4KBNR b K - 0 1");board.render(castle,{premove:{from:4,to:6}});var king=document.querySelector('.pc.premove-piece[data-sq="6"]'),rook=document.querySelector('.pc.premove-piece[data-sq="5"]')`);
+  assert.strictEqual(await js('!!king && !!rook && document.querySelectorAll(".pc.premove-hidden").length===2 && castle.board[4]==="K" && castle.board[7]==="R"'), true, 'Castling previews rook and king, hiding occupied future target squares');
+  await js('board.setOrientation("b")');
+  assert.strictEqual(await js('king.style.left'), '12.5%');
+  await js('board.render(castle,{premove:null})');
+  assert.strictEqual(await js('document.querySelectorAll(".pc.premove-hidden").length===0 && king.dataset.sq==="4" && rook.dataset.sq==="7"'), true, 'Cancelling castling restores both hidden pieces');
+  await js('board.setOrientation("w");var promotion=ChessLogic.fromFen("1r5k/P7/8/8/8/8/8/7K b - - 0 1");board.render(promotion,{premove:{from:48,to:57,promo:"n"}});var promoted=document.querySelector(".pc.premove-piece")');
+  assert.strictEqual(await js('promoted.dataset.sq==="57" && promoted.firstChild.getAttribute("src")==="pieces/wN.svg" && document.querySelectorAll(".pc.premove-hidden").length===1 && promotion.board[48]==="P" && promotion.board[57]==="r"'), true, 'Promotion capture previews requested sprite without mutating or removing captured piece');
+  await js('board.render(promotion,{premove:null})');
+  assert.strictEqual(await js('promoted.firstChild.getAttribute("src")==="pieces/wP.svg" && document.querySelectorAll(".pc.premove-hidden").length===0'), true, 'Promotion cancellation restores pawn sprite and captured rook');
+  await js('var ownTarget=ChessLogic.fromFen("7k/8/8/8/8/8/PP6/7K b - - 0 1");board.render(ownTarget,{premove:{from:8,to:9}})');
+  assert.strictEqual(await js('document.querySelectorAll(".pc.premove-hidden").length'), 1, 'Potential recapture onto own occupied square hides its current occupant');
+  await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+  await js('board.render(ownTarget,{premove:null});board.render(ownTarget,{premove:{from:8,to:9}})');
+  assert.strictEqual(await js('!document.querySelector(".pc.premove-piece")._fisherMotion'), true, 'Reduced motion keeps stable preview without animation');
+  await cdp('Emulation.setEmulatedMedia', { features: [] });
+  await js('board.render(ownTarget,{premove:null,inputState:Object.assign({},ownTarget,{turn:"w"}),inputMoves:[{from:8,to:9}],interactive:true});moves=[]');
+  await js('(function(){var b=document.getElementById("board"),r=b.getBoundingClientRect();[8,9].forEach(function(sq){var o={clientX:r.left+r.width*((sq&7)+.5)/8,clientY:r.top+r.height*(7-(sq>>3)+.5)/8,bubbles:true,isPrimary:true,pointerId:23};b.dispatchEvent(new PointerEvent("pointerdown",o));window.dispatchEvent(new PointerEvent("pointerup",o));});})()');
+  assert.deepStrictEqual(await js('moves'), [[8, 9]], 'Explicit future inputMoves overrides current-position legality for potential recaptures');
+  await js(`moves=[];board.render(ownTarget,{inputState:Object.assign({},ownTarget,{turn:"w"}),inputMoves:[{from:8,to:16}],interactive:true});var b=document.getElementById("board"),r=b.getBoundingClientRect(),dragOptions={clientX:r.left+r.width/16,clientY:r.top+r.height*6.5/8,bubbles:true,isPrimary:true,pointerId:25};b.dispatchEvent(new PointerEvent("pointerdown",dragOptions));window.dispatchEvent(new PointerEvent("pointermove",Object.assign({},dragOptions,{clientY:r.top+r.height*5.5/8})));var held=document.querySelector(".pc.dragging");var botReply=ChessLogic.apply(ownTarget,ChessLogic.legalMoves(ownTarget).filter(function(m){return ChessLogic.uci(m)==="h8g8";})[0]);board.render(botReply,{inputState:null,inputMoves:null})`);
+  assert.strictEqual(await js('held.classList.contains("dragging") && held.isConnected'), true, 'Bot reply keeps the captured own-piece drag active');
+  await js('window.dispatchEvent(new PointerEvent("pointerup",Object.assign({},dragOptions,{clientY:r.top+r.height*5.5/8})))');
+  assert.deepStrictEqual(await js('moves'), [[8, 16]], 'Drag released after bot reply uses actual human-turn legality');
+  await js(`moves=[];var threatened=ChessLogic.fromFen("r6k/8/8/8/8/8/P7/7K b - - 0 1");board.render(threatened,{inputState:Object.assign({},threatened,{turn:"w"}),inputMoves:[{from:8,to:16}]});b.dispatchEvent(new PointerEvent("pointerdown",dragOptions));var taken=ChessLogic.apply(threatened,ChessLogic.legalMoves(threatened).filter(function(m){return ChessLogic.uci(m)==="a8a2";})[0]);board.render(taken,{inputState:null,inputMoves:null});window.dispatchEvent(new PointerEvent("pointerup",Object.assign({},dragOptions,{clientY:r.top+r.height*5.5/8})))`);
+  assert.deepStrictEqual(await js('[moves.length,document.querySelectorAll(".pc.dragging").length]'), [0, 0], 'Bot capturing dragged source cancels the gesture');
+  await js('board.render(ownTarget,{inputState:null,inputMoves:null})');
   for (const orientation of ['w', 'b']) {
     for (const color of ['w', 'b']) {
       await js('moves=[];board.setOrientation(' + JSON.stringify(orientation) + ');board.render(ChessLogic.fromFen(' + JSON.stringify(color === 'w' ? '7k/P7/8/8/8/8/8/7K w - - 0 1' : '7k/8/8/8/8/8/p7/7K b - - 0 1') + '),{annotation:null})');
@@ -91,7 +129,7 @@ async function run() {
   assert.strictEqual(await js('document.getElementById("modalRoot").classList.contains("hidden")'), true, 'Fresh backdrop touch still dismisses modal');
   await js('document.getElementById("liveFen").click();document.querySelector("#modalBox [data-close]").click()');
   assert.strictEqual(await js('document.getElementById("modalRoot").classList.contains("hidden")'), true, 'Synthetic/keyboard close-button activation works');
-  console.log('Board regression passed: checked-square geometry, filter-free aura, dual badges, stable animations, both orientations; full-app touch promotion for both colors/all four choices; modal dismissal');
+  console.log('Board regression passed: premove preview/immutability/red target/cancel/no bounce/castling/promotion/occupied recapture/reduced motion/inputMoves/fast-bot drag; check geometry/aura/badges; full-app touch promotion and modal dismissal');
 }
 run().catch(error => { console.error(error); process.exitCode = 1; }).finally(async () => {
   if (socket) socket.close(); if (browser) browser.kill();

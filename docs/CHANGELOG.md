@@ -1,5 +1,14 @@
 # Changes
 
+## 1.4.1
+
+- Added capture.mp3 for captures and sound when stepping through opening lines.
+- Premoves visibly place the piece on a softly red future square. Pending moves
+  can be cancelled and are validated after the bot replies; recaptures, promotion
+  and castling are supported. A fast bot reply no longer interrupts a held piece.
+- Installed the selected queen and laurel icon, including APK PNG fallbacks,
+  adaptive/themed launcher artwork, header and startup screen.
+
 ## 1.4.0
 
 - Russian and English throughout the app, including opening plans and move explanations.

@@ -9,7 +9,8 @@ const requests=[];
 const sound=Audio.create({context:ctx,getSettings:()=>settings,fetch:url=>{requests.push(url);return Promise.resolve({ok:true,arrayBuffer:()=>Promise.resolve(new Uint8Array([requests.length]).buffer)});}});
 (async()=>{
  await sound.preload();await sound.unlock();
- assert.strictEqual(requests.length,8);assert.strictEqual(new Set(requests).size,8);
+ assert.strictEqual(requests.length,9);assert.strictEqual(new Set(requests).size,9);
+ assert.ok(requests.includes('sounds/capture.mp3'));
  await sound.play('castle');assert.strictEqual(started.length,1);assert.strictEqual(gains[0].gain.value,.75);
  await sound.play('game-end');assert.strictEqual(started.length,2);
  settings.volume=0;await sound.play('move');assert.strictEqual(started.length,2);
@@ -19,6 +20,8 @@ const sound=Audio.create({context:ctx,getSettings:()=>settings,fetch:url=>{reque
  assert.strictEqual(sound.eventForMove({san:'O-O+'}),'check');
  assert.strictEqual(sound.eventForMove({san:'O-O'}),'castle');
  assert.strictEqual(sound.eventForMove({san:'a8=Q'}),'promote');
+ assert.strictEqual(sound.eventForMove({san:'Nxe5'}),'capture');
+ assert.strictEqual(sound.eventForMove({san:'exd6'}),'capture');
  assert.strictEqual(sound.eventForMove({san:'e4'}),'move');
- console.log('ok eight original sounds, preload/cache, ended promise, volume/mute, move priorities');
+ console.log('ok nine original sounds, capture/en passant, preload/cache, ended promise, volume/mute, move priorities');
 })().catch(e=>{console.error(e);process.exitCode=1;});

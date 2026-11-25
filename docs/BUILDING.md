@@ -94,3 +94,13 @@ The native smoke test needs compiled Android classes first.
 
 The Android host has no AndroidX dependencies. The web interface uses ES2015
 without a bundler or npm packages. Stockfish searches share one native process.
+
+
+Icon source: `docs/branding/caissa-01.svg`. The launcher PNGs are committed;
+rebuilding them optionally requires Pillow and a Chromium browser:
+
+```sh
+python -m pip install Pillow
+node tools/render-caissa-icon.js
+python tests/icon-check.py
+```

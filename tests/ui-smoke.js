@@ -347,6 +347,9 @@ async function run() {
     await js(`document.querySelector('[data-tab="play"]').click()`);await newGame();
     await js(`document.querySelector('#levelSeg [data-level="1200"]').click();window.__sounds=[]`);botLine=['e7e5','g8f6','b8c6'];replyDelay=600;await click('startGame');
     await playTap('e2','e4');await playTap('g1','f3');assert.ok(await js(`!document.getElementById('playCancelPremove').classList.contains('hidden')`));
+    await sleep(230);
+    const preview=await js(`(function(){var piece=document.querySelector('#playBoard .pc.premove-piece[data-sq="21"]'),square=document.querySelector('#playBoard .sq[data-sq="21"]'),p=piece&&piece.getBoundingClientRect(),r=square.getBoundingClientRect(),color=getComputedStyle(square).backgroundColor.match(/[0-9]+/g).map(Number);return {shown:!!p&&Math.abs(p.left-r.left)<1&&Math.abs(p.top-r.top)<1,red:square.classList.contains('premove-to')&&color[0]>color[1],moves:document.querySelectorAll('#playMoves .mv').length};})()`);
+    assert.ok(preview.shown&&preview.red&&preview.moves===1,JSON.stringify(preview));
     await until(`document.querySelectorAll('#playMoves .mv').length===4`);assert.ok((await js(`document.getElementById('playMoves').textContent`)).includes('Nf3'));
     assert.ok(await js(`window.__sounds.indexOf('game-start')>=0&&window.__sounds.indexOf('premove')>=0`));
     await playTap('f1','c4');await playTap('b1','c3');await click('playCancelPremove');await until(`document.querySelectorAll('#playMoves .mv').length===6`);await sleep(100);
@@ -359,6 +362,19 @@ async function run() {
     replyDelay=30;const requests=searchRequests;
     await js(`document.querySelector('[data-tab="play"]').click()`);await until(`!document.getElementById('playReport').classList.contains('hidden')`);await click('playReport');await click('resultReview');
     assert.strictEqual(searchRequests,requests,'Повторное открытие не запускает новые поиски');
+  });
+  await test('взятие играет capture.mp3, исходный файл декодируется браузером',async()=>{
+    const duration=await js(`fetch('sounds/capture.mp3').then(function(r){return r.arrayBuffer();}).then(function(bytes){var ctx=new AudioContext();return ctx.decodeAudioData(bytes).then(function(buffer){var seconds=buffer.duration;return ctx.close().then(function(){return seconds;});});})`);assert.ok(duration>0&&duration<3);
+    await js(`document.querySelector('[data-tab="analysis"]').click();document.querySelector('[data-mode="live"]').click()`);await click('liveFen');await js(`document.getElementById('fenInput').value='7k/8/8/8/b7/8/8/R6K w - - 0 1'`);await click('fenOk');
+    await js(`window.__sounds=[];(function(){var b=document.getElementById('liveBoard'),r=b.getBoundingClientRect();function tap(f,k){var o={clientX:r.left+r.width*(f+.5)/8,clientY:r.top+r.height*(7-k+.5)/8,bubbles:true,isPrimary:true};b.dispatchEvent(new PointerEvent('pointerdown',o));window.dispatchEvent(new PointerEvent('pointerup',o));}tap(0,0);tap(0,3);})()`);
+    assert.strictEqual(await js(`window.__sounds.filter(function(name){return name==='capture';}).length`),1);
+  });
+  await test('листание дебюта звучит вперёд и назад, расчёт не повторяет звук',async()=>{
+    await js(`document.querySelector('[data-tab="openings"]').click();document.getElementById('openingBack').click();document.getElementById('openingSearch').value='принятый ферзевый гамбит';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card').click();var select=document.getElementById('openingVariantSelect');select.value=Array.from(select.options).filter(function(o){return o.textContent.indexOf('Принятый ферзевый гамбит: Classical')>=0;})[0].value;select.dispatchEvent(new Event('change'))`);await click('openingFirst');await js(`window.__sounds=[]`);
+    for(let i=0;i<4;i++)await click('openingNext');
+    assert.deepStrictEqual(await js(`window.__sounds`),['move','move','move','capture']);await click('openingPrev');
+    assert.strictEqual(await js(`window.__sounds[4]`),'capture');const count=await js(`window.__sounds.length`);await sleep(450);assert.strictEqual(await js(`window.__sounds.length`),count);
+    assert.strictEqual(await js(`document.querySelector('.brand img').getAttribute('src')`),'caissa-queen.svg');
   });
   if (process.env.SCREENSHOT_DIR) {
     fs.mkdirSync(process.env.SCREENSHOT_DIR,{recursive:true});
