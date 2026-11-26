@@ -86,15 +86,30 @@ async function run() {
     await js(`window.__haptics=[]`);await mate(1);assert.deepStrictEqual(await js(`window.__haptics`),[]);
     await click('settingsBtn');await js(`document.getElementById('setVibration').checked=true`);await click('setSave');await mate(2);assert.deepStrictEqual(await js(`window.__haptics`),['mate']);
   });
-  await test('opening moves receive full-strength engine grades instead of automatic book badges',async()=>{
+  await test('confirmed opening theory keeps book badges while full-strength searches evaluate the position',async()=>{
     await js(`window.__openingRequests=[];window.__beforeOpeningFetch=window.fetch;window.fetch=function(url,opts){if(url==='/search')window.__openingRequests.push(JSON.parse(opts.body));return window.__beforeOpeningFetch(url,opts);};document.querySelector('[data-tab="openings"]').click();document.getElementById('openingSearch').value='Гроб';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card').click();`);await click('openingNext');
     await until(`document.querySelector('#openingBoard .move-badge img')!==null`);
-    assert.ok(await js(`!document.querySelector('#openingBoard .move-badge img[src="analysis-icons/book.svg"]')&&document.querySelector('#openingBoard .arrow-layer').children.length===0`));
+    assert.ok(await js(`document.querySelector('#openingBoard .move-badge img[src="analysis-icons/book.svg"]')&&document.querySelector('#openingBoard .arrow-layer').children.length===0`));
     assert.ok(await js(`window.__openingRequests.filter(function(o){return o.skill===20&&o.elo===0&&o.multipv===3;}).length>=2`));
     await js(`window.fetch=window.__beforeOpeningFetch`);
   });
+  await test('opening review animates brilliant and great grades and plays checkmate effects once per navigation',async()=>{
+    await cdp('Page.reload',{});await sleep(650);
+    await js(`document.querySelector('[data-tab="openings"]').click();document.getElementById('openingSearch').value='Гроб';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card').click()`);
+    await js(`window.__grade=OpeningReview.grade;OpeningReview.grade=function(row){return Object.assign({},row,{key:'brilliant'});};document.getElementById('openingNext').click()`);
+    assert.ok(await js(`!!document.querySelector('#openingBoard img.brilliant-enter[src="analysis-icons/brilliant.svg"]')`));
+    await js(`OpeningReview.grade=function(row){return Object.assign({},row,{key:'great'});};document.getElementById('openingNext').click()`);
+    assert.ok(await js(`!!document.querySelector('#openingBoard img.brilliant-enter[src="analysis-icons/great_find.svg"]')`));
+    await js(`OpeningReview.grade=window.__grade;window.__sounds=[];window.__haptics=[];CaissaSounds.play=function(name){window.__sounds.push(name);return Promise.resolve();};document.getElementById('openingBack').click();document.getElementById('openingSearch').value='';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card[data-id="basic-mates"]').click();var t=document.getElementById('openingTimeline');t.value=t.max;t.dispatchEvent(new Event('input'))`);
+    await until(`window.__sounds.indexOf('game-end')>=0`);
+    assert.deepStrictEqual(await js(`window.__haptics`),['mate']);
+    assert.ok(await js(`!!document.querySelector('#openingBoard img[src="analysis-icons/winner.svg"]')`));
+    await sleep(800);assert.strictEqual(await js(`window.__sounds.filter(function(s){return s==='game-end';}).length`),1);
+    await js(`document.getElementById('openingBack').click();document.getElementById('openingSearch').value='Гроб';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card').click()`);
+  });
   await test('online continuations load automatically and an example game imports into analysis',async()=>{
     await js(String.raw`window.__online=true;window.__netCalls=0;window.__beforeExplorerFetch=window.fetch;window.fetch=function(url,opts){if(String(url).indexOf('https://explorer.lichess.ovh/masters?')===0){window.__netCalls++;return Promise.resolve({ok:true,status:200,headers:{get:function(){return null;}},json:function(){return Promise.resolve({white:1,draws:0,black:0,moves:[{uci:'a2a3',white:1,draws:0,black:0}],recentGames:[{id:'abcd1234',white:{name:'Alpha'},black:{name:'Beta'},year:2026}]});}});}if(String(url).indexOf('https://explorer.lichess.ovh/masters/pgn/abcd1234')===0)return Promise.resolve({ok:true,status:200,headers:{get:function(){return null;}},text:function(){return Promise.resolve('[Event "Online example"]\n[White "Alpha"]\n[Black "Beta"]\n1. e4 e5 2. Nf3 Nc6 *');}});return window.__beforeExplorerFetch(url,opts);};document.getElementById('openingBack').click();document.getElementById('openingSearch').value='';document.getElementById('openingSearch').dispatchEvent(new Event('input'));document.querySelector('.opening-card').click();`);
+    await js(`window.dispatchEvent(new Event('online'))`);
     await until(`document.querySelector('[data-game="abcd1234"]')!==null`);assert.ok(await js(`window.__netCalls>0`));
     await js(`document.querySelector('[data-game="abcd1234"]').click()`);await until(`!document.getElementById('pgnResult').classList.contains('hidden')`);
     assert.ok(await js(`document.getElementById('pgnResultTitle').textContent.includes('Alpha')`));await js(`window.fetch=window.__beforeExplorerFetch;window.__online=false`);

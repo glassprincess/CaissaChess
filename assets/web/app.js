@@ -12,7 +12,7 @@
   const Game = window.GameSession;
   const UI = window.CaissaI18n;
   const Sounds = window.CaissaSounds;
-  const VERSION="1.5.2";
+  const VERSION="1.5.2.1";
   let updates=null,pendingUpdate=null;
   const Appearance = window.CaissaAppearance;
   let trainer = null;
@@ -55,8 +55,8 @@
   let playBoard = null, liveBoard = null, pgnBoard = null, openingBoard = null;
   let toastTimer = null;
   let toastNode = null;
-  const moveAudio = {play:Promise.resolve(),live:Promise.resolve()};
-  const endSoundState = {play:"",live:"",batch:""};
+  const moveAudio = {play:Promise.resolve(),live:Promise.resolve(),openings:Promise.resolve()};
+  const endSoundState = {play:"",live:"",batch:"",openings:""};
   const endCategories = {
     mate:{key:"mate",file:"mate.svg",color:"#ca3431",label:"Мат"},
     draw:{key:"draw",file:"draw.svg",color:"#7c8a97",label:"Ничья"}
@@ -635,7 +635,10 @@
     const started=Date.now();
     const randomMove=Math.random()<profile.randomChance && legal.length ? Chess.uci(legal[Math.floor(Math.random()*legal.length)]) : null;
     const request=randomMove ? Promise.resolve({bestmove:randomMove,lines:[]}) :
-      search({fen:Chess.toFen(play.state),multipv:1,movetime:timing.movetime,skill:profile.skill,elo:profile.engineElo},"play");
+      search({fen:Chess.toFen(play.state),multipv:profile.multipv,depth:profile.depth,movetime:timing.movetime,skill:profile.skill,elo:profile.engineElo},"play").then(function(result){
+        if(result)result.bestmove=Game.chooseBotMove(result,profile);
+        return result;
+      });
     request.then(function(res){
       if(gen!==play.gen || !res || !res.bestmove || !play.clock || !play.clock.snapshot().timed)return res;
       return delay(Math.max(0,timing.totalMs-(Date.now()-started))).then(function(){return res;});
@@ -1384,7 +1387,10 @@
     openings.step = Math.max(0, Math.min(openings.line.moves.length, step));
     if(!quiet && openings.step!==previous){
       const index=openings.step>previous?openings.step-1:previous-1;
-      const row=openings.line.moves[index];if(row)Sounds.play(Sounds.eventForMove(row));
+      const row=openings.line.moves[index];if(row)moveSound(row,"openings");
+      const state=Chess.fromFen(openingFen());
+      endSoundState.openings="";
+      notifyCheck(state);notifyEnd(state,null,"openings");
     }
     openings.gen++; Eng.cancel("openings"); openings.pendingFen = null;
     renderOpeningBoard(); requestOpeningEval();
@@ -1430,7 +1436,7 @@
     const best = ev && ev.lines && ev.lines[0];
     openingBoard.render(st, { lastMove: row ? row.uci : null, interactive: false,
       arrow: best ? best.move : null, showArrow: App.settings.showArrow,
-      annotation: Pgn.gameStatus(st)!=="play" ? boardAnnotation(null,st,Pgn.gameStatus(st)) : openingGrade(row) ? moveAnnotation(openingGrade(row),false) : null });
+      annotation: Pgn.gameStatus(st)!=="play" ? boardAnnotation(null,st,Pgn.gameStatus(st)) : openingGrade(row) ? moveAnnotation(openingGrade(row)) : null });
     renderEvalBar("openingEval", best ? best.eval : null, st.turn, st);
     const graded=openingGrade(row);
     $("openingEvalText").textContent = best ? UI.t("Оценка: ")+MR.formatEval(best.eval,st.turn)+(" · "+UI.t("за белых"))+(graded && An.category(graded.key)?" · "+UI.t(An.category(graded.key).label):"") : "Расчёт позиции…";

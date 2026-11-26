@@ -9,7 +9,7 @@ const Chess=require('../assets/web/chess.js');
 function search(move,value,type){return {bestmove:move,lines:[{move:move,eval:{type:type||'cp',value:value},depth:18,multipv:1}]};}
 function row(fen,uci){
   const before=Chess.fromFen(fen),move=Chess.legalMoves(before).find(m=>Chess.uci(m)===uci),after=Chess.apply(before,move);
-  return {fenBefore:fen,fenAfter:Chess.toFen(after),uci:uci,color:before.turn,legalCount:Chess.legalMoves(before).length,sacrifice:Chess.sacrificeLoss(before,after,uci),book:true,key:'book'};
+  return {fenBefore:fen,fenAfter:Chess.toFen(after),uci:uci,color:before.turn,legalCount:Chess.legalMoves(before).length,sacrifice:Chess.sacrificeLoss(before,after,uci),book:false,key:null};
 }
 const start=Chess.toFen(Chess.startState());
 const thematic=row(start,'f2f3');
@@ -19,7 +19,10 @@ assert.strictEqual(graded.key,'blunder','theory membership cannot hide an engine
 assert.ok(graded.loss>45 && graded.loss<47);
 assert.strictEqual(graded.evalText,'-9.0');
 assert.strictEqual(graded.book,false);
-assert.strictEqual(thematic.key,'book','grading leaves the opening lesson row intact');
+assert.strictEqual(thematic.key,null,'grading leaves the opening lesson row intact');
+const theory=Object.assign({},row(start,'e2e4'),{book:true});
+assert.strictEqual(Opening.grade(theory,null,null).key,'book','confirmed theory does not wait for an engine score');
+assert.strictEqual(Opening.grade(theory,before,after).key,'book','engine scores do not relabel confirmed theory');
 assert.strictEqual(Opening.grade(thematic,null,after),null,'no before search means no invented grade');
 assert.strictEqual(Opening.grade(thematic,before,null),null);
 assert.strictEqual(Opening.grade(thematic,{lines:[]},after),null);

@@ -1,5 +1,13 @@
 # Changes
 
+## 1.5.2.1
+
+- Confirmed opening theory retains book badges; only moves outside the opening index receive engine grades.
+- Opening review animates brilliant/great moves and plays check/checkmate sound and vibration on navigation.
+- Trainer attempts move and play sound immediately; assessment follows asynchronously, with rollback on a wrong move or engine failure.
+- 800/1200 presets use bounded MultiPV candidates and fixed search depths instead of arbitrary legal moves or low-skill randomness. Ratings remain approximate.
+- Update checks understand four-part version numbers. Versions through 1.5.2 need a manual download of this hotfix.
+
 ## 1.5.2
 
 - Fixed offline puzzle repetition: bundled and cached puzzles share persisted shuffled cycles per rating.

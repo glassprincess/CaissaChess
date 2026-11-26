@@ -10,8 +10,9 @@
     return score && (score.type === "cp" || score.type === "mate") && Number.isFinite(score.value);
   }
   function grade(row, beforeSearch, afterSearch) {
-    if (!row || !hasScore(beforeSearch) || !hasScore(afterSearch)) return null;
-    // Lesson membership describes the repertoire; quality comes from the same grader as game review.
+    if (!row) return null;
+    if (row.book) return Object.assign({}, row, {key:"book",loss:0});
+    if (!hasScore(beforeSearch) || !hasScore(afterSearch)) return null;
     const annotated = Object.assign({}, row, {book:false,key:null,loss:undefined});
     return Classification.classifyRow(annotated, 0, [beforeSearch, afterSearch]);
   }

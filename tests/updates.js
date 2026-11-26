@@ -17,6 +17,10 @@ function response(data, status, headers) {
 }
 (async function () {
   assert.strictEqual(Updates.compareVersions("1.10.0", "1.9.9"), 1);
+  assert.strictEqual(Updates.compareVersions("v1.5.2.1", "1.5.2"), 1);
+  assert.strictEqual(Updates.compareVersions("1.5.3", "1.5.2.1"), 1);
+  assert.strictEqual(Updates.compareVersions("1.5.2.0", "1.5.2"), 0);
+  assert.strictEqual(Updates.compareVersions("1.5.2.01", "1.5.2"), null);
   assert.strictEqual(Updates.compareVersions("v1.5.1+build.2", "1.5.1"), 0);
   ["1.5", "01.5.2", "1.5.2-beta", "v1.5.2/evil", "1.5.2\n"].forEach(tag => {
     assert.strictEqual(Updates.compareVersions(tag, "1.5.1"), null);

@@ -5,13 +5,27 @@
   "use strict";
   const RATINGS = [250,500,800,1200,1800,2250,2800,4000];
   const profiles = [
-    [0,0,180,.65], [0,0,220,.35], [0,0,280,.15], [1,0,350,0],
+    [0,0,180,.65], [0,0,220,.35], [20,0,350,0], [20,0,450,0],
     [20,1800,500,0], [20,2250,700,0], [20,2800,1000,0], [20,0,3000,0]
   ];
   function profile(elo) {
     let i = RATINGS.indexOf(Number(elo)); if (i < 0) i = 3;
     const p = profiles[i];
-    return {elo:RATINGS[i],skill:p[0],engineElo:p[1],movetime:p[2],randomChance:p[3]};
+    return {elo:RATINGS[i],skill:p[0],engineElo:p[1],movetime:p[2],randomChance:p[3],depth:i===2?8:i===3?10:undefined,multipv:i===2||i===3?5:1};
+  }
+  function chooseBotMove(result, profile, random) {
+    if (!result || (profile.elo !== 800 && profile.elo !== 1200)) return result && result.bestmove;
+    const lines=(result.lines || []).filter(function(line){return line.move && line.eval && Number.isFinite(line.eval.value);});
+    if (!lines.length) return result.bestmove;
+    const best=lines[0].eval;
+    if (best.type === "mate") return lines[0].move;
+    const limit=profile.elo===800?160:85, target=profile.elo===800?65:30;
+    const choices=lines.filter(function(line){return line.eval.type==="cp" && best.value-line.eval.value>=0 && best.value-line.eval.value<=limit;});
+    let total=0;
+    const weights=choices.map(function(line){const weight=Math.exp(-Math.abs(best.value-line.eval.value-target)/target);total+=weight;return weight;});
+    let pick=(random || Math.random)()*total;
+    for(let i=0;i<choices.length;i++){pick-=weights[i];if(pick<0)return choices[i].move;}
+    return lines[0].move;
   }
   function createClock(options) {
     const now = options.now || Date.now, base = Math.max(0, options.baseMs || 0);
@@ -141,5 +155,5 @@
     })[0];
     return {move:move || null,queue:move ? queue.slice(1) : []};
   }
-  return {projectPremoves:projectPremoves,nextPremove:nextPremove,RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves,jumpIndex:jumpIndex,botThinkDelay:botThinkDelay,botTiming:botTiming};
+  return {chooseBotMove:chooseBotMove,projectPremoves:projectPremoves,nextPremove:nextPremove,RATINGS:RATINGS,profile:profile,createClock:createClock,estimate:estimate,timeoutWinner:timeoutWinner,premoveMoves:premoveMoves,jumpIndex:jumpIndex,botThinkDelay:botThinkDelay,botTiming:botTiming};
 });

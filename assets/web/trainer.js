@@ -263,7 +263,11 @@
       tick(); if (!active()) return;
       clockPause(); const gen=generation, before=state, uci=Chess.uci(move), after=Chess.apply(before,move);
       const expected=alternative ? branchLine[0] : puzzle.solution[index], canonical=uci===expected, mate=Pgn.gameStatus(after)==="mate";
-      phase="evaluating"; feedback=t("Stockfish проверяет ход…","Stockfish is assessing your move…"); preview=after; annotation=null; hintArrow=null; hintSquare=null; render();
+      phase="evaluating"; feedback=t("Stockfish проверяет ход…","Stockfish is assessing your move…"); preview=null; annotation=null; hintArrow=null; hintSquare=null;
+      playMove(move); render();
+      function rollback() {
+        state=before; history.pop(); viewIndex=history.length-1; lastMove=history[viewIndex].move; preview=null;
+      }
       let base=null;
       search(before,gen,3).then(function (r) { base=r; if (gen !== generation || !visible) return null; return search(after,gen,1); }).then(function (result) {
         if (gen !== generation || !visible) return;
@@ -278,18 +282,18 @@
         const label = labels[key] || labels.mistake;
         annotation={move:uci,key:key,file:key+".svg",color:good?"#81b64c":"#e58f2a",label:t(label[0],label[1])};
         if (good) {
-          preview=null; playMove(move); index++; if (!canonical) alternative=true;
+          preview=null; index++; if (!canonical) alternative=true;
           if (alternative) branchLine=result && result.lines[0] ? result.lines[0].pv : [];
           explanation="";
           proceed(gen);
         } else {
-          if (mistake()) return;
+          rollback(); if (mistake()) return;
           preview=null; phase="thinking"; feedback=t(label[0],label[1]) + ". " + t("Выберите другой ход.","Choose another move.");
           explanation=assisted ? t("Эта задача уже не идёт в счёт.","This puzzle no longer counts.") : t("Ошибок: ","Mistakes: ")+wrongAttempts+" / 3"; render(); clockResume();
         }
       }).catch(function () {
         if (gen !== generation || !visible) return;
-        preview=null; phase="thinking"; feedback=t("Не удалось оценить ход. Попробуйте ещё раз.","Could not assess the move. Try again."); render(); clockResume();
+        rollback(); phase="thinking"; feedback=t("Не удалось оценить ход. Попробуйте ещё раз.","Could not assess the move. Try again."); render(); clockResume();
       });
     }
     function retry() { if (phase === "replyError") proceed(generation); }

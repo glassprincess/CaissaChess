@@ -10,13 +10,13 @@
 
   function versionParts(value) {
     if (typeof value !== "string" || value.length > 100) return null;
-    var match = /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/.exec(value);
-    return match ? match.slice(1, 4) : null;
+    var match = /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/.exec(value);
+    return match ? [match[1],match[2],match[3],match[4] || "0"] : null;
   }
   function compareVersions(a, b) {
     var left = versionParts(a), right = versionParts(b);
     if (!left || !right) return null;
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
       if (left[i].length !== right[i].length) return left[i].length > right[i].length ? 1 : -1;
       if (left[i] !== right[i]) return left[i] > right[i] ? 1 : -1;
     }

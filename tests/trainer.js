@@ -86,7 +86,11 @@ async function controllerChecks() {
   assert(!elements.next.hidden); assert(/Solved: 1/.test(elements.stats.textContent));
   assert(requests.length>=4);
   elements.next.onclick(); await delay(480); defer=true;
-  const move=Chess.legalMoves(boardState)[0]; onMove(move.from,move.to); await delay(0); assert(pending.length);
+  const move=Chess.legalMoves(boardState)[0],expectedImmediate=Chess.toFen(Chess.apply(boardState,move)); onMove(move.from,move.to);
+  assert.equal(Chess.toFen(boardState),expectedImmediate,'piece moves synchronously before either engine search completes');
+  assert.equal(boardOptions.lastMove,Chess.uci(move),'the immediate board uses the attempted move highlight');
+  assert(!boardOptions.interactive,'a second attempt cannot overlap evaluation');
+  await delay(0); assert(pending.length);
   const count=requests.length; controller.hide();
   pending.shift()({bestmove:"",lines:[]}); await delay(10);
   assert.equal(requests.length,count,"hiding must prevent the second engine job"); assert(cancelled>=3); assert(!boardOptions.interactive);

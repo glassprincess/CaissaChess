@@ -2,8 +2,16 @@ const assert = require('assert');
 const G = require('../assets/web/game-session.js');
 assert.deepStrictEqual(G.RATINGS,[250,500,800,1200,1800,2250,2800,4000]);
 assert.strictEqual(G.profile(800).elo,800,'800 resolves to its own opponent');
-assert.ok(G.profile(800).randomChance<G.profile(500).randomChance && G.profile(800).randomChance>G.profile(1200).randomChance,'800 has fewer random moves than 500');
-assert.ok(G.profile(1200).skill>G.profile(800).skill && G.profile(1200).skill<3,'1200 remains above 800 but weakens the previous skill 3');
+assert.strictEqual(G.profile(800).randomChance,0,'800 never picks an arbitrary legal move');
+assert.strictEqual(G.profile(1200).randomChance,0);
+assert.ok(G.profile(1200).depth>G.profile(800).depth,'1200 searches deeper than 800');
+const candidates={bestmove:'a2a3',lines:[{move:'a2a3',eval:{type:'cp',value:100}},{move:'b2b3',eval:{type:'cp',value:50}},{move:'c2c3',eval:{type:'cp',value:-25}},{move:'d2d3',eval:{type:'cp',value:-700}},{move:'e2e3',eval:{type:'mate',value:-2}}]};
+for(let i=0;i<100;i++){
+  assert(['a2a3','b2b3','c2c3'].includes(G.chooseBotMove(candidates,G.profile(800),()=>i/100)));
+  assert(['a2a3','b2b3'].includes(G.chooseBotMove(candidates,G.profile(1200),()=>i/100)));
+}
+assert.strictEqual(G.chooseBotMove({bestmove:'a2a3',lines:[{move:'a2a3',eval:{type:'mate',value:3}},{move:'b2b3',eval:{type:'mate',value:-1}}]},G.profile(800),()=>.99),'a2a3','forced mate is not thrown away');
+assert.strictEqual(G.chooseBotMove(candidates,G.profile(4000)),candidates.bestmove);
 assert.strictEqual(G.profile('unknown').elo,1200,'unknown saved ratings retain the default opponent');
 assert.strictEqual(G.jumpIndex(3,1,40),13,'jump advances ten plies from the current index');
 assert.strictEqual(G.jumpIndex(23,-1,40),13,'jump returns ten plies from the current index');
