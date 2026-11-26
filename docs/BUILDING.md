@@ -66,6 +66,8 @@ node tests/i18n.js
 node tests/opening-lessons.js
 node tests/openings-english.js
 node tests/opening-explorer.js
+node tests/opening-explorer152.js
+node tests/opening-review.js
 node tests/review-regression.js
 node tests/review-pipeline.js
 node tests/engine-queue.js
@@ -88,6 +90,7 @@ node tests/board-caissa.js
 node tests/ux150.js
 node tests/ux151.js
 node tests/appearance151-ui.js
+node tests/ux152.js
 node tests/i18n.js --browser
 ```
 

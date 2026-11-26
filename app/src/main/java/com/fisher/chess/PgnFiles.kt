@@ -1,6 +1,8 @@
 package com.fisher.chess
 
 import android.app.Activity
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.webkit.WebView
 import org.json.JSONObject
@@ -19,6 +21,18 @@ class PgnFiles(private val activity: Activity, private val webView: WebView) {
 
     private fun message(russian: String, english: String): String =
         if (language == "en") english else russian
+
+    fun paste() {
+        try {
+            val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val text = clipboard.primaryClip?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.coerceToText(activity)?.toString().orEmpty()
+            if (text.length > 1_000_000) throw FileError(message("PGN слишком большой", "PGN is too large"))
+            eval("window.Files.onClipboardPgn(" + JSONObject.quote(text) + ")")
+        } catch (e: Exception) {
+            val text = if (e is FileError) e.message else message("Не удалось прочитать буфер. Вставьте PGN вручную.", "Could not read the clipboard. Paste PGN manually.")
+            eval("window.Files.onError(" + JSONObject.quote(text) + ")")
+        }
+    }
 
     fun pick() {
         val i = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {

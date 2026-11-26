@@ -1,5 +1,16 @@
 # Changes
 
+## 1.5.2
+
+- Fixed offline puzzle repetition: bundled and cached puzzles share persisted shuffled cycles per rating.
+- Trainer checkmates now play the end sound and show mate/winner animations once; select chevrons sit inside their borders.
+- Arrows start off on upgrade; later explicit choices persist. Added a shared vibration toggle.
+- Added 800 Elo, reduced 1200 to skill 1, removed the duplicate 3500 preset.
+- PGN entry is visible immediately; Paste reads the browser or Android clipboard and preserves input on failure.
+- Added 20 opening families: 70 opening families, 616 opening lines, plus 11 mating lessons.
+- Opening moves use full-strength before/after engine grades, never automatic book badges.
+- Debounced public Masters continuations and example game PGN import, with saved offline data and no account requirement.
+
 ## 1.5.1
 
 - GitHub update checks: version, short bilingual notes, full release link, ABI-specific APK and persistent opt-out.

@@ -74,6 +74,7 @@ async function controllerChecks() {
   assert(!elements.current.hidden); elements.current.onclick(); assert.equal(Chess.toFen(boardState),initial); assert(boardOptions.interactive);
   elements.hint.onclick(); assert(/Start with/.test(elements.feedback.textContent));
   elements.solution.onclick(); assert.equal(elements.next.hidden,false); assert(/Line:/.test(elements.explanation.textContent));
+  assert.equal(boardOptions.arrow,null,'automatic solution arrows stay off by default');
   elements.next.onclick(); await delay(480);
   // Resolve every required human ply, including automatic opponent replies.
   for(let turns=0; turns<8 && elements.next.hidden; turns++) {
@@ -99,7 +100,9 @@ async function controllerChecks() {
   language="en"; defer=false; elements.mode.value="practice";
   const shortPuzzle=data.puzzles.find(p=>p.id==="0000H");
   global.fetch=()=>Promise.resolve({ok:true,json:()=>Promise.resolve({puzzles:[shortPuzzle]})});
-  const credits=Trainer.create(root,{Chess:Chess,Pgn:Pgn,Eng:engine,I18n:{getLanguage:()=>language},isReady:()=>true});
+  const sounds=[], vibrations=[]; let haptics=true;
+  const credits=Trainer.create(root,{Chess:Chess,Pgn:Pgn,Eng:engine,I18n:{getLanguage:()=>language},isReady:()=>true,
+    Sounds:{eventForMove:()=>"move",play:event=>{sounds.push(event);return Promise.resolve();}},getSettings:()=>({haptics:haptics,showArrow:false}),vibrate:kind=>vibrations.push(kind)});
   credits.show(); await delay(0);
   async function shortRun(errors) {
     elements.start.onclick(); await delay(480);
@@ -112,14 +115,22 @@ async function controllerChecks() {
     }
     const good=Chess.legalMoves(boardState).find(m=>Chess.uci(m)===expected);
     onMove(good.from,good.to); await delay(10); assert(!elements.next.hidden);
+    assert.deepEqual(boardOptions.annotations.map(a=>a.key),['mate','winner'],'checkmate decorates both kings');
+    assert(boardOptions.annotations.every(a=>a.animate),'new checkmate animates');
+    const endCount=sounds.filter(s=>s==='game-end').length, vibrationCount=vibrations.length;
+    assert.equal(endCount,errors===2?1:2,'one ending sound per completed mate');
+    assert.equal(vibrationCount,1,'disabled haptics must suppress mate vibration');
     assert(new RegExp("Solved: "+(errors<3?1:0)).test(elements.stats.textContent));
     const score=elements.stats.textContent;
     elements.backTen.onclick(); assert.equal(elements.historyStatus.textContent,"0 / 2"); assert(!boardOptions.interactive);
     elements.forward.onclick(); assert.equal(elements.historyStatus.textContent,"1 / 2");
     elements.forwardTen.onclick(); assert.equal(elements.historyStatus.textContent,"2 / 2"); assert.equal(elements.stats.textContent,score);
+    credits.refreshAppearance(); await delay(0);
+    assert(boardOptions.annotations.every(a=>a.animate===false),'history/appearance cannot restart mate animation');
+    assert.equal(sounds.filter(s=>s==='game-end').length,endCount); assert.equal(vibrations.length,vibrationCount);
     elements.end.onclick(); assert(!elements.settings.hidden); assert(elements.summary.hidden);
   }
-  await shortRun(2); await shortRun(3); credits.hide();
+  await shortRun(2); haptics=false; await shortRun(3); credits.hide();
   // A failed engine reply on an accepted alternative must never hand the
   // opponent's pieces to the human, and retry must resume that same reply.
   language="en"; defer=false; elements.mode.value="practice";

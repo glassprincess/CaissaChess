@@ -3,6 +3,32 @@ const assert=require('assert'), Provider=require('../assets/web/puzzle-provider.
 const fixture={game:{id:'test',pgn:'e4 e5 Nf3 Nc6 Bb5 a6'},puzzle:{id:'abc12',rating:1500,solution:['b5c6'],themes:['advantage']}};
 const stored={}, storage={getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v};
 async function run(){
+ const offlineData=require('../assets/web/puzzles.json').puzzles;
+ const mixedStored={}, mixedStorage={getItem:k=>mixedStored[k]||null,setItem:(k,v)=>mixedStored[k]=v};
+ const cachedPair=offlineData.filter(p=>p.rating>=1400 && p.rating<1900).slice(0,2).map(p=>Object.assign({},p,{online:true}));
+ mixedStorage.setItem('caissa.trainer.puzzles.v1',JSON.stringify(cachedPair.concat(Provider.normalize(fixture,Chess,Pgn))));
+ let mixed=Provider.create({Chess,Pgn,storage:mixedStorage,isOnline:()=>false,random:()=>0.37});
+ const rangePool=offlineData.filter(p=>p.rating>=1400 && p.rating<1900).concat(Provider.normalize(fixture,Chess,Pgn)), cycle=new Set();
+ for(let i=0;i<rangePool.length;i++) {
+   if(i===17) mixed=Provider.create({Chess,Pgn,storage:mixedStorage,isOnline:()=>false,random:()=>0.37});
+   const item=await mixed.next('medium',offlineData);
+   assert(item && item.rating>=1400 && item.rating<1900,'offline deck respects selected rating');
+   assert(!cycle.has(item.id),'cached pair must not repeat before the full offline range is exhausted'); cycle.add(item.id);
+ }
+ assert.equal(cycle.size,rangePool.length);
+ assert(await mixed.next('medium',offlineData),'full cycle starts another shuffled cycle');
+ const allCycle=new Set();
+ for(let i=0;i<offlineData.length+1;i++) {
+   const item=await mixed.next('all',offlineData);
+   assert(!allCycle.has(item.id),'all 600 offline puzzles participate before a repeat'); allCycle.add(item.id);
+ }
+ assert.equal(allCycle.size,601,'all 600 offline items and the distinct cached puzzle participate');
+ let repeatedCalls=0;
+ const repeated=Provider.create({Chess,Pgn,storage:{getItem:()=>null,setItem:()=>{}},fetch:async()=>{repeatedCalls++;return {ok:true,status:200,json:async()=>fixture};}});
+ const firstOnline=await repeated.next('medium',offlineData), secondOnline=await repeated.next('medium',offlineData);
+ assert.equal(firstOnline.id,'abc12','fresh online puzzle is preferred');
+ assert.notEqual(secondOnline.id,firstOnline.id,'duplicate API answer falls into the unseen combined deck');
+ assert.equal(repeatedCalls,2,'each next action makes at most one official API call');
  let calls=0, fail=true, status=200, now=0;
  const provider=Provider.create({Chess,Pgn,storage,now:()=>now,fetch:async()=>{calls++;if(fail)throw Error('offline');return {ok:status===200,status,json:async()=>fixture};}});
  assert.equal(await provider.next('all'),null); assert.equal(calls,1);

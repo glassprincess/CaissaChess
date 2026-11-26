@@ -32,3 +32,7 @@ html[data-theme]:not([data-theme="classic"]) .evalbar { background: var(--line);
 
 .settings-footer { display:flex; flex-direction:column; align-items:center; gap:8px; }
 .settings-footer #checkUpdates { width:100%; max-width:260px; min-height:44px; padding:10px 16px; border:1px solid var(--line); border-radius:7px; }
+
+.explorer-game { display:block; width:100%; padding:12px; margin-top:8px; border:1px solid var(--line); border-radius:7px; min-height:48px; text-align:left; }
+.explorer-game strong,.explorer-game span {display:block;overflow-wrap:anywhere;}
+.explorer-game span {margin-top:4px;font-size:12px;}

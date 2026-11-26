@@ -42,6 +42,8 @@
     let clock = null, ticker = null, scheduled = null, lastMove = null, annotation = null, hintArrow = null, hintSquare = null;
     let history = [], viewIndex = 0, wrongAttempts = 0;
     let preview = null, assisted = false, alternative = false, lineOrigin = null, branchLine = [];
+    let moveAudio = Promise.resolve(), mateNotified = false, mateAnimated = false;
+    const decks = {};
     const Provider = deps.PuzzleProvider || global.CaissaPuzzleProvider;
     const provider = Provider ? Provider.create({Chess:Chess,Pgn:Pgn,fetch:global.fetch && global.fetch.bind(global),storage:global.localStorage,isOnline:function () { return !global.navigator || global.navigator.onLine !== false; }}) : null;
     const Review = deps.MoveReview || global.MoveReview || (typeof require === "function" ? require("./review.js") : null);
@@ -95,7 +97,9 @@
       const viewing = history.length && viewIndex < history.length - 1;
       node("settings").hidden = active(); node("summary").hidden = !active(); node("content").hidden = !session;
       if (session) text("summary", modeName(session.mode) + " · " + session.rating);
-      if (state) board.render(viewing ? history[viewIndex].state : preview || state, {lastMove:viewing ? history[viewIndex].move : lastMove,interactive:visible && phase === "thinking" && !viewing,selected:viewing ? null : hintSquare,arrow:viewing ? null : hintArrow,showArrow:true,annotations:!viewing && annotation ? [annotation] : []});
+      const marks = !viewing && mateNotified ? mateMarks() : !viewing && annotation ? [annotation] : [];
+      if (state) board.render(viewing ? history[viewIndex].state : preview || state, {lastMove:viewing ? history[viewIndex].move : lastMove,interactive:visible && phase === "thinking" && !viewing,selected:viewing ? null : hintSquare,arrow:viewing ? null : hintArrow,showArrow:!!hintArrow,annotations:marks});
+      if (!viewing && mateNotified) mateAnimated=true;
       text("historyStatus", history.length ? viewIndex + " / " + (history.length - 1) : "");
       node("back").disabled = node("backTen").disabled = !history.length || viewIndex === 0;
       node("forward").disabled = node("forwardTen").disabled = !viewing;
@@ -143,10 +147,18 @@
       }).catch(function () { loading = false; node("start").disabled = false; feedback = t("Не удалось загрузить задачи. Нажмите «Новая серия», чтобы повторить.","Could not load puzzles. Tap New mix to retry."); render(); });
     }
     function legal(s, uci) { return Chess.legalMoves(s).filter(function (m) { return Chess.uci(m) === uci; })[0] || null; }
+    function settings() { return deps.getSettings ? deps.getSettings() || {} : {}; }
+    function showArrow() { return deps.showArrow ? deps.showArrow() === true : settings().showArrow === true; }
+    function mateMarks() {
+      return [state.turn,state.turn === "w" ? "b" : "w"].map(function (color,i) {
+        const square=Chess.sqName(state.board.indexOf(color === "w" ? "K" : "k"));
+        return {move:square+square,key:i ? "winner" : "mate",file:i ? "winner.svg" : "mate.svg",color:i ? "#81b64c" : "#ca3431",label:i ? t("Победа","Victory") : t("Мат","Checkmate"),animate:!mateAnimated};
+      });
+    }
     function playMove(move) {
       const san = Pgn.sanOf(state, Chess.uci(move)); lastMove = Chess.uci(move); state = Chess.apply(state,move);
       history.push({state:state,move:lastMove}); viewIndex = history.length - 1;
-      if (Sounds && Sounds.play) { const promise = Sounds.play(Sounds.eventForMove({san:san})); if (promise && promise.catch) promise.catch(function () {}); }
+      if (Sounds && Sounds.play) moveAudio=Promise.resolve(Sounds.play(Sounds.eventForMove({san:san}))).catch(function () {});
       return san;
     }
     function start() {
@@ -156,7 +168,7 @@
       const range = node("rating").value;
       const chosen = data.filter(function (p) { return range === "easy" ? p.rating < 1400 : range === "medium" ? p.rating >= 1400 && p.rating < 1900 : range === "hard" ? p.rating >= 1900 : true; });
       if (!chosen.length) { feedback=t("Нет задач в этом диапазоне.","No puzzles in this range."); render(); return; }
-      deck = createDeck(chosen); session = {mode:node("mode").value,score:0,streak:0,lives:3,rating:node("rating").options ? node("rating").options[node("rating").selectedIndex].textContent : range};
+      deck = decks[range] || (decks[range]=createDeck(chosen)); session = {mode:node("mode").value,score:0,streak:0,lives:3,range:range,rating:node("rating").options ? node("rating").options[node("rating").selectedIndex].textContent : range};
       clock = session.mode === "practice" ? null : createClock(session.mode === "sprint" ? 180000 : 300000);
       ticker = setInterval(tick,200); node("result").hidden = true; next();
     }
@@ -164,10 +176,11 @@
       if (!session || !visible) return;
       stopJobs(); clockPause(); const gen = generation;
       phase = "loading"; feedback = t("Загружаем задачу…", "Loading puzzle…"); render();
-      const request = provider ? provider.next(node("rating").value) : Promise.resolve(null);
+      const request = provider ? provider.next(session.range,data) : Promise.resolve(null);
       request.then(function (online) {
       if (gen !== generation || !visible) return;
       puzzle = online || deck.next(); index = 0; wrongAttempts = 0; assisted = false; alternative = false; branchLine = []; preview = null; annotation = null; hintArrow = null; hintSquare = null;
+      mateNotified=false; mateAnimated=false;
       feedback = t("Последний ход соперника…", "Opponent's last move…"); explanation = ""; analysisText = ""; phase = "setup";
       state = Chess.fromFen(puzzle.fen); history = [{state:state,move:null}]; viewIndex = 0; const setup = legal(state,puzzle.setup);
       side = state.turn === "w" ? "b" : "w"; board.setOrientation(side); lastMove = null; render(); language();
@@ -217,6 +230,11 @@
     }
     function solved() {
       clockPause(); phase = "solved";
+      if (!mateNotified && Pgn.gameStatus(state) === "mate") {
+        mateNotified=true;
+        if (deps.vibrate && settings().haptics !== false && settings().vibration !== false) deps.vibrate("mate");
+        if (Sounds && Sounds.play) moveAudio=moveAudio.then(function () { return Sounds.play("game-end"); }).catch(function () {});
+      }
       if (!assisted) { session.score++; session.streak++; saveBest(); }
       feedback = assisted ? t("Комбинация найдена с помощью.","Combination completed with help.") : t("Задача решена!", "Puzzle solved!");
       if (!alternative) explanation = explain(lineOrigin,puzzle.solution);
@@ -251,7 +269,7 @@
         if (gen !== generation || !visible) return;
         const target=scoreOf(base), actual=invert(scoreOf(result));
         const good=canonical || mate || isEquivalent(target,actual) || !!(base && base.bestmove===uci && target && (target.type==="mate" ? target.value>0 : target.value>=100));
-        analysisText=base && (result || mate) ? t("Оценка за вашу сторону: ","Evaluation for your side: ") + (mate ? "#1" : formatScore(actual)) : t("Движок недоступен. Ход проверен по исходному решению Lichess.","Engine unavailable. Move checked against the original Lichess solution.");
+        analysisText=base && (result || mate) ? t("Оценка за вашу сторону: ","Evaluation for your side: ") + (mate ? t("Мат","Checkmate") : formatScore(actual)) : t("Движок недоступен. Ход проверен по исходному решению Lichess.","Engine unavailable. Move checked against the original Lichess solution.");
         const classified = Review && target && scoreOf(result) ? Review.classify({played:uci,bestmove:base.bestmove,before:target,after:scoreOf(result),lines:base.lines}) : null;
         let key = good ? "best" : classified ? classified.key : "mistake";
         if (!good && ["best","great","excellent","brilliant","forced"].indexOf(key) >= 0) key = "good";
@@ -297,7 +315,7 @@
       if (!active() || !thinking() || viewIndex < history.length - 1) return;
       if (mistake(true)) return;
       stopJobs(); clockPause(); preview=null; phase="revealed"; annotation=null;
-      hintArrow=alternative ? branchLine[0] : puzzle.solution[index]; explanation=explain(state,alternative ? branchLine : puzzle.solution.slice(index));
+      hintArrow=showArrow() ? (alternative ? branchLine[0] : puzzle.solution[index]) : null; explanation=explain(state,alternative ? branchLine : puzzle.solution.slice(index));
       feedback=t("Решение открыто. Эта задача не идёт в счёт.","Solution revealed. This puzzle does not count."); analysisText=""; render();
     }
     node("start").onclick=start; node("next").onclick=next; node("retry").onclick=retry;

@@ -249,6 +249,19 @@ Lichess не ответил за 12 секунд.|Lichess did not respond within
 Установлена последняя версия|You are using the latest version
 Нет подключения к интернету|No internet connection
 Не удалось проверить обновления. Попробуйте позже.|Could not check for updates. Try again later.
+Вибрация|Vibration
+Не удалось прочитать буфер. Вставьте PGN вручную.|Could not read the clipboard. Paste PGN manually.
+Буфер обмена пуст|The clipboard is empty
+PGN слишком большой|PGN is too large
+Условная сила бота. 4000 — полная сила движка.|Approximate bot strength. 4000 uses the engine at full strength.
+Продолжения и примеры партий Lichess. Встроенные дебюты доступны без интернета.|Lichess continuations and example games. Bundled openings work offline.
+Продолжения и примеры партий Lichess загружаются при просмотре. Сохранённые данные доступны без сети.|Lichess continuations and example games load as you browse. Saved data works offline.
+База игроков Lichess|Lichess player database
+Загружаю партию Lichess…|Loading the Lichess game…
+Не удалось загрузить партию Lichess. Попробуйте позже.|Could not load the Lichess game. Try again later.
+Оценка: |Evaluation:${" "}
+ · за белых| · for White
+за белых|for White
 Да|Yes`;
   entries.split("\n").forEach(function (line) {
     const pair = line.split("|"); catalogue[pair[0]] = pair[1];

@@ -99,6 +99,11 @@ class EngineBridge(
     }
 
     @android.webkit.JavascriptInterface
+    fun pastePgn() {
+        main.post { files.paste() }
+    }
+
+    @android.webkit.JavascriptInterface
     fun pickPgn() {
         main.post { files.pick() }
     }

@@ -259,7 +259,7 @@ async function run() {
   await test('Caissa: рейтинги, время и отсутствие переключателя стрелок в игре',async()=>{
     assert.strictEqual(await js(`document.title`),'Caissa');
     assert.ok(await js(`getComputedStyle(document.querySelector('.brand'),'::before').maskImage.includes('caissa-queen.svg')`));
-    assert.deepStrictEqual(await js(`Array.from(document.querySelectorAll('#levelSeg button')).map(function(b){return Number(b.dataset.level);})`),[250,500,1200,1800,2250,2800,3500,4000]);
+    assert.deepStrictEqual(await js(`Array.from(document.querySelectorAll('#levelSeg button')).map(function(b){return Number(b.dataset.level);})`),[250,500,800,1200,1800,2250,2800,4000]);
     assert.strictEqual(await js(`document.getElementById('playArrows')`),null);
     assert.ok(await js(`document.querySelector('#playTime option[value="3:2"]')!==null`));
   });

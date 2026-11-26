@@ -11,8 +11,8 @@ android {
         applicationId = "com.fisher.chess"
         minSdk = 24
         targetSdk = 35
-        versionCode = 9
-        versionName = "1.5.1"
+        versionCode = 10
+        versionName = "1.5.2"
     }
 
     splits {

@@ -39,11 +39,11 @@
           <span class="field-label">Рейтинг бота · Elo</span>
           <div class="seg" id="levelSeg">
             <button data-level="250">250</button><button data-level="500">500</button>
-            <button data-level="1200" class="active">1200</button><button data-level="1800">1800</button>
+            <button data-level="800">800</button><button data-level="1200" class="active">1200</button><button data-level="1800">1800</button>
             <button data-level="2250">2250</button><button data-level="2800">2800</button>
-            <button data-level="3500">3500</button><button data-level="4000">4000</button>
+            <button data-level="4000">4000</button>
           </div>
-          <p class="muted small-note">Условная сила бота. 3500 и 4000 — полная сила с разным временем расчёта.</p>
+          <p class="muted small-note">Условная сила бота. 4000 — полная сила движка.</p>
         </div>
         <label class="field"><span class="field-label">Контроль времени</span><select id="playTime" class="select"><option value="0:0">Без часов</option><option value="1:0">1 минута</option><option value="3:0">3 минуты</option><option value="3:2">3 + 2</option><option value="5:0" selected>5 минут</option><option value="10:0">10 минут</option><option value="15:10">15 + 10</option></select></label>
         <button id="startGame" class="primary wide">Начать</button>
@@ -125,8 +125,8 @@
             <button id="pgnPick" class="primary">Выбрать .pgn</button>
             <button id="pgnPasteBtn">Вставить PGN</button>
           </div>
-          <textarea id="pgnText" class="hidden" rows="6" placeholder="[Event &quot;...&quot;]&#10;1. e4 e5 2. Nf3 ..."></textarea>
-          <button id="pgnParse" class="primary wide hidden">Разобрать текст</button>
+          <textarea id="pgnText" rows="6" placeholder="[Event &quot;...&quot;]&#10;1. e4 e5 2. Nf3 ..."></textarea>
+          <button id="pgnParse" class="primary wide">Разобрать текст</button>
             <div class="seg small" id="pgnDepth">
               <button data-depth="14" class="active">Быстро</button>
               <button data-depth="18">Глубоко</button>
@@ -220,8 +220,8 @@
         <div class="moves" id="openingMoves" aria-label="Ходы выбранного варианта"></div>
         <section class="card explorer-card" aria-label="Необязательная база Lichess онлайн">
           <h3>Продолжения Lichess</h3><button id="explorerLoad" class="primary wide">Запросить эту позицию</button>
-          <p class="muted" id="explorerStatus" role="status">База мастеров — по запросу. Встроенные дебюты доступны без интернета.</p>
-          <div id="explorerMoves"></div>
+          <p class="muted" id="explorerStatus" role="status">Продолжения и примеры партий Lichess. Встроенные дебюты доступны без интернета.</p>
+          <div id="explorerMoves"></div><div id="explorerGames" class="explorer-games"></div>
         </section>
         <div class="opening-line" id="openingLine"></div>
         <div class="guide">
@@ -262,6 +262,7 @@
 <script src="analysis.js"></script>
 <script src="pgn.js"></script>
 <script src="move-classification.js"></script>
+<script src="opening-review.js"></script>
 <script src="review-pipeline.js"></script>
 <script src="openings-lookup.js"></script>
 <script src="opening-lessons.js"></script>

@@ -3,13 +3,13 @@
   else root.GameSession = factory(root.ChessLogic);
 })(typeof globalThis !== "undefined" ? globalThis : this, function (Chess) {
   "use strict";
-  const RATINGS = [250,500,1200,1800,2250,2800,3500,4000];
+  const RATINGS = [250,500,800,1200,1800,2250,2800,4000];
   const profiles = [
-    [0,0,180,.65], [0,0,220,.35], [3,0,350,0], [20,1800,500,0],
-    [20,2250,700,0], [20,2800,1000,0], [20,0,1500,0], [20,0,3000,0]
+    [0,0,180,.65], [0,0,220,.35], [0,0,280,.15], [1,0,350,0],
+    [20,1800,500,0], [20,2250,700,0], [20,2800,1000,0], [20,0,3000,0]
   ];
   function profile(elo) {
-    let i = RATINGS.indexOf(Number(elo)); if (i < 0) i = 2;
+    let i = RATINGS.indexOf(Number(elo)); if (i < 0) i = 3;
     const p = profiles[i];
     return {elo:RATINGS[i],skill:p[0],engineElo:p[1],movetime:p[2],randomChance:p[3]};
   }

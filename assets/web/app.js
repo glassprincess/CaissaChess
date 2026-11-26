@@ -12,7 +12,7 @@
   const Game = window.GameSession;
   const UI = window.CaissaI18n;
   const Sounds = window.CaissaSounds;
-  const VERSION="1.5.1";
+  const VERSION="1.5.2";
   let updates=null,pendingUpdate=null;
   const Appearance = window.CaissaAppearance;
   let trainer = null;
@@ -24,7 +24,7 @@
 
   const App = {
     tab: "play",
-    settings: { depth: 14, level: 1200, sound: true, volume: 85, showArrow: true, lang:"ru", theme:"classic", pieces:"cburnett" },
+    settings: { depth: 14, level: 1200, sound: true, volume: 85, showArrow: false, vibration:true, lang:"ru", theme:"classic", pieces:"cburnett" },
     lines: [], guides: [], guideSets:null, index: null,
     engineReady: false
   };
@@ -37,7 +37,7 @@
 
   const live = {
     state: null, moves: [], fens: [], evals: [], lastMove: null,
-    orientation: "w", showArrow: true, gen: 0, analyzing: false, loopGen: -1,
+    orientation: "w", showArrow: false, gen: 0, analyzing: false, loopGen: -1,
     future: [], nav:null, evalByFen: Object.create(null)
   };
 
@@ -48,7 +48,7 @@
 
   const openings = {
     view: "list", guide: null, line: null, lineText: "", step: 0,
-    variant: -1, notes: [], evals: Object.create(null), gen: 0, pendingFen: null,
+    variant: -1, notes: [], evals: Object.create(null), gen: 0, pendingFen: null, explorerTimer:null,
     filter: "all", explorerFen: "", explorerGen: 0, explorerController: null, custom: null
   };
 
@@ -113,6 +113,7 @@
     return [at("w","draw","draw_white.svg","Ничья",c.color),at("b","draw","draw_black.svg","Ничья",c.color)];
   }
   function vibrate(kind) {
+    if(!App.settings.vibration)return;
     try {
       if (window.AndroidEngine && window.AndroidEngine.vibrate) window.AndroidEngine.vibrate(kind);
       else if (navigator.vibrate) navigator.vibrate(kind === "mate" ? [90,110,90] : 90);
@@ -346,6 +347,9 @@
       const s = JSON.parse(localStorage.getItem("fisher.settings") || "{}");
       if (s && typeof s === "object") Object.assign(App.settings, s);
     } catch (e) {}
+    if(App.settings.arrowDefaults152!==true){App.settings.showArrow=false;App.settings.arrowDefaults152=true;saveSettings();}
+    App.settings.vibration=App.settings.vibration!==false;
+    if(App.settings.level===3500)App.settings.level=4000;
     if (Game.RATINGS.indexOf(App.settings.level) < 0) App.settings.level = 1200;
     App.settings.volume = Math.max(0,Math.min(100,Number(App.settings.volume) || 0));
     play.level = App.settings.level;
@@ -373,6 +377,7 @@
     html += "</select></div>";
     html += '<label class="check"><input type="checkbox" id="setSound"' + (App.settings.sound ? " checked" : "") + "> Звук ходов</label>";
     html += '<label class="field"><span class="field-label">Громкость ходов</span><span class="sound-volume"><input id="setVolume" type="range" min="0" max="100" value="' + App.settings.volume + '"><output id="volumeValue">' + App.settings.volume + '%</output></span></label>';
+    html += '<label class="check"><input type="checkbox" id="setVibration"'+(App.settings.vibration?' checked':'')+'> Вибрация</label>';
     html += '<label class="check"><input type="checkbox" id="setArrow"' + (App.settings.showArrow ? " checked" : "") + "> Стрелки в анализе и дебютах</label>";
     html += '<label class="check"><input type="checkbox" id="setUpdates"'+(!updates || !updates.isDisabled()?' checked':'')+'> Проверять обновления</label>';
     html += '<div class="modal-actions settings-actions"><button id="settingsCancel" class="ghost" data-close="1">Отмена</button>' +
@@ -394,6 +399,7 @@
       App.settings.depth = Number($("setDepth").value);
       App.settings.level = Number($("setLevel").value);
       App.settings.sound = $("setSound").checked;
+      App.settings.vibration=$("setVibration").checked;
       App.settings.volume = Number($("setVolume").value);
       App.settings.showArrow = $("setArrow").checked;
       App.settings.lang = $("setLanguage").value;
@@ -434,6 +440,7 @@
 
   function showTab(name) {
     if(App.tab==="training" && name!=="training" && trainer)trainer.hide();
+    if(App.tab==="openings" && name!=="openings"){cancelExplorer();openings.gen++;Eng.cancel("openings");openings.pendingFen=null;}
     App.tab = name;
     const screens = ["play", "analysis", "openings", "training"];
     for (let i = 0; i < screens.length; i++) setHidden("screen-" + screens[i], screens[i] !== name);
@@ -441,7 +448,7 @@
     for (let i = 0; i < btns.length; i++) btns[i].classList.toggle("active", btns[i].getAttribute("data-tab") === name);
     if(name==="training" && trainer){Eng.cancel("live");live.gen++;live.analyzing=false;Eng.cancel("openings");Eng.cancel("pgn-view");trainer.show();}
     if (name === "analysis") setAnalysisMode(currentAnalysisMode);
-    if (name === "openings") { if (openings.view === "list") renderOpeningList(); else requestOpeningEval(); }
+    if (name === "openings") { if (openings.view === "list") renderOpeningList(); else {renderOpeningBoard();requestOpeningEval();if(!openings.explorerTimer)openings.explorerTimer=setTimeout(requestExplorer,650);} }
     window.scrollTo(0, 0);
     tryShowUpdate();
   }
@@ -1361,6 +1368,7 @@
       while (fork < previous.moves.length && fork < parsed.moves.length && previous.moves[fork].uci === parsed.moves[fork].uci) fork++;
       if (fork >= parsed.moves.length) fork = 0;
     }
+    parsed.moves=rowsFromParsed(parsed);
     openings.variant = index; openings.lineText = chosen.line; openings.line = parsed;
     openings.notes = window.OpeningLessons.notes(parsed, chosen.notes, App.settings.lang);
     $("openingVariantSelect").value = String(index);
@@ -1388,17 +1396,29 @@
 
   function requestOpeningEval() {
     if (!App.engineReady || !openings.line || openings.view !== "detail" || App.tab !== "openings") return;
-    const fen = openingFen(), gen = openings.gen;
-    if (openings.evals[fen] || openings.pendingFen === fen) return;
-    openings.pendingFen = fen;
-    search({ fen: fen, multipv: 3, depth: 12, movetime: 500 }, "openings").then(function (res) {
-      if (gen !== openings.gen) return;
-      openings.pendingFen = null;
-      if (res) openings.evals[fen] = res;
-      renderOpeningBoard();
-      if (!res) $("openingEvalText").textContent = "Оценка недоступна. Переключите ход для повторного расчёта.";
+    const fen=openingFen(),gen=openings.gen,row=openings.step>0?openings.line.moves[openings.step-1]:null;
+    const fens=row?[row.fenBefore,fen]:[fen],key=fens.join("|");
+    if(openings.pendingFen===key || fens.every(function(position){return !!openings.evals[position];}))return;
+    openings.pendingFen=key;
+    function evaluate(index){
+      if(gen!==openings.gen || index>=fens.length)return Promise.resolve();
+      const position=fens[index];
+      if(openings.evals[position])return evaluate(index+1);
+      const terminal=window.FisherMoveClassification.terminal(position);
+      if(terminal){openings.evals[position]=terminal;return evaluate(index+1);}
+      return search({fen:position,multipv:3,depth:14,movetime:550,skill:20,elo:0},"openings").then(function(result){
+        if(gen!==openings.gen)return;
+        if(result)openings.evals[position]=result;
+        return evaluate(index+1);
+      });
+    }
+    evaluate(0).then(function(){
+      if(gen!==openings.gen)return;
+      openings.pendingFen=null;renderOpeningBoard();
+      if(!openings.evals[fen])$("openingEvalText").textContent="Оценка недоступна. Переключите ход для повторного расчёта.";
     });
   }
+  function openingGrade(row){return row?window.OpeningReview.grade(row,openings.evals[row.fenBefore],openings.evals[row.fenAfter]):null;}
 
   function renderOpeningBoard() {
     const line = openings.line;
@@ -1410,17 +1430,18 @@
     const best = ev && ev.lines && ev.lines[0];
     openingBoard.render(st, { lastMove: row ? row.uci : null, interactive: false,
       arrow: best ? best.move : null, showArrow: App.settings.showArrow,
-      annotation: row && (openings.variant !== -3 || (App.index && OL.lookup(App.index,fen))) ? moveAnnotation(Object.assign({}, row, {key:"book"}), false) : null });
+      annotation: Pgn.gameStatus(st)!=="play" ? boardAnnotation(null,st,Pgn.gameStatus(st)) : openingGrade(row) ? moveAnnotation(openingGrade(row),false) : null });
     renderEvalBar("openingEval", best ? best.eval : null, st.turn, st);
-    $("openingEvalText").textContent = best ? "Оценка: " + MR.formatEval(best.eval, st.turn) + " · за белых" : "Расчёт позиции…";
+    const graded=openingGrade(row);
+    $("openingEvalText").textContent = best ? UI.t("Оценка: ")+MR.formatEval(best.eval,st.turn)+(" · "+UI.t("за белых"))+(graded && An.category(graded.key)?" · "+UI.t(An.category(graded.key).label):"") : "Расчёт позиции…";
     $("openingStep").textContent = openings.step + " / " + line.moves.length;
     $("openingCurrentMove").textContent = row ? moveLabel(row) : "Начальная позиция";
     $("openingExplain").textContent = row ? openings.notes[openings.step - 1] : "Шагайте по ходам: под доской будет пояснение каждого хода. " + openings.guide.idea;
     $("openingPrev").disabled = $("openingFirst").disabled = openings.step <= 0;
     $("openingNext").disabled = $("openingLast").disabled = openings.step >= line.moves.length;
     $("openingTimeline").max = String(line.moves.length); $("openingTimeline").value = String(openings.step);
-    $("openingLine").textContent = openings.lineText;
-    const rows = line.moves.map(function (move) { return Object.assign({}, move, {key:"book"}); });
+    $("openingLine").textContent = pgnPreview(openings.lineText);
+    const rows = line.moves.map(function(move){return openingGrade(move) || Object.assign({},move,{key:null});});
     $("openingMoves").innerHTML = movesHtml(rows, {active:openings.step - 1});
     renderArrowControls();
   }
@@ -1432,6 +1453,7 @@
   }
 
   function cancelExplorer() {
+    clearTimeout(openings.explorerTimer);openings.explorerTimer=null;
     openings.explorerGen++;
     if (openings.explorerController) openings.explorerController.abort();
     openings.explorerController = null;
@@ -1439,8 +1461,9 @@
   function resetExplorerPosition(fen) {
     if (openings.explorerFen === fen) return;
     cancelExplorer(); openings.explorerFen = fen;
-    $("explorerMoves").innerHTML = "";
-    $("explorerStatus").textContent = "База мастеров Lichess. Интернет используется только по кнопке; полученные позиции сохраняются для офлайн-просмотра.";
+    $("explorerMoves").innerHTML = "";$("explorerGames").innerHTML="";
+    $("explorerStatus").textContent = "Продолжения и примеры партий Lichess загружаются при просмотре. Сохранённые данные доступны без сети.";
+    if(App.tab==="openings" && openings.view==="detail")openings.explorerTimer=setTimeout(function(){if(openings.line && openingFen()===fen && App.tab==="openings")requestExplorer();},650);
     $("explorerLoad").disabled = false;
   }
   function requestExplorer() {
@@ -1451,10 +1474,10 @@
     openings.explorerController = typeof AbortController === "function" ? new AbortController() : null;
     $("explorerLoad").disabled = true; $("explorerMoves").innerHTML = "";
     $("explorerStatus").textContent = "Загружаю продолжения Lichess…";
-    window.OpeningExplorer.lookup(fen, {signal:openings.explorerController ? openings.explorerController.signal : null}).then(function (data) {
+    window.OpeningExplorer.lookup(fen, {source:"masters",games:true,signal:openings.explorerController ? openings.explorerController.signal : null}).then(function (data) {
       if(gen!==openings.explorerGen)return;
       $("explorerLoad").disabled = false;
-      $("explorerStatus").textContent = (data.stale || data.warning ? "Сохранённые данные; сеть недоступна. " : data.cached ? "Сохранённая позиция. " : "База мастеров Lichess. ") +
+      $("explorerStatus").textContent = (data.stale || data.warning ? "Сохранённые данные; сеть недоступна. " : data.cached ? "Сохранённая позиция. " : UI.t(data.source==="masters"?"База мастеров Lichess":"База игроков Lichess")+". ") +
         (data.opening ? data.opening.eco + " · " + data.opening.name + ". " : "") + "Числа показывают результаты партий, а не оценку движка.";
       let html = "";
       data.moves.forEach(function (move) {
@@ -1464,6 +1487,7 @@
           '<i style="width:'+(total?move.white/total*100:0)+'%"></i><i style="width:'+(total?move.draws/total*100:0)+'%"></i><i style="width:'+(total?move.black/total*100:0)+'%"></i></span></button>';
       });
       $("explorerMoves").innerHTML=html || '<p class="muted">В этой базе продолжений нет. Можно продолжить на доске анализа.</p>';
+      $("explorerGames").innerHTML=(data.games||[]).map(function(game){return '<button class="explorer-game" data-game="'+game.id+'" data-source="'+game.source+'"><strong>'+esc(game.white.name || UI.t("Белые"))+' — '+esc(game.black.name || UI.t("Чёрные"))+'</strong><span class="muted">'+(game.year?game.year+' · ':'')+UI.t("Разобрать партию")+'</span></button>';}).join('');
     },function(err){if(gen!==openings.explorerGen)return;$("explorerLoad").disabled=false;$("explorerStatus").textContent=err.message || "Нет связи с Lichess.";});
   }
   function applyExplorerMove(uci) {
@@ -1471,7 +1495,7 @@
     if(!move)return;
     const prefix=openings.line.moves.slice(0,openings.step), applied=applyMove(state,move);
     prefix.push(applied.row);
-    const text=Pgn.toPgn({},prefix,"*").split("\n\n")[1].trim();
+    const text=Pgn.toPgn({},prefix,"*");
     const parsed=Pgn.parse(text).games[0];
     if(!parsed || !parsed.ok)return;
     openings.custom={line:text}; openings.line=parsed; openings.lineText=text;
@@ -1481,6 +1505,16 @@
     }
     $("openingVariantSelect").value="-3";
     setOpeningStep(prefix.length); requestExplorer();
+  }
+
+  function importExplorerGame(id,source){
+    cancelExplorer();const gen=openings.explorerGen;
+    openings.explorerController=typeof AbortController==="function"?new AbortController():null;
+    $("explorerStatus").textContent="Загружаю партию Lichess…";
+    window.OpeningExplorer.game(id,{source:source,signal:openings.explorerController?openings.explorerController.signal:null}).then(function(text){
+      if(gen!==openings.explorerGen)return;
+      showTab("analysis");setAnalysisMode("pgn");$("pgnText").value=text;handlePgnText(text,"Lichess · "+id);
+    },function(err){if(gen!==openings.explorerGen)return;$("explorerStatus").textContent=UI.t("Не удалось загрузить партию Lichess. Попробуйте позже.");});
   }
 
   // ---------- data ----------
@@ -1638,9 +1672,10 @@
       this.value = "";
     });
     $("pgnPasteBtn").addEventListener("click", function () {
-      setHidden("pgnText", false);
-      setHidden("pgnParse", false);
       $("pgnText").focus();
+      if(window.AndroidEngine && window.AndroidEngine.pastePgn){window.AndroidEngine.pastePgn();return;}
+      if(navigator.clipboard && navigator.clipboard.readText)navigator.clipboard.readText().then(window.Files.onClipboardPgn,function(){toast("Не удалось прочитать буфер. Вставьте PGN вручную.");});
+      else toast("Не удалось прочитать буфер. Вставьте PGN вручную.");
     });
     $("pgnParse").addEventListener("click", function () { handlePgnText($("pgnText").value, "вставка"); });
     $("pgnCancel").addEventListener("click", cancelBatch);
@@ -1676,6 +1711,7 @@
   function bindOpenings() {
     $("openingFilters").addEventListener("click",function(e){const button=e.target.closest("[data-filter]");if(!button)return;openings.filter=button.getAttribute("data-filter");const buttons=$("openingFilters").querySelectorAll("[data-filter]");for(let i=0;i<buttons.length;i++){buttons[i].classList.toggle("active",buttons[i]===button);buttons[i].setAttribute("aria-pressed",String(buttons[i]===button));}renderOpeningList();});
     $("explorerLoad").addEventListener("click",requestExplorer);
+    $("explorerGames").addEventListener("click",function(e){const button=e.target.closest("[data-game]");if(button)importExplorerGame(button.getAttribute("data-game"),button.getAttribute("data-source"));});
     $("explorerMoves").addEventListener("click",function(e){const button=e.target.closest("[data-uci]");if(button)applyExplorerMove(button.getAttribute("data-uci"));});
     $("openingSearch").addEventListener("input", renderOpeningList);
     $("openingBack").addEventListener("click", closeOpening);
@@ -1702,6 +1738,11 @@
 
   // Android file callbacks
   window.Files = {
+    onClipboardPgn:function(text){
+      if(typeof text!=="string" || !text.trim()){toast("Буфер обмена пуст");return;}
+      if(text.length>1000000){toast("PGN слишком большой");return;}
+      $("pgnText").value=text;$("pgnText").focus();
+    },
     onError: function (message) { toast(message || "Не удалось прочитать PGN"); },
     onPgn: function (text, name) { handlePgnText(text, name || "файл"); },
     onSaved: function (ok, msg) { toast(ok ? "PGN сохранён" : (msg || "Не удалось сохранить")); }
@@ -1719,7 +1760,7 @@
     if(window.AndroidEngine && window.AndroidEngine.setLanguage)window.AndroidEngine.setLanguage(App.settings.lang);
     setDepthButtons(App.settings.depth);
     createBoards();
-    trainer=window.CaissaTrainer.create($("trainerRoot"),{Chess:Chess,Pgn:Pgn,Eng:Eng,Sounds:Sounds,I18n:UI,isReady:function(){return App.engineReady;}});
+    trainer=window.CaissaTrainer.create($("trainerRoot"),{Chess:Chess,Pgn:Pgn,Eng:Eng,Sounds:Sounds,I18n:UI,vibrate:vibrate,getSettings:function(){return App.settings;},isReady:function(){return App.engineReady;}});
     renderArrowControls();
     bindChrome();
     bindPlay();
@@ -1731,6 +1772,7 @@
     loadData();
     setInterval(tickClock,200);
     document.addEventListener("visibilitychange",function(){tickClock();tryShowUpdate();});
+    window.addEventListener("online",function(){if(App.tab==="openings" && openings.view==="detail")requestExplorer();});
     setTimeout(function(){const launch=$("launch");if(launch)launch.remove();},1100);
     Eng.init().then(function (ok) {
       App.engineReady = ok;

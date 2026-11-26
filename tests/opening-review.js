@@ -1,0 +1,46 @@
+'use strict';
+const assert=require('assert');
+const fs=require('fs');
+const path=require('path');
+const helperPath=path.join(__dirname,'../assets/web/opening-review.js');
+assert.ok(fs.existsSync(helperPath),'opening review helper is available');
+const Opening=require(helperPath);
+const Chess=require('../assets/web/chess.js');
+function search(move,value,type){return {bestmove:move,lines:[{move:move,eval:{type:type||'cp',value:value},depth:18,multipv:1}]};}
+function row(fen,uci){
+  const before=Chess.fromFen(fen),move=Chess.legalMoves(before).find(m=>Chess.uci(m)===uci),after=Chess.apply(before,move);
+  return {fenBefore:fen,fenAfter:Chess.toFen(after),uci:uci,color:before.turn,legalCount:Chess.legalMoves(before).length,sacrifice:Chess.sacrificeLoss(before,after,uci),book:true,key:'book'};
+}
+const start=Chess.toFen(Chess.startState());
+const thematic=row(start,'f2f3');
+const before=search('e2e4',0),after=search('e7e5',900);
+const graded=Opening.grade(thematic,before,after);
+assert.strictEqual(graded.key,'blunder','theory membership cannot hide an engine blunder');
+assert.ok(graded.loss>45 && graded.loss<47);
+assert.strictEqual(graded.evalText,'-9.0');
+assert.strictEqual(graded.book,false);
+assert.strictEqual(thematic.key,'book','grading leaves the opening lesson row intact');
+assert.strictEqual(Opening.grade(thematic,null,after),null,'no before search means no invented grade');
+assert.strictEqual(Opening.grade(thematic,before,null),null);
+assert.strictEqual(Opening.grade(thematic,{lines:[]},after),null);
+assert.strictEqual(Opening.grade(thematic,search('e2e4',NaN),after),null);
+assert.strictEqual(Opening.grade(thematic,before,search('e7e5',Infinity)),null);
+const best=Opening.grade(row(start,'e2e4'),before,search('e7e5',0));
+assert.strictEqual(best.key,'best');
+assert.strictEqual(best.bestUci,'e2e4');
+assert.strictEqual(best.bestSan,'e4');
+const multi=search('e2e4',0);
+multi.lines.push({move:'f2f3',eval:{type:'cp',value:-20},depth:18,multipv:2});
+assert.strictEqual(Opening.grade(thematic,multi,after).key,'excellent','same-search played line wins over noisy after search');
+const black=row('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1','f7f6');
+const blackGrade=Opening.grade(black,search('e7e5',0),search('d2d4',900));
+assert.strictEqual(blackGrade.key,'blunder','black loss is measured from the mover perspective');
+assert.strictEqual(blackGrade.evalText,'+9.0','display stays in white perspective');
+assert.strictEqual(Opening.grade(thematic,search('e2e4',3,'mate'),search('e7e5',0)).key,'missed','lost forced mate uses shared classification');
+assert.strictEqual(Opening.grade(thematic,search('e2e4',3,'mate'),search('e7e5',-5,'mate')).key,'excellent','a longer retained mate is still sound');
+const forced=row('8/8/8/8/8/7k/7r/6K1 w - - 0 1','g1f1');
+assert.strictEqual(forced.legalCount,1,'fixture has exactly one legal move');
+const forcedGrade=Opening.grade(forced,search('g1f1',-900),search('h2h1',900));
+assert.strictEqual(forcedGrade.key,'forced');
+assert.strictEqual(forcedGrade.loss,0);
+console.log('ok opening engine grades: no automatic book, missing scores, best, forced, MultiPV, mate and both colors');

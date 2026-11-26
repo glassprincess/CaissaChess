@@ -1,6 +1,7 @@
 "use strict";
 const fs = require("fs"), path = require("path");
 const data = require("../assets/web/opening-guides.json");
+const existingEnglish = require("../assets/web/opening-guides.en.json");
 // Translations preserve the source lesson's plans and cautions, including its specific move references.
 const translations = {
 "italian": ["Italian Game", "White develop the bishop to c4, targeting f7, and prepare a pawn center with c3 and d4. Black respond symmetrically and try to keep White's queen and knight away from the kingside.", "Develop before launching an attack: Nf3, Bc4, c3 and d4.|Watch f7, a frequent target for tactical strikes.|Do not rush d4 before castling.", "Place the bishop on c5 and knight on f6 to put pressure on e4.|Play ...d6 and ...O-O, then prepare ...a6 and ...b5.|Watch for Nxe5 and a fork on f7.", "Calculate early attacks on f7: one bishop usually does not create a decisive threat.|Before d4, check ...exd4 and the pressure on e4."],
@@ -91,7 +92,14 @@ const curated = {
 };
 data.guides.forEach(function (guide) {
   const t = translations[guide.id];
-  if (!t) throw new Error("Missing translation: " + guide.id);
+  if (!t) {
+    // Additional bilingual lessons are authored by expand-opening-guides-152.js.
+    const existing = existingEnglish.guides.find(function (g) { return g.id === guide.id; });
+    if (!existing || existing.mainline !== guide.mainline || JSON.stringify(existing.variations.map(function (v) { return v.line; })) !== JSON.stringify(guide.variations.map(function (v) { return v.line; }))) throw new Error("Missing or stale translation: " + guide.id);
+    Object.keys(guide).forEach(function (key) { delete guide[key]; });
+    Object.assign(guide, existing);
+    return;
+  }
   guide.name=t[0]; guide.idea=t[1]; guide.white=t[2].split("|"); guide.black=t[3].split("|"); guide.mistakes=(t[4] || caution).split("|");
   if (guide.keywords) guide.keywords=["Queen's Gambit Accepted", "Queen's Gambit Declined", "QGA", "QGD"];
   guide.variations.forEach(function (variation) {

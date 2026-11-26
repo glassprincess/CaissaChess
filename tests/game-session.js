@@ -1,5 +1,10 @@
 const assert = require('assert');
 const G = require('../assets/web/game-session.js');
+assert.deepStrictEqual(G.RATINGS,[250,500,800,1200,1800,2250,2800,4000]);
+assert.strictEqual(G.profile(800).elo,800,'800 resolves to its own opponent');
+assert.ok(G.profile(800).randomChance<G.profile(500).randomChance && G.profile(800).randomChance>G.profile(1200).randomChance,'800 has fewer random moves than 500');
+assert.ok(G.profile(1200).skill>G.profile(800).skill && G.profile(1200).skill<3,'1200 remains above 800 but weakens the previous skill 3');
+assert.strictEqual(G.profile('unknown').elo,1200,'unknown saved ratings retain the default opponent');
 assert.strictEqual(G.jumpIndex(3,1,40),13,'jump advances ten plies from the current index');
 assert.strictEqual(G.jumpIndex(23,-1,40),13,'jump returns ten plies from the current index');
 assert.strictEqual(G.jumpIndex(-1,1,40),9);
