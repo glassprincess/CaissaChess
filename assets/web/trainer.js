@@ -43,6 +43,7 @@
     let history = [], viewIndex = 0, wrongAttempts = 0;
     let preview = null, assisted = false, alternative = false, lineOrigin = null, branchLine = [];
     let moveAudio = Promise.resolve(), mateNotified = false, mateAnimated = false;
+    let evaluations = Object.create(null);
     const decks = {};
     const Provider = deps.PuzzleProvider || global.CaissaPuzzleProvider;
     const provider = Provider ? Provider.create({Chess:Chess,Pgn:Pgn,fetch:global.fetch && global.fetch.bind(global),storage:global.localStorage,isOnline:function () { return !global.navigator || global.navigator.onLine !== false; }}) : null;
@@ -75,6 +76,7 @@
     const board = global.FisherBoard.create(node("board"), {onMove:onBoardMove});
     function stopJobs() {
       generation++; Eng.cancel("trainer"); clearTimeout(scheduled); scheduled = null;
+      evaluations=Object.create(null);
       node("promotion").hidden = true;
     }
     function active() { return !!session && phase !== "ended" && phase !== "idle"; }
@@ -186,7 +188,7 @@
       side = state.turn === "w" ? "b" : "w"; board.setOrientation(side); lastMove = null; render(); language();
       scheduled = setTimeout(function () {
         if (gen !== generation || !visible) return;
-        playMove(setup); lineOrigin = state; phase = "thinking"; feedback = t("Найдите лучший ход.","Find the best move."); render(); clockResume();
+        playMove(setup); lineOrigin = state; phase = "thinking"; feedback = t("Найдите лучший ход.","Find the best move."); render(); clockResume(); prefetch();
       },450);
       });
     }
@@ -212,7 +214,17 @@
     }
     function search(s, gen, multipv) {
       if (gen !== generation || !visible || (deps.isReady && !deps.isReady())) return Promise.resolve(null);
-      return Eng.search({fen:Chess.toFen(s),multipv:multipv,depth:18,movetime:600,skill:20,elo:0},"trainer");
+      const status=Pgn.gameStatus(s);
+      if(status!=="play")return Promise.resolve({bestmove:"",lines:[{pv:[],eval:{type:status==="mate"?"mate":"cp",value:0}}]});
+      const fen=Chess.toFen(s), key=fen+"|"+multipv;
+      if(evaluations[key])return evaluations[key];
+      const request=Eng.search({fen:fen,multipv:multipv,depth:18,movetime:multipv===3?350:180,skill:20,elo:0},"trainer");
+      evaluations[key]=request.then(function(result){if(!result && gen===generation)delete evaluations[key];return result;},function(){if(gen===generation)delete evaluations[key];return null;});
+      return evaluations[key];
+    }
+    function prefetch() {
+      const gen=generation, position=state, expected=alternative?branchLine[0]:puzzle.solution[index], move=legal(position,expected);
+      search(position,gen,3).then(function(){if(gen===generation && visible && move)return search(Chess.apply(position,move),gen,1);});
     }
     function lineSAN(origin, moves) {
       let s = origin; const list = [];
@@ -228,13 +240,15 @@
       const tags = puzzle.themes.filter(function (key) { return !!themes[key]; }).slice(0,3).map(function (key) { return t(themes[key][0],themes[key][1]); });
       return why + (tags.length ? " " + tags.join(" · ") + "." : "") + " " + t("Линия: ","Line: ") + lineSAN(origin,moves);
     }
-    function solved() {
-      clockPause(); phase = "solved";
+    function notifyMate() {
       if (!mateNotified && Pgn.gameStatus(state) === "mate") {
         mateNotified=true;
         if (deps.vibrate && settings().haptics !== false && settings().vibration !== false) deps.vibrate("mate");
         if (Sounds && Sounds.play) moveAudio=moveAudio.then(function () { return Sounds.play("game-end"); }).catch(function () {});
       }
+    }
+    function solved() {
+      clockPause(); phase = "solved"; notifyMate();
       if (!assisted) { session.score++; session.streak++; saveBest(); }
       feedback = assisted ? t("Комбинация найдена с помощью.","Combination completed with help.") : t("Задача решена!", "Puzzle solved!");
       if (!alternative) explanation = explain(lineOrigin,puzzle.solution);
@@ -253,7 +267,7 @@
           if (gen !== generation || !visible) return;
           playMove(move); index++;
           if (index >= puzzle.solution.length || Pgn.gameStatus(state) !== "play") { solved(); return; }
-          phase="thinking"; feedback=t("Верно. Найдите продолжение.","Correct. Find the continuation."); annotation=null; render(); clockResume();
+          phase="thinking"; feedback=t("Верно. Найдите продолжение.","Correct. Find the continuation."); annotation=null; render(); clockResume(); prefetch();
         },250 + Math.floor(Math.random()*451));
       }).catch(function () { if (gen !== generation || !visible) return; replyError(); });
     }
@@ -302,7 +316,13 @@
       const moves=Chess.legalMoves(state).filter(function (m) { return m.from===from && m.to===to; });
       if (!moves.length) return;
       if (moves.length===1) { attempt(moves[0]); return; }
-      phase="promotion"; const container=node("promotion"); container.textContent=""; container.hidden=false;
+      phase="promotion";
+      if(deps.showPromotion){
+        const gen=generation;
+        deps.showPromotion(state.turn,function(promo){if(gen!==generation || !visible)return;phase="thinking";const move=moves.filter(function(m){return m.promo===promo;})[0];if(move)attempt(move);},function(){if(gen===generation && visible){phase="thinking";render();}});
+        render();return;
+      }
+      const container=node("promotion"); container.textContent=""; container.hidden=false;
       moves.forEach(function (m) { const button=document.createElement("button"); button.className="btn"; button.textContent=m.promo.toUpperCase(); button.setAttribute("aria-label",t("Превратить в ","Promote to ")+m.promo.toUpperCase()); button.onclick=function () { container.hidden=true; phase="thinking"; attempt(m); }; container.appendChild(button); }); render();
     }
     function hint() {
@@ -318,18 +338,31 @@
     function reveal() {
       if (!active() || !thinking() || viewIndex < history.length - 1) return;
       if (mistake(true)) return;
-      stopJobs(); clockPause(); preview=null; phase="revealed"; annotation=null;
-      hintArrow=showArrow() ? (alternative ? branchLine[0] : puzzle.solution[index]) : null; explanation=explain(state,alternative ? branchLine : puzzle.solution.slice(index));
-      feedback=t("Решение открыто. Эта задача не идёт в счёт.","Solution revealed. This puzzle does not count."); analysisText=""; render();
+      stopJobs(); clockPause(); preview=null; phase="replay"; annotation=null; hintArrow=null; hintSquare=null;
+      const moves=alternative?branchLine:puzzle.solution.slice(index), origin=state, gen=generation;
+      explanation=explain(origin,moves);
+      for(let i=0;i<moves.length;i++){
+        const move=legal(state,moves[i]);if(!move)break;
+        const san=Pgn.sanOf(state,moves[i]);state=Chess.apply(state,move);history.push({state:state,move:moves[i],san:san});
+      }
+      lastMove=history[history.length-1].move;
+      feedback=t("Решение открыто. Эта задача не идёт в счёт.","Solution revealed. This puzzle does not count."); analysisText="";
+      function advance(){
+        if(gen!==generation || !visible || phase!=="replay")return;
+        if(viewIndex<history.length-1){viewIndex++;const entry=history[viewIndex];if(Sounds && Sounds.play)moveAudio=Promise.resolve(Sounds.play(Sounds.eventForMove(entry))).catch(function(){});}
+        if(viewIndex===history.length-1){phase="revealed";notifyMate();render();return;}
+        render();scheduled=setTimeout(advance,2500);
+      }
+      advance();
     }
     node("start").onclick=start; node("next").onclick=next; node("retry").onclick=retry;
     node("hint").onclick=hint; node("solution").onclick=reveal; node("skip").onclick=function () { if (!active() || node("skip").disabled) return; if (!mistake(true)) next(); };
     node("end").onclick=function () { end(t("Серия завершена", "Run finished")); };
     node("mode").onchange=language;
-    function navigate(delta) { if (!history.length || phase === "setup" || phase === "loading" || phase === "promotion") return; viewIndex=Math.max(0,Math.min(history.length-1,viewIndex+delta)); render(); }
+    function navigate(delta) { if (!history.length || phase === "setup" || phase === "loading" || phase === "promotion") return; if(phase==="replay"){clearTimeout(scheduled);phase="revealed";} viewIndex=Math.max(0,Math.min(history.length-1,viewIndex+delta)); if(phase==="revealed" && viewIndex===history.length-1)notifyMate(); render(); }
     node("backTen").onclick=function () { navigate(-10); }; node("back").onclick=function () { navigate(-1); };
     node("forwardTen").onclick=function () { navigate(10); }; node("forward").onclick=function () { navigate(1); };
-    node("current").onclick=function () { viewIndex=history.length-1; render(); };
+    node("current").onclick=function () { navigate(history.length); };
     language();
     return {show:function () { visible=true; load(); render(); }, hide:function () {
       if (active()) end(t("Серия завершена при выходе из тренировки.","The run ended when you left training."));

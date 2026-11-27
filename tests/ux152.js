@@ -131,6 +131,31 @@ async function run() {
     await until(`window.__sounds.indexOf('game-end')>=0`);assert.ok(await js(`document.querySelector('#trainerRoot img[src="analysis-icons/mate.svg"]')!==null&&document.querySelector('#trainerRoot img[src="analysis-icons/winner.svg"]')!==null`));
     assert.deepStrictEqual(await js(`window.__haptics`),['mate']);await screenshot('trainer-mate.png');await js(`document.querySelector('[data-trainer="back"]').click();document.querySelector('[data-trainer="current"]').click()`);assert.strictEqual(await js(`window.__sounds.filter(function(s){return s==='game-end';}).length`),1);
   });
+  await test('trainer promotion uses the shared piece picker and Escape restores input',async()=>{
+    const p=require('../assets/web/puzzles.json').puzzles.find(p=>p.solution[0].length===5);assert(p);
+    puzzleSubset=[p];await js(`localStorage.removeItem('caissa.trainer.puzzles.v1');localStorage.removeItem('caissa.trainer.recent.v1')`);await cdp('Page.reload',{});await sleep(650);
+    await js(`document.querySelector('[data-tab="training"]').click()`);await until(`!document.querySelector('[data-trainer="start"]').disabled`);await js(`document.querySelector('[data-trainer="start"]').click()`);await until(`document.querySelector('[data-trainer="feedback"]').textContent.includes('Найдите')`);
+    let s=Chess.fromFen(p.fen);s=Chess.apply(s,Chess.legalMoves(s).find(m=>Chess.uci(m)===p.setup));
+    const tap=`(function(){var b=document.querySelector('[data-trainer="board"]'),r=b.getBoundingClientRect(),black=${s.turn==='b'};function tap(s){var f=s.charCodeAt(0)-97,k=Number(s[1])-1,o={clientX:r.left+r.width*((black?7-f:f)+.5)/8,clientY:r.top+r.height*((black?k:7-k)+.5)/8,bubbles:true,isPrimary:true};b.dispatchEvent(new PointerEvent('pointerdown',o));window.dispatchEvent(new PointerEvent('pointerup',o));}tap('${p.solution[0].slice(0,2)}');tap('${p.solution[0].slice(2,4)}');})()`;
+    await js(tap);assert.strictEqual(await js(`document.querySelectorAll('#modalBox .promo-grid img').length`),4);
+    await js(`document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);assert.ok(await js(`document.getElementById('modalRoot').classList.contains('hidden')`));
+    await js(tap);await js(`document.querySelector('#modalBox [data-promo="${p.solution[0][4]}"]').click()`);assert.ok(await js(`document.getElementById('modalRoot').classList.contains('hidden')`));
+    await js(`document.querySelector('[data-trainer="end"]').click()`);
+  });
+  await test('revealed solution plays every 2.5 seconds and remains browsable with history arrows',async()=>{
+    puzzleSubset=[require('../assets/web/puzzles.json').puzzles.find(p=>p.id==='00008')];await js(`localStorage.removeItem('caissa.trainer.puzzles.v1');localStorage.removeItem('caissa.trainer.recent.v1')`);await cdp('Page.reload',{});await sleep(650);
+    await js(`document.querySelector('[data-tab="training"]').click()`);await until(`!document.querySelector('[data-trainer="start"]').disabled`);await js(`document.querySelector('[data-trainer="start"]').click()`);await until(`document.querySelector('[data-trainer="feedback"]').textContent.includes('Найдите')`);
+    await js(`document.querySelector('[data-trainer="solution"]').click()`);const first=await js(`document.querySelector('[data-trainer="historyStatus"]').textContent`);assert(first.startsWith('2 / '),first);
+    await sleep(1200);assert.strictEqual(await js(`document.querySelector('[data-trainer="historyStatus"]').textContent`),first);await sleep(1450);
+    assert.ok((await js(`document.querySelector('[data-trainer="historyStatus"]').textContent`)).startsWith('3 / '));
+    await js(`document.querySelector('[data-trainer="back"]').click()`);const paused=await js(`document.querySelector('[data-trainer="historyStatus"]').textContent`);await sleep(2600);assert.strictEqual(await js(`document.querySelector('[data-trainer="historyStatus"]').textContent`),paused);
+    await js(`document.querySelector('[data-trainer="current"]').click()`);assert.ok(await js(`!document.querySelector('[data-trainer="next"]').hidden`));await js(`document.querySelector('[data-trainer="end"]').click()`);
+  });
+  await test('PGN report opens before refinement and keeps the selected move when refinement completes',async()=>{
+    await js(String.raw`document.querySelector('[data-tab="analysis"]').click();document.querySelector('[data-mode="pgn"]').click();window.__pgnFetch=window.fetch;window.fetch=function(url,opts){if(url==='/search'){var o=JSON.parse(opts.body);if(o.fen==='4k3/8/8/8/8/8/4q3/3QK3 w - - 0 1'){var response={ok:true,status:200,json:function(){return Promise.resolve({bestmove:'d1e2',lines:[{pv:['d1e2'],eval:{type:'cp',value:0}}]});}};if(o.multipv===3)return new Promise(function(resolve){window.__releaseRefine=function(){resolve(response);};});return Promise.resolve(response);}}return window.__pgnFetch(url,opts);};document.querySelector('#pgnDepth [data-depth="14"]').click();document.getElementById('pgnText').value='[FEN "4k3/8/8/8/8/8/4q3/3QK3 w - - 0 1"]\n\n1. Qxe2+ Kf7 *';document.getElementById('pgnParse').click()`);
+    await until(`!!window.__releaseRefine`);assert.ok(await js(`!document.getElementById('pgnResult').classList.contains('hidden')&&document.getElementById('pgnDeepen').disabled&&document.getElementById('pgnReviewNote').textContent.includes('фоне')`));
+    await click('pgnPrev');const selected=await js(`document.querySelector('#pgnMoves .active').getAttribute('data-ply')`);await js(`window.__releaseRefine()`);await until(`!document.getElementById('pgnDeepen').disabled`);assert.strictEqual(await js(`document.querySelector('#pgnMoves .active').getAttribute('data-ply')`),selected);await js(`window.fetch=window.__pgnFetch`);
+  });
   assert.deepStrictEqual(errors,[]);console.log(count+' 1.5.2 UI checks passed');
 }
 run().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{

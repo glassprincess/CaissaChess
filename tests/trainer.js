@@ -73,20 +73,25 @@ async function controllerChecks() {
   onMove(wrong.from,wrong.to); await delay(0); assert.equal(requests.length,searchesBeforeHistory); assert.equal(elements.stats.textContent,statsBeforeHistory);
   assert(!elements.current.hidden); elements.current.onclick(); assert.equal(Chess.toFen(boardState),initial); assert(boardOptions.interactive);
   elements.hint.onclick(); assert(/Start with/.test(elements.feedback.textContent));
-  elements.solution.onclick(); assert.equal(elements.next.hidden,false); assert(/Line:/.test(elements.explanation.textContent));
+  elements.solution.onclick(); assert(/Line:/.test(elements.explanation.textContent));
+  assert(!boardOptions.interactive);const replayPosition=Chess.toFen(boardState);
+  if(elements.next.hidden){await delay(2600);assert.notEqual(Chess.toFen(boardState),replayPosition,'solution advances after about 2.5 seconds');}
+  elements.current.onclick();assert.equal(elements.next.hidden,false);const replayFinal=Chess.toFen(boardState);elements.back.onclick();assert.notEqual(Chess.toFen(boardState),replayFinal);elements.current.onclick();
   assert.equal(boardOptions.arrow,null,'automatic solution arrows stay off by default');
   elements.next.onclick(); await delay(480);
   // Resolve every required human ply, including automatic opponent replies.
   for(let turns=0; turns<8 && elements.next.hidden; turns++) {
     const bestMove=solutions[Chess.toFen(boardState)].bestmove;
     const move=Chess.legalMoves(boardState).find(m=>Chess.uci(m)===bestMove);
-    onMove(move.from,move.to); await delay(760);
+    const searchesBeforeAttempt=requests.length;onMove(move.from,move.to);await delay(10);
+    assert.equal(requests.length,searchesBeforeAttempt,'prefetched canonical assessments need no new search after the click');
+    await delay(750);
     if (elements.next.hidden) assert(!/Line:/.test(elements.explanation.textContent),"continuation stays hidden until puzzle solved");
   }
   assert(!elements.next.hidden); assert(/Solved: 1/.test(elements.stats.textContent));
   assert(requests.length>=4);
   elements.next.onclick(); await delay(480); defer=true;
-  const move=Chess.legalMoves(boardState)[0],expectedImmediate=Chess.toFen(Chess.apply(boardState,move)); onMove(move.from,move.to);
+  const move=Chess.legalMoves(boardState).find(m=>Chess.uci(m)!==solutions[Chess.toFen(boardState)].bestmove),expectedImmediate=Chess.toFen(Chess.apply(boardState,move)); onMove(move.from,move.to);
   assert.equal(Chess.toFen(boardState),expectedImmediate,'piece moves synchronously before either engine search completes');
   assert.equal(boardOptions.lastMove,Chess.uci(move),'the immediate board uses the attempted move highlight');
   assert(!boardOptions.interactive,'a second attempt cannot overlap evaluation');
@@ -146,16 +151,16 @@ async function controllerChecks() {
   const altMove=Chess.legalMoves(boardState).find(m=>Chess.uci(m)!==single.solution[0] && Pgn.gameStatus(Chess.apply(boardState,m))==="play");
   let replyRequests=0;
   override=function(options) {
-    replyRequests++; if(replyRequests===3) return Promise.resolve(null);
-    const s=Chess.fromFen(options.fen), moves=Chess.legalMoves(s), best=replyRequests===1?Chess.uci(altMove):Chess.uci(moves[0]);
+    replyRequests++;
+    const s=Chess.fromFen(options.fen), moves=Chess.legalMoves(s), best=Chess.uci(moves[0]);
     const next=Chess.apply(s,moves.find(m=>Chess.uci(m)===best)), nextMove=Chess.legalMoves(next)[0];
     return Promise.resolve({bestmove:best,lines:[{pv:[best].concat(nextMove?[Chess.uci(nextMove)]:[]),eval:{type:"cp",value:s.turn===human?400:-400}}]});
   };
   onMove(altMove.from,altMove.to); await delay(20);
-  assert(!elements.retry.hidden); assert.equal(boardOptions.interactive,false); assert.equal(boardState.turn,human==="w"?"b":"w");
-  assert(/clock is paused/.test(elements.feedback.textContent));
-  elements.retry.onclick(); await delay(760);
-  assert(boardOptions.interactive); assert.equal(boardState.turn,human); assert.equal(replyRequests,4);
+  assert(elements.retry.hidden); assert.equal(boardOptions.interactive,false); assert.equal(boardState.turn,human==="w"?"b":"w");
+  assert.equal(replyRequests,1,'assessment already provides the opponent reply, without another identical search');
+  await delay(760);
+  assert(boardOptions.interactive); assert.equal(boardState.turn,human);
   language="ru"; alternate.refreshLanguage(); assert(/Верно/.test(elements.feedback.textContent));
   assert(!/Evaluation|Best move|Line:/.test(elements.analysis.textContent+elements.explanation.textContent));
   alternate.hide();

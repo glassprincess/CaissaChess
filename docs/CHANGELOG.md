@@ -1,5 +1,13 @@
 # Changes
 
+## 1.5.2.2
+
+- Trainer precomputes the current position and canonical reply while the player thinks; assessments reuse pending/completed searches. Terminal positions need no search.
+- Revealed solutions play on the board every 2.5 seconds, with move sounds and complete browsable history. Navigation pauses playback.
+- Trainer promotion uses the same themed piece picker as play and analysis, including Escape cancellation.
+- Fast PGN reports open after the initial pass while critical moves refine in the background. Move selection survives refinement; new imports cancel old jobs. Deep review retains its previous search budget.
+- On the desktop Stockfish fixture (73 plies), initial report: 0.8 s; complete refinement: 4.9 s, versus 10.8 s previously. These are local measurements, not Android timing guarantees.
+
 ## 1.5.2.1
 
 - Confirmed opening theory retains book badges; only moves outside the opening index receive engine grades.

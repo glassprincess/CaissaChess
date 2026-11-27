@@ -12,7 +12,7 @@
   const Game = window.GameSession;
   const UI = window.CaissaI18n;
   const Sounds = window.CaissaSounds;
-  const VERSION="1.5.2.1";
+  const VERSION="1.5.2.2";
   let updates=null,pendingUpdate=null;
   const Appearance = window.CaissaAppearance;
   let trainer = null;
@@ -43,7 +43,7 @@
 
   const batch = {
     rows: [], headers: {}, evals: [], depth: 14, nav: -1,
-    gen: 0, running: false, side: "w", started: 0, elapsed: 0, fromPlayGen:null
+    gen: 0, running: false, preview:false, side: "w", started: 0, elapsed: 0, fromPlayGen:null
   };
 
   const openings = {
@@ -304,7 +304,7 @@
 
   // ---------- modal ----------
 
-  let modalFocus = null, modalPointerTarget = null;
+  let modalFocus = null, modalPointerTarget = null, modalCancel=null;
   function showModal(html) {
     modalPointerTarget = null;
     modalFocus = document.activeElement;
@@ -314,13 +314,14 @@
     if (first) first.focus();
   }
   function closeModal() {
+    const cancel=modalCancel;modalCancel=null;if(cancel)cancel();
     modalPointerTarget = null;
     $("modalRoot").classList.add("hidden");
     $("modalBox").innerHTML = "";
     if (modalFocus && document.body.contains(modalFocus)) modalFocus.focus();
     setTimeout(tryShowUpdate,0);
   }
-  function showPromotion(color, cb) {
+  function showPromotion(color, cb, cancel) {
     const p = color === "w" ? "w" : "b";
     const names = [["q", "Ферзь"], ["r", "Ладья"], ["b", "Слон"], ["n", "Конь"]];
     let html = '<h3>Превращение</h3><div class="promo-grid">';
@@ -330,11 +331,12 @@
     }
     html += "</div>";
     showModal(html);
+    modalCancel=cancel || null;
     const buttons = $("modalBox").querySelectorAll("[data-promo]");
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", function () {
         const promo = this.getAttribute("data-promo");
-        closeModal();
+        modalCancel=null;closeModal();
         cb(promo);
       });
     }
@@ -828,12 +830,12 @@
     Eng.cancel("pgn-view");batch.gen++;batch.viewPendingFen="";batch.fromPlayGen=gen;
     batch.rows=play.moves.map(function(row){return Object.assign({},row);});batch.headers=playHeaders();
     batch.evals=play.evals.slice();batch.depth=14;batch.side=play.color;batch.nav=play.moves.length-1;
-    batch.running=!play.report;batch.elapsed=play.reportElapsed;batch.started=play.reportStarted;
+    batch.running=!play.report;batch.preview=false;batch.elapsed=play.reportElapsed;batch.started=play.reportStarted;
     renderPgnScreen();
     if(!batch.running)renderBatchResult();
     else{
       $("pgnRunTitle").textContent=batch.headers.White+" — "+batch.headers.Black+" · "+batch.headers.Result;
-      $("pgnRunSub").textContent="Быстро · 14, сложные до 18";
+      $("pgnRunSub").textContent="Быстро · до 12, сложные до 18";
       const progress=play.reportProgress;if(progress)updateBatchProgress(progress.done,progress.total,progress.stage);
     }
   }
@@ -1073,14 +1075,14 @@
     batch.nav = rows.length - 1;
     batch.depth = App.settings.depth;
     Eng.cancel("pgn-view"); batch.viewPendingFen = "";
-    batch.running = true; batch.started = Date.now(); batch.side = "w"; endSoundState.batch = "";
+    batch.running = true; batch.preview=false; batch.started = Date.now(); batch.side = "w"; endSoundState.batch = "";
     for (let i = 0; i < rows.length; i++) { resetRowForBatch(rows[i]); classifyRow(rows[i], i, []); }
     setHidden("pgnImport", true);
     setHidden("pgnResult", true);
     setHidden("pgnRun", false);
     $("pgnRunTitle").textContent = (headers.White || UI.t("Белые")) + " — " + (headers.Black || UI.t("Чёрные")) +
       (headers.Result ? " · " + headers.Result : "");
-    $("pgnRunSub").textContent = (batch.depth >= 18 ? "Глубоко · до 18" : "Быстро · 14, сложные до 18") + " · " + rows.length + " полуходов";
+    $("pgnRunSub").textContent = (batch.depth >= 18 ? "Глубоко · до 18" : "Быстро · до 12, сложные до 18") + " · " + rows.length + " полуходов";
     setDepthButtons(batch.depth);
     updateBatchProgress(0, rows.length);
     setHidden("pgnErrors", true);
@@ -1111,6 +1113,12 @@
         if (gen !== batch.gen) return;
         batch.evals[index] = res;
         for (let j = Math.max(0, index - 1); j <= index && j < batch.rows.length; j++) classifyRow(batch.rows[j], j, batch.evals);
+        if(batch.preview){batch.elapsed=Date.now()-batch.started;renderBatchResult();}
+      }, onBase:function(evals){
+        if(gen!==batch.gen || !batch.running)return;
+        batch.evals=evals;batch.preview=true;batch.elapsed=Date.now()-batch.started;
+        batch.rows.forEach(function(row,j){classifyRow(row,j,evals);});
+        setHidden("pgnRun",true);setHidden("pgnResult",false);renderBatchResult();
       }, onProgress:updateBatchProgress
     }).then(function (evals) {
       if (gen !== batch.gen || !batch.running) return;
@@ -1127,16 +1135,18 @@
   }
 
   function finishBatch() {
+    const preview=batch.preview;batch.preview=false;
     batch.running = false; batch.elapsed = Date.now() - batch.started;
     const last = batch.rows[batch.rows.length - 1];
     notifyEnd(Chess.fromFen(last.fenAfter), historyFor(batch.rows, batch.rows[0].fenBefore), "batch", batch.headers.Result);
     setHidden("pgnRun", true);
     setHidden("pgnResult", false);
-    batch.nav = batch.rows.length - 1;
+    if(!preview)batch.nav = batch.rows.length - 1;
     renderBatchResult();
   }
 
   function cancelBatch() {
+    batch.preview=false;
     batch.fromPlayGen=null;
     batch.gen++;
     batch.running = false;
@@ -1156,7 +1166,7 @@
     const stats = An.sideStats(rows);
     $("pgnResultTitle").textContent = (batch.headers.White || UI.t("Белые")) + " — " +
       (batch.headers.Black || UI.t("Чёрные")) + (batch.headers.Result ? " · " + batch.headers.Result : "");
-    $("pgnResultSub").textContent = "Глубина " + batch.depth + " · " + rows.length + " полуходов · " +
+    $("pgnResultSub").textContent = (batch.depth<18 ? UI.t("Быстрый разбор") : UI.t("Глубина ")+batch.depth) + " · " + rows.length + " полуходов · " +
       An.accuracyText(stats) + " · " + (batch.elapsed / 1000).toFixed(1) + " с";
 
     function accBlock(name, val, black) {
@@ -1167,7 +1177,8 @@
     }
     $("pgnAccBars").innerHTML = accBlock("Белые", stats.white, false) + accBlock("Чёрные", stats.black, true);
     $("pgnVerdict").textContent = An.verdict(stats);
-    $("pgnReviewNote").textContent = batch.depth < 18 ? "Быстрая проверка: сложные позиции уточняются отдельно. Метки могут измениться после глубокого разбора." : "Глубокая проверка: одинаковый режим MultiPV для всех некнижных позиций.";
+    $("pgnReviewNote").textContent = batch.preview && batch.running ? UI.t("Первичный разбор готов. Уточняем сложные ходы в фоне…") : batch.depth < 18 ? "Быстрая проверка: сложные позиции уточняются отдельно. Метки могут измениться после глубокого разбора." : "Глубокая проверка: одинаковый режим MultiPV для всех некнижных позиций.";
+    $("pgnDeepen").disabled=batch.running;
     setHidden("pgnDeepen", batch.depth >= 18);
 
     let chips = "";
@@ -1237,7 +1248,7 @@
   }
 
   function renderPgnScreen() {
-    if (batch.running) {
+    if (batch.running && !batch.preview) {
       setHidden("pgnImport", true); setHidden("pgnRun", false); setHidden("pgnResult", true);
     } else if (batch.rows.length) {
       setHidden("pgnImport", true); setHidden("pgnRun", true); setHidden("pgnResult", false);
@@ -1546,7 +1557,7 @@
     if(window.AndroidEngine && window.AndroidEngine.setLanguage)window.AndroidEngine.setLanguage(App.settings.lang);
     if(batch.rows.length){
       if(batch.fromPlayGen!==null)batch.headers=playHeaders();
-      if(!batch.running)renderBatchResult();
+      if(!batch.running || batch.preview)renderBatchResult();
       else $("pgnRunTitle").textContent=(batch.headers.White||UI.t("Белые"))+" — "+(batch.headers.Black||UI.t("Чёрные"))+(batch.headers.Result?" · "+batch.headers.Result:"");
     }
     if($("resultReport"))updatePlayReport();
@@ -1686,6 +1697,7 @@
     $("pgnParse").addEventListener("click", function () { handlePgnText($("pgnText").value, "вставка"); });
     $("pgnCancel").addEventListener("click", cancelBatch);
     $("pgnNew").addEventListener("click", function () {
+      Eng.cancel("batch");Eng.cancel("pgn-view");batch.preview=false;
       batch.fromPlayGen=null;batch.rows = []; batch.evals = []; batch.running = false; batch.gen++;
       setHidden("pgnResult", true);
       setHidden("pgnImport", false);
@@ -1766,7 +1778,7 @@
     if(window.AndroidEngine && window.AndroidEngine.setLanguage)window.AndroidEngine.setLanguage(App.settings.lang);
     setDepthButtons(App.settings.depth);
     createBoards();
-    trainer=window.CaissaTrainer.create($("trainerRoot"),{Chess:Chess,Pgn:Pgn,Eng:Eng,Sounds:Sounds,I18n:UI,vibrate:vibrate,getSettings:function(){return App.settings;},isReady:function(){return App.engineReady;}});
+    trainer=window.CaissaTrainer.create($("trainerRoot"),{Chess:Chess,Pgn:Pgn,Eng:Eng,Sounds:Sounds,I18n:UI,showPromotion:showPromotion,vibrate:vibrate,getSettings:function(){return App.settings;},isReady:function(){return App.engineReady;}});
     renderArrowControls();
     bindChrome();
     bindPlay();

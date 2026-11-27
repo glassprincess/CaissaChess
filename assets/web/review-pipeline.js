@@ -22,7 +22,7 @@
       const fen = i === rows.length ? rows[i - 1].fenAfter : rows[i].fenBefore;
       const history = [rows[0].fenBefore].concat(rows.slice(0, i).map(function (row) { return row.fenAfter; }));
       const terminal = Classification.terminal(fen, history);
-      const key = [fen, depth, deep ? "deep-v1" : "fast-v1", multipv, target, movetime].join("|");
+      const key = [fen, depth, deep ? "deep-v1" : "fast-v2", multipv, target, movetime].join("|");
       const saved = terminal || cache.get(key);
       return (saved ? Promise.resolve(saved) : search({fen:fen, multipv:multipv, depth:target, movetime:movetime})).then(function (result) {
         if (cancelled()) return null;
@@ -37,7 +37,7 @@
     function base(i) {
       if (cancelled()) return Promise.resolve(null);
       if (i > rows.length) return refine();
-      const task = rows.length && needed.has(i) ? evaluate(i, deep ? 3 : 1, depth, deep ? 2000 : 120) : Promise.resolve(true);
+      const task = rows.length && needed.has(i) ? evaluate(i, deep ? 3 : 1, deep ? depth : 12, deep ? 2000 : 35) : Promise.resolve(true);
       return task.then(function (res) {
         if (!res || cancelled()) return null;
         progress(i + 1, rows.length + 2, "base");
@@ -46,6 +46,7 @@
     }
     function refine() {
       if (deep) { progress(rows.length + 1, rows.length + 1, "refine"); return Promise.resolve(evals); }
+      if(options.onBase)options.onBase(evals.slice());
       const indexes = [];
       rows.forEach(function (row, i) {
         const before = evals[i], after = evals[i + 1];
@@ -62,10 +63,10 @@
         if (cancelled()) return Promise.resolve(null);
         if (j >= indexes.length) return Promise.resolve(evals);
         const i = indexes[j], sacrifice = rows[i].sacrifice >= 2;
-        return evaluate(i, 3, depth + (sacrifice ? 4 : 2), sacrifice ? 500 : 250).then(function (res) {
+        return evaluate(i, 3, depth + (sacrifice ? 4 : 2), sacrifice ? 250 : 120).then(function (res) {
           if (!res || cancelled()) return null;
           const verified = res.lines.some(function (line) { return line.move === rows[i].uci; });
-          if (sacrifice && !verified) return evaluate(i + 1, 1, depth + 4, 350);
+          if (sacrifice && !verified) return evaluate(i + 1, 1, depth + 4, 180);
           return res;
         }).then(function (res) {
           if (!res || cancelled()) return null;

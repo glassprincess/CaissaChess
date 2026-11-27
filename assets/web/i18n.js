@@ -260,6 +260,9 @@ PGN слишком большой|PGN is too large
 Загружаю партию Lichess…|Loading the Lichess game…
 Не удалось загрузить партию Lichess. Попробуйте позже.|Could not load the Lichess game. Try again later.
 Оценка: |Evaluation:${" "}
+Первичный разбор готов. Уточняем сложные ходы в фоне…|Initial review ready. Refining critical moves in the background…
+Быстро · до 12, сложные до 18|Fast · up to 12, critical positions up to 18
+Быстрый разбор|Quick review
  · за белых| · for White
 за белых|for White
 Да|Yes`;

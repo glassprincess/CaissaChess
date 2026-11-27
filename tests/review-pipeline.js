@@ -16,6 +16,7 @@ async function main() {
   const opts = {search,depth:14,onPosition:(i,r)=>positions.push(i),onProgress:(d,t)=>progress.push([d,t])};
   const first = await Pipeline.run(rows,opts);
   assert.strictEqual(calls.length,2,"only nonbook move boundaries need searches");
+  assert(calls.every(o=>o.movetime===35 && o.depth===12),'fast base searches have a bounded short budget');
   assert.ok(first[2] && first[3]);
   assert.deepStrictEqual(progress[progress.length-1],[4,4]);
   assert.ok(progress.slice(0,-1).every(p=>p[0]<p[1]),"100% is reported only when refinements finish");
@@ -45,6 +46,9 @@ async function main() {
   assert.strictEqual(sacrificeCalls.length,4,"жертва вне MultiPV требует проверки позиции после хода");
   assert.strictEqual(sacrificeCalls[3].fen,sacrificeRows[0].fenAfter);
   assert.strictEqual(sacrificeCalls[3].depth,18);
+  let firstPass=false, refinements=0;
+  await Pipeline.run(sacrificeRows,{depth:14,onBase:evals=>{firstPass=true;assert(evals[0]&&evals[1]);},search:async o=>{if(o.multipv===3){assert(firstPass,'report is ready before refinement');refinements++;}return search(o);}});
+  assert(firstPass&&refinements);
   const repeated=Pgn.parse("1. Nf3 Nf6 2. Ng1 Ng8 3. Nf3 Nf6 4. Ng1 Ng8 5. Nf3 Nf6 6. Ng1 Ng8 7. Nf3 Nf6 8. Ng1 Ng8 *").games[0].moves;
   const repeatedResult=await Pipeline.run(repeated,{search,depth:14});
   assert.strictEqual(repeatedResult[16].terminal,"draw","pipeline respects fivefold repetition history");

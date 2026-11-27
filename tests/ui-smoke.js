@@ -228,6 +228,7 @@ async function run() {
     assert.ok((await js(`document.getElementById('pgnCountsTitle').textContent`)).includes('37'));
     assert.strictEqual(await js(`Array.from(document.querySelectorAll('#pgnChips .chip b')).reduce(function(n,e){return n+Number(e.textContent);},0)`),37);
     await js(`document.querySelector('#pgnSides [data-side="b"]').click()`);assert.ok((await js(`document.getElementById('pgnCountsTitle').textContent`)).includes('36'));
+    await until(`!document.getElementById('pgnDeepen').disabled`);
     const warm=searchRequests;await click('pgnNew');await js(`document.getElementById('pgnParse').click()`);
     await until(`!document.getElementById('pgnResult').classList.contains('hidden')`);
     assert.strictEqual(searchRequests,warm,'повторный разбор использует оценки той же партии');
